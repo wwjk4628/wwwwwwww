@@ -29,23 +29,23 @@
 	</context:component-scan>
 	
 	<!-- Oracle DataSource -->
-	<!-- bean id="oracleDatasource"
+	<bean id="oracleDatasource"
 		class="oracle.jdbc.pool.OracleDataSource">
 		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="user" value="project1" />
 		<property name="password" value="project1" />
 		<property name="implicitCachingEnabled" value="true" />
 		<qualifier value="main-db" />	
-	</bean> -->
+	</bean>
 	
 	<!-- MyBatis SqlSessionFactoryBean -->
-	<!-- bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="oracleDatasource" />
 		<property name="configLocation" value="classpath:/mybatis/configuration.xml" />
-	</bean> -->
+	</bean>
 	
 	<!-- MyBatis SqlSessionTemplate -->
-	<!-- bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
-	</bean> -->	
+	</bean>
 </beans>
