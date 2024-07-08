@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ì§ì  ê´ë¦¬ ìì¤í</title>
+    <title>지점 관리 시스템</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,43 +71,43 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/branches/branch_home.html">êµì¬ ì¬ê³ </a></li>
-            <li><a href="/branches/branch_order_list.html">ë°ì£¼</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">ìê³ </a></li>
-            <li><a href="/branches/branch_stock_out_list.html">ì¶ê³ </a></li>
-            <li style="color: red;">ë³¸ì¬íì´ì§</li>
-            <li><a href="/order-approval.html">ë°ì£¼ ì¹ì¸</a></li>
-            <li><a href="/book-management.html">êµì¬ ê´ë¦¬</a></li>
-            <li><a href="/member-approval.html">íì ì¹ì¸</a></li>
+            <li><a href="/branches/branch_home.html">교재 재고</a></li>
+            <li><a href="/branches/branch_order_list.html">발주</a></li>
+            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
+            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
+            <li style="color: red;">본사페이지</li>
+            <li><a href="/order-approval.html">발주 승인</a></li>
+            <li><a href="/book-management.html">교재 관리</a></li>
+            <li><a href="/member-approval.html">회원 승인</a></li>
         </ul>
     </nav>
     <div class="content">
-        <h1>ìê³ </h1>
-        <h3><a href="/branches/branch_stock_in_detail.html">ìê³  ê¸°ë¡</a></h3>
+        <h1>입고</h1>
+        <h3><a href="/branches/branch_stock_in_detail.html">입고 기록</a></h3>
         <table>
             <tr>
-                <th>ë°ì£¼ ë²í¸</th>
-                <th>êµì¬ëª</th>
-                <th>ì£¼ë¬¸ ìë</th>
-                <th>ìê³  ìë</th>
-                <th>ìí</th>
-                <th>ìì</th>
+                <th>발주 번호</th>
+                <th>교재명</th>
+                <th>주문 수량</th>
+                <th>입고 수량</th>
+                <th>상태</th>
+                <th>작업</th>
             </tr>
             <tr>
                 <td>ORD001</td>
-                <td>êµ­ì´ ê¸°ë³¸ì</td>
+                <td>국어 기본서</td>
                 <td>10</td>
                 <td><input type="number" value="10" min="0"></td>
-                <td>ëê¸° ì¤</td>
-                <td><button>ìê³  íì¸</button></td>
+                <td>대기 중</td>
+                <td><button>입고 확인</button></td>
             </tr>
             <tr>
                 <td>ORD001</td>
-                <td>ìí ë¬¸ì ì§</td>
+                <td>수학 문제집</td>
                 <td>5</td>
                 <td><input type="number" value="5" min="0"></td>
-                <td>ëê¸° ì¤</td>
-                <td><button>ìê³  íì¸</button></td>
+                <td>대기 중</td>
+                <td><button>입고 확인</button></td>
             </tr>
         </table>
 

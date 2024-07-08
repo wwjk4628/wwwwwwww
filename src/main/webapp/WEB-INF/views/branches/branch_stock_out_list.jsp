@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ì§ì  ê´ë¦¬ ìì¤í</title>
+    <title>지점 관리 시스템</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,51 +73,51 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/branches/branch_home.html">êµì¬ ì¬ê³ </a></li>
-            <li><a href="/branches/branch_order_list.html">ë°ì£¼</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">ìê³ </a></li>
-            <li><a href="/branches/branch_stock_out_list.html">ì¶ê³ </a></li>
-            <li style="color: red;">ë³¸ì¬íì´ì§</li>
-            <li><a href="/order-approval.html">ë°ì£¼ ì¹ì¸</a></li>
-            <li><a href="/book-management.html">êµì¬ ê´ë¦¬</a></li>
-            <li><a href="/member-approval.html">íì ì¹ì¸</a></li>
+            <li><a href="/branches/branch_home.html">교재 재고</a></li>
+            <li><a href="/branches/branch_order_list.html">발주</a></li>
+            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
+            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
+            <li style="color: red;">본사페이지</li>
+            <li><a href="/order-approval.html">발주 승인</a></li>
+            <li><a href="/book-management.html">교재 관리</a></li>
+            <li><a href="/member-approval.html">회원 승인</a></li>
         </ul>
     </nav>
     <div class="content">
-        <h1>ì¶ê³ </h1>
-        <h3><a href="/branches/branch_stock_out_detail.html">ì¶ê³  ê¸°ë¡</a></h3>
+        <h1>출고</h1>
+        <h3><a href="/branches/branch_stock_out_detail.html">출고 기록</a></h3>
         
         <div class="form-group">
             <select>
-                <option value="">êµì¬ ì í</option>
-                <option value="book1">êµ­ì´ ê¸°ë³¸ì</option>
-                <option value="book2">ìí ë¬¸ì ì§</option>
-                <option value="book3">ìì´ ë¨ì´ì¥</option>
-                <option value="book4">ê³¼í ì¤íì</option>
-                <option value="book5">ì¬í ì°¸ê³ ì</option>
+                <option value="">교재 선택</option>
+                <option value="book1">국어 기본서</option>
+                <option value="book2">수학 문제집</option>
+                <option value="book3">영어 단어장</option>
+                <option value="book4">과학 실험서</option>
+                <option value="book5">사회 참고서</option>
             </select>
-            <input type="number" placeholder="ìë" min="1" value="1">
-            <button>ì¶ê³  ëª©ë¡ì ì¶ê°</button>
+            <input type="number" placeholder="수량" min="1" value="1">
+            <button>출고 목록에 추가</button>
         </div>
 
-        <h2>ì¶ê³  ëª©ë¡</h2>
+        <h2>출고 목록</h2>
         <table>
             <tr>
-                <th>êµì¬ëª</th>
-                <th>ìë</th>
-                <th>ìì</th>
+                <th>교재명</th>
+                <th>수량</th>
+                <th>작업</th>
             </tr>
             <tr>
-                <td>êµ­ì´ ê¸°ë³¸ì</td>
+                <td>국어 기본서</td>
                 <td>5</td>
-                <td><button>ì­ì </button></td>
+                <td><button>삭제</button></td>
             </tr>
             <tr>
-                <td>ìí ë¬¸ì ì§</td>
+                <td>수학 문제집</td>
                 <td>3</td>
-                <td><button>ì­ì </button></td>
+                <td><button>삭제</button></td>
             </tr>
         </table>
-        <button>ì¶ê³  íì¸</button>
+        <button>출고 확인</button>
     </div>
 </body>

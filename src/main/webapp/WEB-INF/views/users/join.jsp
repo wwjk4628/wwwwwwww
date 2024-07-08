@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>    
@@ -7,25 +9,25 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- íìê°ì íì´ì§: ì¬ì©ì ì´ë¦ê³¼ ë¹ë°ë²í¸, ì½ëë¥¼ ìë ¥ë°ìµëë¤. ì±ê³µíë©´ íìê°ìì ì±ê³µíë¤ë ìëê³¼ í¨ê» ë¡ê·¸ì¸ íì´ì§(login.html)ë¡ ì´ëí©ëë¤.-->
-    <h1>íìê°ì íì´ì§</h1>
+    <!-- 회원가입 페이지: 사용자 이름과 비밀번호, 코드를 입력받습니다. 성공하면 회원가입에 성공했다는 알람과 함께 로그인 페이지(login.html)로 이동합니다.-->
+    <h1>회원가입 페이지</h1>
     <form id="signupForm" action="login.html" method="post">
-        <label for="username">ì¬ì©ì ì´ë¦:</label>
+        <label for="username">사용자 이름:</label>
         <input type="text" id="username" name="username" required><br><br>
         
-        <label for="password">ë¹ë°ë²í¸:</label>
+        <label for="password">비밀번호:</label>
         <input type="password" id="password" name="password" required><br><br>
         
-        <label for="code">ì½ë:</label>
+        <label for="code">코드:</label>
         <input type="text" id="code" name="code" required><br><br>
         
-        <button type="submit">íìê°ì</button>
+        <button type="submit">회원가입</button>
     </form>
 
     <script>
         document.getElementById('signupForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            alert('íìê°ìì ì±ê³µíìµëë¤! ë¡ê·¸ì¸ íì´ì§ë¡ ì´ëí©ëë¤.');
+            alert('회원가입에 성공했습니다! 로그인 페이지로 이동합니다.');
             window.location.href = 'login.html';
         });
     </script>

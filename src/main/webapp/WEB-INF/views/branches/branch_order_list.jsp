@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ë°ì£¼ íì´ì§</title>
+    <title>발주 페이지</title>
     <style>
-        /* ì´ì  ì¤íì¼ ì ì§ */
+        /* 이전 스타일 유지 */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -61,56 +61,56 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/branches/branch_home.html">êµì¬ ì¬ê³ </a></li>
-            <li><a href="/branches/branch_order_list.html">ë°ì£¼</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">ìê³ </a></li>
-            <li><a href="/branches/branch_stock_out_list.html">ì¶ê³ </a></li>
-            <li style="color: red;">ë³¸ì¬íì´ì§</li>
-            <li><a href="/order-approval.html">ë°ì£¼ ì¹ì¸</a></li>
-            <li><a href="/book-management.html">êµì¬ ê´ë¦¬</a></li>
-            <li><a href="/member-approval.html">íì ì¹ì¸</a></li>
+            <li><a href="/branches/branch_home.html">교재 재고</a></li>
+            <li><a href="/branches/branch_order_list.html">발주</a></li>
+            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
+            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
+            <li style="color: red;">본사페이지</li>
+            <li><a href="/order-approval.html">발주 승인</a></li>
+            <li><a href="/book-management.html">교재 관리</a></li>
+            <li><a href="/member-approval.html">회원 승인</a></li>
         </ul>
     </nav>
 
     <div class="content">
-        <h1>ë°ì£¼ íì´ì§</h1>
-        <h3><a href="/branches/branch_order_detail.html">ë°ì£¼ ê¸°ë¡</a></h3>
+        <h1>발주 페이지</h1>
+        <h3><a href="/branches/branch_order_detail.html">발주 기록</a></h3>
         <div class="order-form">
             <select>
-                <option value="">êµì¬ ì í</option>
-                <option value="book1">êµ­ì´ ê¸°ë³¸ì</option>
-                <option value="book2">ìí ë¬¸ì ì§</option>
-                <option value="book3">ìì´ ë¨ì´ì¥</option>
-                <option value="book4">ê³¼í ì¤íì</option>
-                <option value="book5">ì¬í ì°¸ê³ ì</option>
+                <option value="">교재 선택</option>
+                <option value="book1">국어 기본서</option>
+                <option value="book2">수학 문제집</option>
+                <option value="book3">영어 단어장</option>
+                <option value="book4">과학 실험서</option>
+                <option value="book5">사회 참고서</option>
             </select>
             <input type="number" id="quantity" min="1" value="1">
-            <button onclick="addToCart()">ì¥ë°êµ¬ëì ì¶ê°</button>
+            <button onclick="addToCart()">장바구니에 추가</button>
         </div>
 
         <div class="order-list">
             <table>
                 <tr>
-                    <th>êµì¬ëª</th>
-                    <th>ìë</th>
-                    <th>ìì</th>
+                    <th>교재명</th>
+                    <th>수량</th>
+                    <th>작업</th>
                 </tr>
-                <tr><td>êµ­ì´ ê¸°ë³¸ì</td><td>10</td><td><button>ì­ì </button></td></tr>
-                <tr><td>ìí ë¬¸ì ì§</td><td>5</td><td><button>ì­ì </button></td></tr>
-                <tr><td>ìì´ ë¨ì´ì¥</td><td>15</td><td><button>ì­ì </button></td></tr>
+                <tr><td>국어 기본서</td><td>10</td><td><button>삭제</button></td></tr>
+                <tr><td>수학 문제집</td><td>5</td><td><button>삭제</button></td></tr>
+                <tr><td>영어 단어장</td><td>15</td><td><button>삭제</button></td></tr>
             </table>
-            <button onclick="submitOrder()">ë°ì£¼ ì ì¶</button>
+            <button onclick="submitOrder()">발주 제출</button>
         </div>
 
     </div>
 
     <script>
         function addToCart() {
-            // ì¥ë°êµ¬ëì í­ëª©ì ì¶ê°íë ë¡ì§
+            // 장바구니에 항목을 추가하는 로직
         }
 
         function submitOrder() {
-            // ë°ì£¼ë¥¼ ì ì¶íë ë¡ì§
+            // 발주를 제출하는 로직
         }
     </script>
 </body>

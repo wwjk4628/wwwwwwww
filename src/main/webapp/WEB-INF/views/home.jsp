@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  
     <!DOCTYPE html>
     <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
@@ -43,5 +44,7 @@
         <a href="/users/login" class="btn btn-login">로그인</a>
         <a href="/users/join" class="btn btn-signup">회원가입</a>
     </div>
+    <%@ include file="/WEB-INF/views/admin_includes/footer.jsp" %>
+
 </body>
 </html>
