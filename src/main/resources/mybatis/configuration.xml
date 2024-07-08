@@ -2,7 +2,6 @@
 <!DOCTYPE configuration
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
-
 <configuration>
     <settings>
         <setting name="cacheEnabled" value="true" />
@@ -14,13 +13,13 @@
     </settings>
     
     <typeAliases>
-        <typeAlias 
-            type="com.inventory.repositories.vo.BookVo"
-            alias="BookVo" />
+        <typeAlias type="com.inventory.repositories.vo.BookVo" alias="BookVo" />
+        <typeAlias type="com.inventory.repositories.vo.UserVo" alias="UserVo" />
     </typeAliases>
 
     <mappers>
         <mapper resource="mybatis/mappers/StockOutMapper.xml"/>
         <mapper resource="mybatis/mappers/book.xml" />
+        <mapper resource="mybatis/mappers/users.xml" />
     </mappers>
 </configuration>
