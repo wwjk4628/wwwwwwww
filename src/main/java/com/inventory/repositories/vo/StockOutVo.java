@@ -1,4 +1,4 @@
-package com.inventory.vo;
+package com.inventory.repositories.vo;
 
 import java.util.Date;
 

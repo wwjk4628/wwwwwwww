@@ -1,11 +1,11 @@
-package com.inventory.service.impl;
+package com.inventory.services;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.inventory.dao.StockOutDAO;
-import com.inventory.service.StockOutService;
-import com.inventory.vo.StockOutVo;
+
+import com.inventory.repositories.dao.StockOutDAO;
+import com.inventory.repositories.vo.StockOutVo;
 
 @Service
 public class StockOutServiceImpl implements StockOutService {

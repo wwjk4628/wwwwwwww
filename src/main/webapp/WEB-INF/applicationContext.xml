@@ -31,7 +31,7 @@
     <!-- Oracle DataSource -->
     <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource">
         <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
-        <property name="user" value="C##project1" />
+        <property name="user" value="project1" />
         <property name="password" value="project1" />
         <property name="implicitCachingEnabled" value="true" />
     </bean>
@@ -39,7 +39,7 @@
     <!-- MyBatis SqlSessionFactoryBean -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="oracleDatasource" />
-        <property name="configLocation" value="classpath:mybatis/configuration.xml" />
+        <property name="configLocation" value="classpath:/mybatis/configuration.xml" />
     </bean>
     
     <!-- MyBatis SqlSessionTemplate -->

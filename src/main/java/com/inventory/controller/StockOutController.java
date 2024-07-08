@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.inventory.service.StockOutService;
-import com.inventory.vo.StockOutVo;
+import com.inventory.repositories.vo.StockOutVo;
+import com.inventory.services.StockOutService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

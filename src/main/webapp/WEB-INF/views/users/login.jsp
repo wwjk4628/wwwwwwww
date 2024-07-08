@@ -1,52 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
   
+=======
+>>>>>>> branch 'sungmin' of https://www.github.com/ktw1021/TEAM_Inventory_Project.git
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
+<<<<<<< HEAD
     
     <!-- 로그인 페이지:회원 이름과 비밀번호, 코드(1~7)를 확인 후 1일 경우, admin_home.html로 이동, 나머지는 branch_home.html로 이동-->
+=======
+>>>>>>> branch 'sungmin' of https://www.github.com/ktw1021/TEAM_Inventory_Project.git
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script>
-        function validateLogin() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const code = parseInt(document.getElementById('code').value, 10);
-
-            if (username && password && !isNaN(code) && code >= 1 && code <= 7) {
-                if (code === 1) {
-                    window.location.href = '../../admins/admin_home.html';
-                } else {
-                    window.location.href = '../../branches/branch_home.html';
-
-                }
-            } else {
-                alert('Please enter a valid username, password, and a code between 1 and 7.');
-            }
+    <title>환영합니다! 메인 페이지 - 로그인 및 회원가입</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
         }
-    </script>
+        .container {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .btn-login {
+            background-color: #007bff;
+        }
+        .btn-signup {
+            background-color: #28a745;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form onsubmit="event.preventDefault(); validateLogin();">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <label for="code">Code (1-7):</label>
-        <input type="number" id="code" name="code" min="1" max="7" required><br>
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+    <div class="container">
+        <a href="/users/login.html" class="btn btn-login">로그인</a>
+        <a href="/users/join.html" class="btn btn-signup">회원가입</a>
+    </div>
 </body>
 </html>
