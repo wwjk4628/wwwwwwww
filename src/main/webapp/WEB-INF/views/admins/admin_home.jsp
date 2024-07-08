@@ -21,6 +21,6 @@
     </div>
     
     <!-- Include footer -->
-    <%@ include file = "/admin_includes/footer.html" %>
+    <%@ include file = "/admin_includes/footer.jsp" %>
 </body>
 </html>

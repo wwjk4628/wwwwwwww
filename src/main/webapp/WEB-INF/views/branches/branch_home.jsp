@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ì§ì  ê´ë¦¬ ìì¤í</title>
+    <title>지점 관리 시스템</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,30 +47,30 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/branches/branch_home.html">êµì¬ ì¬ê³ </a></li>
-            <li><a href="/branches/branch_order_list.html">ë°ì£¼</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">ìê³ </a></li>
-            <li><a href="/branches/branch_stock_out_list.html">ì¶ê³ </a></li>
-            <li style="color: red;">ë³¸ì¬íì´ì§</li>
-            <li><a href="/order-approval.html">ë°ì£¼ ì¹ì¸</a></li>
-            <li><a href="/book-management.html">êµì¬ ê´ë¦¬</a></li>
-            <li><a href="/member-approval.html">íì ì¹ì¸</a></li>
+            <li><a href="/branches/branch_home.html">교재 재고</a></li>
+            <li><a href="/branches/branch_order_list.html">발주</a></li>
+            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
+            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
+            <li style="color: red;">본사페이지</li>
+            <li><a href="/order-approval.html">발주 승인</a></li>
+            <li><a href="/book-management.html">교재 관리</a></li>
+            <li><a href="/member-approval.html">회원 승인</a></li>
         </ul>
     </nav>
 
     <div class="content">
-        <h1>êµì¬ ì¬ê³  íí©</h1>
+        <h1>교재 재고 현황</h1>
         <table>
             <tr>
-                <th>êµì¬ëª</th>
-                <th>ì¬ê³  ìë</th>
-                <th>ìµê·¼ ìë°ì´í¸</th>
+                <th>교재명</th>
+                <th>재고 수량</th>
+                <th>최근 업데이트</th>
             </tr>
-            <tr><td>êµ­ì´ ê¸°ë³¸ì</td><td>50</td><td>2024-07-06</td></tr>
-            <tr><td>ìí ë¬¸ì ì§</td><td>30</td><td>2024-07-06</td></tr>
-            <tr><td>ìì´ ë¨ì´ì¥</td><td>75</td><td>2024-07-05</td></tr>
-            <tr><td>ê³¼í ì¤íì</td><td>25</td><td>2024-07-04</td></tr>
-            <tr><td>ì¬í ì°¸ê³ ì</td><td>40</td><td>2024-07-03</td></tr>
+            <tr><td>국어 기본서</td><td>50</td><td>2024-07-06</td></tr>
+            <tr><td>수학 문제집</td><td>30</td><td>2024-07-06</td></tr>
+            <tr><td>영어 단어장</td><td>75</td><td>2024-07-05</td></tr>
+            <tr><td>과학 실험서</td><td>25</td><td>2024-07-04</td></tr>
+            <tr><td>사회 참고서</td><td>40</td><td>2024-07-03</td></tr>
         </table>
     </div>
 </body>

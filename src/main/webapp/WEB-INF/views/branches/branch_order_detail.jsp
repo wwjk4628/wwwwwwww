@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ì§ì  ê´ë¦¬ ìì¤í</title>
+    <title>지점 관리 시스템</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,30 +47,30 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/branches/branch_home.html">êµì¬ ì¬ê³ </a></li>
-            <li><a href="/branches/branch_order_list.html">ë°ì£¼</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">ìê³ </a></li>
-            <li><a href="/branches/branch_stock_out_list.html">ì¶ê³ </a></li>
-            <li style="color: red;">ë³¸ì¬íì´ì§</li>
-            <li><a href="/order-approval.html">ë°ì£¼ ì¹ì¸</a></li>
-            <li><a href="/book-management.html">êµì¬ ê´ë¦¬</a></li>
-            <li><a href="/member-approval.html">íì ì¹ì¸</a></li>
+            <li><a href="/branches/branch_home.html">교재 재고</a></li>
+            <li><a href="/branches/branch_order_list.html">발주</a></li>
+            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
+            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
+            <li style="color: red;">본사페이지</li>
+            <li><a href="/order-approval.html">발주 승인</a></li>
+            <li><a href="/book-management.html">교재 관리</a></li>
+            <li><a href="/member-approval.html">회원 승인</a></li>
         </ul>
     </nav>
 
     <div class="content">
         <div class="order-history">
-            <h2>ë°ì£¼ ê¸°ë¡</h2>
-            <h3><a href="/branches/branch_order_list.html">ë°ì£¼</a></h3>
+            <h2>발주 기록</h2>
+            <h3><a href="/branches/branch_order_list.html">발주</a></h3>
             <table>
                 <tr>
-                    <th>ë°ì£¼ ë²í¸</th>
-                    <th>ë ì§</th>
-                    <th>ìí</th>
+                    <th>발주 번호</th>
+                    <th>날짜</th>
+                    <th>상태</th>
                 </tr>
-                <tr><td>ORD001</td><td>2024-07-05</td><td>ì²ë¦¬ ì¤</td></tr>
-                <tr><td>ORD002</td><td>2024-07-04</td><td>ìë£</td></tr>
-                <tr><td>ORD003</td><td>2024-07-03</td><td>ìë£</td></tr>
+                <tr><td>ORD001</td><td>2024-07-05</td><td>처리 중</td></tr>
+                <tr><td>ORD002</td><td>2024-07-04</td><td>완료</td></tr>
+                <tr><td>ORD003</td><td>2024-07-03</td><td>완료</td></tr>
             </table>
         </div>
     </div>
