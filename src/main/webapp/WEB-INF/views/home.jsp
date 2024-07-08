@@ -40,8 +40,8 @@
 <body>
     <div class="container">
         test
-        <a href="/users/login.html" class="btn btn-login">로그인</a>
-        <a href="/users/join.html" class="btn btn-signup">회원가입</a>
+        <a href="/users/login" class="btn btn-login">로그인</a>
+        <a href="/users/join" class="btn btn-signup">회원가입</a>
     </div>
 </body>
 </html>
