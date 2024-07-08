@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     
-    <!-- ë¡ê·¸ì¸ íì´ì§:íì ì´ë¦ê³¼ ë¹ë°ë²í¸, ì½ë(1~7)ë¥¼ íì¸ í 1ì¼ ê²½ì°, admin_home.htmlë¡ ì´ë, ëë¨¸ì§ë branch_home.htmlë¡ ì´ë-->
+    <!-- 로그인 페이지:회원 이름과 비밀번호, 코드(1~7)를 확인 후 1일 경우, admin_home.html로 이동, 나머지는 branch_home.html로 이동-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
