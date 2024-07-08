@@ -125,11 +125,13 @@ button {
 					<td>${vo.price }</td>
 					<td>${vo.kindcode }</td>
 					<td>
-						<!-- 수정 --> <a
-						<%-- href="<c:url value="/guestbook/delete/${vo.no }" />"> 삭제 </a> --%>
-								href="<c:url value="/admin/deletebook/${vo.book_code }" />">
-							삭제 </a>
-					</td>
+					<a
+						href="<c:url value="/admin/updatebooks/${vo.book_code }" />">수정
+					</a>
+					&nbsp;
+					<a
+						href="<c:url value="/admin/deletebook/${vo.book_code }" /> "onclick="return confirm('정말로 삭제하시겠습니까?');">삭제
+					</a></td>
 				</tr>
 			</c:forEach>
 

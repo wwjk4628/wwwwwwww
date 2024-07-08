@@ -38,8 +38,8 @@ public class BookServiceImpl implements BookService{
 
 	@Override
 	public boolean updatebook(BookVo vo) {
-		// TODO Auto-generated method stub
-		return false;
+		int updatedCount = bookDao.update(vo);
+		return 1 == updatedCount;
 	}
 
 	@Override
@@ -47,6 +47,12 @@ public class BookServiceImpl implements BookService{
 		System.out.println("ser" + book_name);
 		List<BookVo> list = bookDao.search(book_name);
 		return list;
+	}
+
+	@Override
+	public BookVo getData(String book_code) {
+		BookVo vo = bookDao.getData(book_code);
+		return vo;
 	}
 
 	

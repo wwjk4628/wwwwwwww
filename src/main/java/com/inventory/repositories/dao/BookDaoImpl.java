@@ -38,7 +38,7 @@ public class BookDaoImpl implements BookDao{
 
 	@Override
 	public int update(BookVo vo) {
-		// TODO Auto-generated method stub
+		sqlSession.update("book.updateData", vo);
 		return 0;
 	}
 
@@ -49,6 +49,13 @@ public class BookDaoImpl implements BookDao{
 		return list;
 	}
 
+	@Override
+	public BookVo getData(String book_code) {
+		BookVo vo = sqlSession.selectOne("book.getData",book_code);
+		return vo;
+	}
+
+	
 	
 	
 }

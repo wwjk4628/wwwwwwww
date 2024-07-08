@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,5 +53,16 @@ public class BookController {
         return "admins/book_update"; // 정상적인 경우 이렇게 반환할 것입니다.
     }
 	
-
+	@GetMapping("/updatebooks/{book_code}")
+	public String updateBooks(@PathVariable("book_code") String book_code, Model model) {
+		BookVo vo = bookService.getData(book_code);
+		model.addAttribute("vo", vo);
+		return "admins/book_modify";
+	}
+	
+	@PostMapping("/modify")
+	public String modify(@ModelAttribute BookVo vo) {
+		boolean success = bookService.updatebook(vo);
+		return "redirect:/admin/booklist";
+	}
 }
