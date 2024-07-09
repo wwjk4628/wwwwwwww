@@ -18,12 +18,18 @@
 				<p>유저리스트</p>
 				<table border="1">
 					<tr>
-						
+						<th>번호</th>
+						<th>이름</th>
+						<th>지점 번호</th>
+						<th>auth code</th>
 					</tr>
 					
 					<c:forEach items="${list }" var="vo">
 						<tr>
-							<td></td>
+							<td>${vo.no }</td>
+							<td>${vo.name }</td>
+							<td>${vo.branchId }</td>
+							<td>${vo.authCode }</td>
 						</tr>
 					</c:forEach>
 				</table>

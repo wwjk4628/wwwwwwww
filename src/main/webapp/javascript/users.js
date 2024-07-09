@@ -39,8 +39,8 @@ window.addEventListener("load", event => {
 		.addEventListener("click", checkName);
 		
 	// 가입 폼 Validation
-	/*
-	document.getElementById("join-form")
+	
+	document.getElementById("joinForm")
 		.addEventListener("submit", event => {
 		const frm = event.target;
 		
@@ -59,31 +59,21 @@ window.addEventListener("load", event => {
 			return;
 		}
 		//	이메일 검증
-		if (frm.email.value.trim().length === 0) {
+		if (frm.branchId.value.trim().length === 0) {
 			frm.email.focus();
 			return;
 		}
-		//	성별 검증
-		const genders = 
-			document.querySelector('input[name=gender]:checked');
-		if (genders === null) {	//	체크된 radio가 없다
-			alert("성별을 선택하세요");
-			return;
-		}
+
 		//	이메일 중복체크 여부 판단
-		if (frm.emailCheck.value !== "y") {
+		if (frm.checkedName.value !== "y") {
 			alert("이메일 중복 확인을 해주세요");
 			return;
 		}
-		//	약관 동의 여부
-		if (!frm.agree.checked) {
-			alert("약관에 동의해야 합니다.");
-			return;
-		}
+
 		
 		//	전송
 		frm.submit();
 		
 	});
-	*/
+	
 });

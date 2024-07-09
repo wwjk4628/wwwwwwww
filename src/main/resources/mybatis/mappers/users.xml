@@ -23,8 +23,11 @@
 		select user_no as no, user_name as name, branch_id as branchId, auth_code as authCode from users where user_name = #{name} and password = #{password}
 	</select>
 	
-		<!-- user manage list -->
+	<!-- user list -->
 	<select id="selectUserList" resultType="UserVo">
 		select user_no as no, user_name as name, branch_id as branchId, auth_code as authCode from users
 	</select>
+	
+	
+	
 </mapper>

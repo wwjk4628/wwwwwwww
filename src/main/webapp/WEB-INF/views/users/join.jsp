@@ -7,7 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="<c:url value= "/javascript/users.js"/>"></script>
+    <script src="<c:url value= "/javascript/users.js"/>">
+    	document.addEventListener('DOMContentLoaded', function() {
+        	document.getElementById('joinForm').addEventListener('submit', function(event) {
+            	if (document.getElementById('checkedName').value !== 'y') {
+                	event.preventDefault(); // submit을 중단합니다.
+                	alert('이름 중복을 확인해주세요.');
+            	}
+        	});
+    	});
+    </script>
 </head>
 <body>
     <!-- 회원가입 페이지: 사용자 이름과 비밀번호, 코드를 입력받습니다. 성공하면 회원가입에 성공했다는 알람과 함께 로그인 페이지(login.html)로 이동합니다.-->

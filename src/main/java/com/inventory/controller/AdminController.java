@@ -20,6 +20,10 @@ public class AdminController {
 			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
 			return "redirect:/";
 		}
+    	
+    	//	계정 승인 요청 
+    	
+    	
         return "admins/admin_home";
     }
 }
