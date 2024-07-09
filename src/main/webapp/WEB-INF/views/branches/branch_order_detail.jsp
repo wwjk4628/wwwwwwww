@@ -45,6 +45,7 @@
     </style>
 </head>
 <body>
+
     <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
 
     <div class="content">

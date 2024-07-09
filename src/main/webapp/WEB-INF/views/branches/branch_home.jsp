@@ -46,7 +46,6 @@
 </head>
 <body>
     <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
-
     <div class="content">
         <h1>교재 재고 현황</h1>
         <table>
