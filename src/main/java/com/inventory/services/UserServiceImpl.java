@@ -70,4 +70,10 @@ public class UserServiceImpl implements UserService {
 		return deleteCount == 1;
 	}
 
+	@Override
+	public boolean confirm(int no) {
+		int updateCount = userDao.confirm(no);
+		return updateCount == 1;
+	}
+
 }

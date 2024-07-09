@@ -70,4 +70,13 @@ public class UserDaoImpl implements UserDao{
 			throw new UserDaoException("계정 삭제 중", no);
 		}
 	}
+
+	@Override
+	public int confirm(int no) {
+		
+		Map<String, Integer> userMap = new HashMap<>();
+		userMap.put("no", no);
+		userMap.put("authCode", 1);
+		return sqlSession.update("users.confirmUserAcount", userMap);
+	}
 }

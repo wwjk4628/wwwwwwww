@@ -25,7 +25,7 @@
 	
 	<!-- user list -->
 	<select id="selectUserList" resultType="UserVo">
-		select user_no as no, user_name as name, branch_id as branchId, auth_code as authCode from users
+		select user_no as no, user_name as name, branch_id as branchId, auth_code as authCode from users order by authCode
 	</select>
 	
 	<!-- 승인 대기 계정 갯수 출력 -->
@@ -38,6 +38,9 @@
 		delete from users where user_no = #{no}
 	</delete>
 	
-	
+	<!-- 계정 승인 기능 -->
+	<update id = "confirmUserAcount" parameterType="map">
+		update users set auth_code = #{authCode} where user_no = #{no}
+	</update>
 	
 </mapper>

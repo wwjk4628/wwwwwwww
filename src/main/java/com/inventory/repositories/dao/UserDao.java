@@ -11,4 +11,5 @@ public interface UserDao {
 	public List<UserVo> getList();
 	public long getCount();
 	public int delete(long no);
+	public int confirm(int no);
 }
