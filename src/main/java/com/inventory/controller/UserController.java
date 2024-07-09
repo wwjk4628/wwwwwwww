@@ -1,14 +1,11 @@
 package com.inventory.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inventory.repositories.vo.UserVo;
-import com.inventory.service.UserService;
+import com.inventory.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -106,9 +103,9 @@ public class UserController {
 			//	록드인 처리 해주어야
 			session.setAttribute("authUser", authUser);
 			if (authUser.getAuthCode().equals("1")) {
-				return "redirect:/branches/branch_home";
+				return "redirect:/branches/home";
 			} else if (authUser.getAuthCode().equals("2")) {
-				return "redirect:/admins/admin_home"; 
+				return "redirect:/admins/home"; 
 			} else {
 				return "users/authcode";
 			}
