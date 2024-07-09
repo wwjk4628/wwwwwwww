@@ -17,13 +17,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-@RequestMapping("/branch_stock_out_list")
+@RequestMapping("/branch")
 public class StockOutController {
 
     @Autowired
     private StockOutService stockOutService;
 
-    @GetMapping
+    @GetMapping("/stock_out_list")
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<StockOutVo> stockOuts = stockOutService.getAllStockOuts();

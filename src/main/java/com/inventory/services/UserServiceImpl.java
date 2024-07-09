@@ -1,4 +1,4 @@
-package com.inventory.service;
+package com.inventory.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

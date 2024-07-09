@@ -1,4 +1,4 @@
-package com.inventory.service;
+package com.inventory.services;
 
 import com.inventory.repositories.vo.UserVo;
 
