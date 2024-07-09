@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,20 +67,8 @@
         }
     </style>
 </head>
-
 <body>
-    <nav>
-        <ul>
-            <li><a href="/branches/branch_home.html">교재 재고</a></li>
-            <li><a href="/branches/branch_order_list.html">발주</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
-            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
-            <li style="color: red;">본사페이지</li>
-            <li><a href="/order-approval.html">발주 승인</a></li>
-            <li><a href="/book-management.html">교재 관리</a></li>
-            <li><a href="/member-approval.html">회원 승인</a></li>
-        </ul>
-    </nav>
+    <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
     <div class="content">
         <h1>출고</h1>
         <h3><a href="/branches/branch_stock_out_detail.html">출고 기록</a></h3>
@@ -90,7 +76,7 @@
         <div class="form-group">
             <select>
                 <option value="">교재 선택</option>
-                <option value="book1">국어 기본서</option>
+                <option value="book1">국어 기본</option>
                 <option value="book2">수학 문제집</option>
                 <option value="book3">영어 단어장</option>
                 <option value="book4">과학 실험서</option>
@@ -102,22 +88,30 @@
 
         <h2>출고 목록</h2>
         <table>
-            <tr>
-                <th>교재명</th>
-                <th>수량</th>
-                <th>작업</th>
-            </tr>
-            <tr>
-                <td>국어 기본서</td>
-                <td>5</td>
-                <td><button>삭제</button></td>
-            </tr>
-            <tr>
-                <td>수학 문제집</td>
-                <td>3</td>
-                <td><button>삭제</button></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>출고 ID</th>
+                    <th>교재명</th>
+                    <th>수량</th>
+                    <th>출고일</th>
+                    <th>비고</th>
+                    <th>지점 ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="stockOut" items="${stockOuts}">
+                    <tr>
+                        <td>${stockOut.outId}</td>
+                        <td>${stockOut.bookName}</td>
+                        <td>${stockOut.quantity}</td>
+                        <td>${stockOut.outDate}</td>
+                        <td>${stockOut.comments}</td>
+                        <td>${stockOut.branchId}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
         <button>출고 확인</button>
     </div>
 </body>
+</html>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.inventory.repositories.vo.UserVo;
-import com.inventory.service.UserService;
+import com.inventory.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,6 +29,6 @@ public class UserManageController {
 		}
     	List<UserVo> list = userService.getList();
 		model.addAttribute("list", list);
-        return "usersmanage/userlist";
+        return "admins/user_list";
     }
 }

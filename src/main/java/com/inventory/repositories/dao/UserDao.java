@@ -9,4 +9,5 @@ public interface UserDao {
 	public UserVo selectUser(String name);
 	public UserVo selectUser(String name, String password);
 	public List<UserVo> getList();
+	public long getCount();
 }

@@ -55,4 +55,10 @@ public class UserDaoImpl implements UserDao{
 		return list;
 	}
 
+	@Override
+	public long getCount() {
+		long count = sqlSession.selectOne("users.countUserCode0");
+		return count;
+	}
+
 }

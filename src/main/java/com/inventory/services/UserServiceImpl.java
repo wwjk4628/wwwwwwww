@@ -1,4 +1,4 @@
-package com.inventory.service;
+package com.inventory.services;
 
 import java.util.List;
 
@@ -50,11 +50,18 @@ public class UserServiceImpl implements UserService {
 		
 		return false;
 	}
-
+	
 	@Override
 	public List<UserVo> getList() {
 		List<UserVo> list = userDao.getList();
 		return list;
+	}
+
+	@Override
+	public long userCount() {
+		long count = userDao.getCount();
+		System.out.println(count);
+		return count;
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.inventory.service;
+package com.inventory.services;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ public interface UserService {
 	public UserVo getUser(String name, String password);
 	
 	public List<UserVo> getList();
+	
+	public long userCount();
 	
 	//	인증 체크 메서드 
 	public boolean isAuthenticated(HttpServletRequest request);

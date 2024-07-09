@@ -28,6 +28,8 @@
 		select user_no as no, user_name as name, branch_id as branchId, auth_code as authCode from users
 	</select>
 	
-	
+	<select id = "countUserCode0" resultType="long">
+		SELECT COUNT(*) FROM users WHERE auth_code = '0'
+	</select>
 	
 </mapper>

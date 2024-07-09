@@ -45,19 +45,7 @@
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/branches/branch_home.html">교재 재고</a></li>
-            <li><a href="/branches/branch_order_list.html">발주</a></li>
-            <li><a href="/branches/branch_stock_in_list.html">입고</a></li>
-            <li><a href="/branches/branch_stock_out_list.html">출고</a></li>
-            <li style="color: red;">본사페이지</li>
-            <li><a href="/order-approval.html">발주 승인</a></li>
-            <li><a href="/book-management.html">교재 관리</a></li>
-            <li><a href="/member-approval.html">회원 승인</a></li>
-        </ul>
-    </nav>
-
+    <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
     <div class="content">
         <h1>교재 재고 현황</h1>
         <table>
