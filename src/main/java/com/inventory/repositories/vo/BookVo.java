@@ -6,7 +6,7 @@ public class BookVo {
 
 	private String book_code;
 	private String book_name;
-	private String price;
+	private int price;
 	private String kindcode;
 	
 	
@@ -31,11 +31,11 @@ public class BookVo {
 		this.book_name = book_name;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -53,7 +53,7 @@ public class BookVo {
 				+ kindcode + "]";
 	}
 
-	public BookVo(String book_code, String book_name, String price, String kindcode) {
+	public BookVo(String book_code, String book_name, int price, String kindcode) {
 		this.book_code = book_code;
 		this.book_name = book_name;
 		this.price = price;
