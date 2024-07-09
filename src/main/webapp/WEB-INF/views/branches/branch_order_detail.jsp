@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,7 +52,7 @@
     <div class="content">
         <div class="order-history">
             <h2>발주 기록</h2>
-            <h3><a href="/branches/branch_order_list.html">발주</a></h3>
+            <h3><a href="<c:url value="/orderlist" />">발주</a></h3>
             <table>
                 <tr>
                     <th>발주 번호</th>
