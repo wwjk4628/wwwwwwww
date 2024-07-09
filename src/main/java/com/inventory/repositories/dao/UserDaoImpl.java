@@ -61,4 +61,13 @@ public class UserDaoImpl implements UserDao{
 		return count;
 	}
 
+	@Override
+	public int delete(long no) {
+		try {
+			return sqlSession.delete("users.deleteUserAcount", no);
+		} catch(Exception e) {
+			e.printStackTrace();
+			throw new UserDaoException("계정 삭제 중", no);
+		}
+	}
 }

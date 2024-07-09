@@ -8,14 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="<c:url value= "/javascript/users.js"/>">
-    	document.addEventListener('DOMContentLoaded', function() {
-        	document.getElementById('joinForm').addEventListener('submit', function(event) {
-            	if (document.getElementById('checkedName').value !== 'y') {
-                	event.preventDefault(); // submit을 중단합니다.
-                	alert('이름 중복을 확인해주세요.');
-            	}
-        	});
-    	});
     </script>
 </head>
 <body>

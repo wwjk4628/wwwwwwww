@@ -91,6 +91,7 @@
 					<th>이름</th>
 					<th>지점 번호</th>
 					<th>auth code</th>
+					<th>비고</th>
 				</tr>
 					
 				<c:forEach items="${list }" var="vo">
@@ -98,7 +99,23 @@
 						<td>${vo.no }</td>
 						<td>${vo.name }</td>
 						<td>${vo.branchId }</td>
-						<td>${vo.authCode }</td>
+						<td>
+            				<c:choose>
+                				<c:when test="${vo.authCode eq 0}">승인 대기</c:when>
+                				<c:when test="${vo.authCode eq 1}">지점 담당자</c:when>
+                				<c:when test="${vo.authCode eq 2}">관리자</c:when>
+                				<c:otherwise>알 수 없음</c:otherwise>
+           					</c:choose>
+        				</td>
+        				<td>
+        					<c:choose>
+        						<c:when test="${vo.authCode eq 0}"><a href = "<c:url value="/usermanage/${vo.no }/confirm"/>">승인</a></c:when>
+        					</c:choose>
+        					<c:choose>
+                				<c:when test="${vo.authCode eq 0 || vo.authCode eq 1}"><a href = "<c:url value="/usermanage/${vo.no }/delete"/>">삭제</a></c:when>
+                				<c:otherwise>비워뒀음</c:otherwise>
+           					</c:choose>
+        				</td>
 					</tr>
 				</c:forEach>
 			</table>

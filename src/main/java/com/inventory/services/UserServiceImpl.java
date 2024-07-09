@@ -64,4 +64,10 @@ public class UserServiceImpl implements UserService {
 		return count;
 	}
 
+	@Override
+	public boolean delete(long no) {
+		int deleteCount = userDao.delete(no); 
+		return deleteCount == 1;
+	}
+
 }

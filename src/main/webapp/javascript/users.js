@@ -66,7 +66,7 @@ window.addEventListener("load", event => {
 
 		//	이메일 중복체크 여부 판단
 		if (frm.checkedName.value !== "y") {
-			alert("이메일 중복 확인을 해주세요");
+			alert("이름 중복 여부를 확인을 해주세요");
 			return;
 		}
 

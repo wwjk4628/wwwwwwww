@@ -10,4 +10,5 @@ public interface UserDao {
 	public UserVo selectUser(String name, String password);
 	public List<UserVo> getList();
 	public long getCount();
+	public int delete(long no);
 }

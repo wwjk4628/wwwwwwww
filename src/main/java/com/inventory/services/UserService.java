@@ -15,6 +15,8 @@ public interface UserService {
 	
 	public long userCount();
 	
+	public boolean delete(long no);
+	
 	//	인증 체크 메서드 
 	public boolean isAuthenticated(HttpServletRequest request);
 }
