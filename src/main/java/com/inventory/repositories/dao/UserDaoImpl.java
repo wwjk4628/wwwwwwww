@@ -1,6 +1,7 @@
 package com.inventory.repositories.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,7 +30,7 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public UserVo selectUser(String name) {
-		UserVo userVo = sqlSession.selectOne("selectUserByName", name);
+		UserVo userVo = sqlSession.selectOne("users.selectUserByName", name);
 		
 		return userVo;
 	}
@@ -46,6 +47,12 @@ public class UserDaoImpl implements UserDao{
 		UserVo userVo = sqlSession.selectOne("users.selectUserByNameAndPassword", userMap);
 		System.err.println(userVo);
 		return userVo;
+	}
+
+	@Override
+	public List<UserVo> getList() {
+		List <UserVo> list = sqlSession.selectList("users.selectUserList");
+		return list;
 	}
 
 }

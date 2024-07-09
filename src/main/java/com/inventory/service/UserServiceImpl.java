@@ -1,5 +1,7 @@
 package com.inventory.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,12 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return false;
+	}
+
+	@Override
+	public List<UserVo> getList() {
+		List<UserVo> list = userDao.getList();
+		return list;
 	}
 
 }
