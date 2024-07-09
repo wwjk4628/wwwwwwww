@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,19 +48,22 @@
 <body>
     <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
     <div class="content">
-        <h1>교재 재고 현황</h1>
-        <table>
-            <tr>
-                <th>교재명</th>
-                <th>재고 수량</th>
-                <th>최근 업데이트</th>
-            </tr>
-            <tr><td>국어 기본서</td><td>50</td><td>2024-07-06</td></tr>
-            <tr><td>수학 문제집</td><td>30</td><td>2024-07-06</td></tr>
-            <tr><td>영어 단어장</td><td>75</td><td>2024-07-05</td></tr>
-            <tr><td>과학 실험서</td><td>25</td><td>2024-07-04</td></tr>
-            <tr><td>사회 참고서</td><td>40</td><td>2024-07-03</td></tr>
-        </table>
+        <h1>branch id: ${authUser.branchId }의 교재 재고 현황</h1>
+        <table border="1">
+				<tr>
+					<th>book_code</th>
+					<th>book_name</th>
+					<th>inventory</th>
+				</tr>
+					
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.bookCode}</td>
+						<td>${vo.bookName}</td>
+						<td>${vo.inventory}</td>
+					</tr>
+				</c:forEach>
+			</table>
     </div>
 </body>
 </html>

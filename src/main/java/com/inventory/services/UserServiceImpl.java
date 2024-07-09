@@ -1,5 +1,7 @@
 package com.inventory.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +49,31 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public List<UserVo> getList() {
+		List<UserVo> list = userDao.getList();
+		return list;
+	}
+
+	@Override
+	public long userCount() {
+		long count = userDao.getCount();
+		System.out.println(count);
+		return count;
+	}
+
+	@Override
+	public boolean delete(long no) {
+		int deleteCount = userDao.delete(no); 
+		return deleteCount == 1;
+	}
+
+	@Override
+	public boolean confirm(int no) {
+		int updateCount = userDao.confirm(no);
+		return updateCount == 1;
 	}
 
 }

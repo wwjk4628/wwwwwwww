@@ -17,6 +17,10 @@ public class UserDaoException extends RuntimeException {
 		super(message);
 		this.userVo = userVo;
 	}
+	
+	public UserDaoException(String message, long no) {
+		super(message);
+	}
 
 	public UserVo getUserVo() {
 		return userVo;
