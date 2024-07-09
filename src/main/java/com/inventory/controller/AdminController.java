@@ -20,7 +20,8 @@ public class AdminController {
     @RequestMapping({"/admin_home", "/", ""}) 
     public String adminHome(HttpSession session,  RedirectAttributes redirectAttributes, Model model) {
     	UserVo authUser = (UserVo) session.getAttribute("authUser");
-    	if (authUser == null) {
+    	//	authUser = null 일때 오류 나니까 수정 필요
+    	if (!("2").equals(authUser.getAuthCode())) {
 			//	홈화면으로 보내
 			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
 			return "redirect:/";
