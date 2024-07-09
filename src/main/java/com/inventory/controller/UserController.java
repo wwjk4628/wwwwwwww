@@ -103,9 +103,9 @@ public class UserController {
 			//	록드인 처리 해주어야
 			session.setAttribute("authUser", authUser);
 			if (authUser.getAuthCode().equals("1")) {
-				return "redirect:/branches/branch_home";
+				return "redirect:/branches/home";
 			} else if (authUser.getAuthCode().equals("2")) {
-				return "redirect:/admins/admin_home"; 
+				return "redirect:/admins/home"; 
 			} else {
 				return "users/authcode";
 			}

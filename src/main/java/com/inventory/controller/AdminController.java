@@ -17,7 +17,7 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-    @RequestMapping({"/admin_home", "/", ""}) 
+    @RequestMapping({"/home", "/", ""}) 
     public String adminHome(HttpSession session,  RedirectAttributes redirectAttributes, Model model) {
     	UserVo authUser = (UserVo) session.getAttribute("authUser");
     	//	authUser = null 일때 오류 나니까 수정 필요
