@@ -80,81 +80,62 @@ button {
 		<h3>
 			<a href="<c:url value="/orderhistory" />">발주 기록</a>
 		</h3>
+		<form action="<c:url value='/add-to-cart'/>" method="post">
+			<input type="text" id="bookSearch" placeholder="교재 검색...">
+			<div class="order-form">
+					<input type="hidden" name="book_name" value="${vo.book_name }" />
+				<select id="bookSelect" name="bookCode">
+					<option value="">교재 선택</option>
+					<c:forEach items="${list }" var="vo" varStatus="status">
+						<option value="${vo.book_code }">${vo.book_name }</option>
+					</c:forEach>
+				</select> <input type="number" name="quantity" id="quantity" min="1" value="1">
+				<button onclick="addToCart()">장바구니에 추가</button>
+		</form>
+	
 
-		<input type="text" id="bookSearch" placeholder="교재 검색...">
-		<div class="order-form">
-			<select id="bookSelect">
-				<option value="">교재 선택</option>
-				<c:forEach items="${list }" var="vo" varStatus="status">
-					<option value="${vo.book_code }">${vo.book_name }</option>
-				</c:forEach>
-			</select> <input type="number" id="quantity" min="1" value="1">
-			<button onclick="addToCart()">장바구니에 추가</button>
-		</div>
-
-		<div class="order-list">
-			<table id="cartTable">
-				<tr>
-					<th>교재명</th>
-					<th>수량</th>
-					<th>작업</th>
-				</tr>
-			</table>
-			<button onclick="submitOrder()">발주 제출</button>
-		</div>
-
+	<div class="order-list">
+		<table id="cartTable">
+			<tr>
+				<th>교재명</th>
+				<th>수량</th>
+				<th>작업</th>
+				
+			</tr>
+			<tr>
+				
+				<th>${cart.book_code }</th>
+				<th>${cart.quantity }</th>
+			</tr>
+			
+		</table>
+		<button onclick="submitOrder()">발주 제출</button>
 	</div>
+	</div>
+	
 
 	<script>
-		function addToCart() {
-			var bookSelect = document.getElementById("bookSelect");
-			var quantityInput = document.getElementById("quantity");
-			var bookName = bookSelect.options[bookSelect.selectedIndex].text;
-			var quantity = quantityInput.value;
+        function filterBooks() {
+            var input, filter, select, options, option, i, txtValue;
+            input = document.getElementById("bookSearch");
+            filter = input.value.toUpperCase();
+            select = document.getElementById("bookSelect");
+            options = select.getElementsByTagName("option");
 
-			var table = document.getElementById("cartTable");
-			var newRow = table.insertRow(-1); // Insert new row at the end
+            for (i = 0; i < options.length; i++) {
+                option = options[i];
+                txtValue = option.textContent || option.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    option.style.display = "";
+                } else {
+                    option.style.display = "none";
+                }
+            }
+        }
 
-			var cell1 = newRow.insertCell(0); // Insert cells
-			var cell2 = newRow.insertCell(1);
-			var cell3 = newRow.insertCell(2);
-
-			cell1.innerHTML = bookName; // Set cell content
-			cell2.innerHTML = quantity;
-			cell3.innerHTML = '<button onclick="deleteRow(this)">삭제</button>'; // Add delete button
-		}
-
-		function deleteRow(btn) {
-			var row = btn.parentNode.parentNode; // Get the row to be deleted
-			row.parentNode.removeChild(row); // Remove the row
-		}
-
-		function submitOrder() {
-			// Implement submit order functionality
-			alert("발주를 제출합니다!");
-		}
-
-		function filterBooks() {
-			var input, filter, select, options, option, i, txtValue;
-			input = document.getElementById("bookSearch");
-			filter = input.value.toUpperCase();
-			select = document.getElementById("bookSelect");
-			options = select.getElementsByTagName("option");
-
-			for (i = 0; i < options.length; i++) {
-				option = options[i];
-				txtValue = option.textContent || option.innerText;
-				if (txtValue.toUpperCase().indexOf(filter) > -1) {
-					option.style.display = "";
-				} else {
-					option.style.display = "none";
-				}
-			}
-		}
-
-		// 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정
-		document.getElementById("bookSearch").addEventListener("input",
-				filterBooks);
-	</script>
+        // 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정
+        document.getElementById("bookSearch").addEventListener("input",
+                filterBooks);
+    </script>
 </body>
 </html>
