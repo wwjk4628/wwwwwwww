@@ -76,7 +76,7 @@
         <div class="form-group">
             <select>
                 <option value="">교재 선택</option>
-                <option value="book1">국어 기본서</option>
+                <option value="book1">국어 기본</option>
                 <option value="book2">수학 문제집</option>
                 <option value="book3">영어 단어장</option>
                 <option value="book4">과학 실험서</option>
