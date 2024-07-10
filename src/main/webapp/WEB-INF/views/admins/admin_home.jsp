@@ -51,7 +51,8 @@
     <!-- Main content: 교재 주문목록과 계정 승인요청 브리핑 -->
     <div class="content">
         <h1>교재 주문목록</h1>
-        <!-- 교재 주문목록 내용 -->
+        <a href="<c:url value='/order/check'/>">보러가기</a>
+        
         
         <h1>계정 승인 요청</h1>
         <p>${count}</p>
