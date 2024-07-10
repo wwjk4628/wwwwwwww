@@ -13,8 +13,8 @@ public class OrderDaoImpl implements OrderDao{
 	SqlSession sqlSession;
 	
 	@Override
-	public int insert(String orderId) {
-		int insertedCount = sqlSession.insert("order.insert", orderId);
+	public int insert(String branchId) {
+		int insertedCount = sqlSession.insert("order.insert", branchId);
 		return insertedCount;
 	}
 

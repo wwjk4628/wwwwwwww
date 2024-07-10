@@ -6,20 +6,21 @@
 	<!-- 목록 -->
 	<insert id="insert" parameterType="String">
 		insert into book_order
-		(branch_id, checked) VALUES(#{orderId}, '0')
+		(branch_id, checked) VALUES(#{branchId}, '0')
 	</insert>
 	<select id="getMax" resultType="String">
 		SELECT MAX(order_id) AS
 		max_order_id FROM book_order
 	</select>
 	<insert id="insertDetail" parameterType="OrderBasketVo">
-		insert into order_basket
-		(order_id, branch_id, book_code, quantity) VALUES(#{order_id}, '1',
+		insert into order_detail
+		(order_id, book_code, quantity) VALUES(#{order_id},
 		#{book_code},#{quantity})
 	</insert>
-	
+
 	<select id="selectOrderList" resultType="OrderBasketVo">
-		SELECT * FROM order_basket
+		SELECT * FROM
+		order_detail
 	</select>
 
 </mapper>

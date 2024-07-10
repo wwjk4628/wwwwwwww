@@ -4,7 +4,7 @@ import com.inventory.repositories.vo.OrderBasketVo;
 
 public interface OrderDao {
 
-	public int insert(String orderId);
+	public int insert(String branchId);
 	
 	public String getMax();
 	
