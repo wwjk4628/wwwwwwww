@@ -13,21 +13,16 @@
 	</settings>
 
 	<typeAliases>
-
-		<typeAlias type="com.inventory.repositories.vo.StockOutVo"
-			alias="StockOutVo" />
-		<typeAlias type="com.inventory.repositories.vo.BookVo"
-			alias="BookVo" />
-		<typeAlias type="com.inventory.repositories.vo.UserVo"
-			alias="UserVo" />
-		<typeAlias
-			type="com.inventory.repositories.vo.OrderBasketVo"
-			alias="OrderBasketVo" />
-
+		<typeAlias type="com.inventory.repositories.vo.StockOutVo" alias="StockOutVo" />
+		<typeAlias type="com.inventory.repositories.vo.BookVo" alias="BookVo" />
+		<typeAlias type="com.inventory.repositories.vo.UserVo" alias="UserVo" />
+		<typeAlias type="com.inventory.repositories.vo.OrderBasketVo" alias="OrderBasketVo" />
+		<typeAlias type="com.inventory.repositories.vo.BookInventoryVo" alias="BookInventoryVo" />
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mybatis/mappers/StockOutMapper.xml" />
+		<mapper resource="mybatis/mappers/branchInventory.xml" />
+		<mapper resource="mybatis/mappers/StockOutMapper.xml"/>
 		<mapper resource="mybatis/mappers/book.xml" />
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/order.xml" />

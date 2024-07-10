@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -82,60 +82,43 @@
     <%@ include file="/WEB-INF/views/admin_includes/navigation.jsp" %>
 
     <div class="content">
-        <h1>회원 승인 히스토리</h1>
-        <h3><a href="/admins/confirm_list.html">회원 승인</a></h3>
-        <table>
-            <tr>
-                <th>회원 ID</th>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>전화번호</th>
-                <th>구분</th>
-                <th>가입일</th>
-                <th>승인 상태</th>
-                <th>처리일</th>
-            </tr>
-            <tr>
-                <td>USER006</td>
-                <td>송민수</td>
-                <td>song@example.com</td>
-                <td>010-7777-8888</td>
-                <td>지점</td>
-                <td>2024-07-01</td>
-                <td>승인</td>
-                <td>2024-07-02</td>
-            </tr>
-            <tr>
-                <td>USER007</td>
-                <td>정다혜</td>
-                <td>jung@example.com</td>
-                <td>010-9999-0000</td>
-                <td>본사</td>
-                <td>2024-06-30</td>
-                <td>승인</td>
-                <td>2024-07-01</td>
-            </tr>
-            <tr>
-                <td>USER008</td>
-                <td>강현우</td>
-                <td>kang@example.com</td>
-                <td>010-2222-3333</td>
-                <td>지점</td>
-                <td>2024-06-29</td>
-                <td>반려</td>
-                <td>2024-06-30</td>
-            </tr>
-            <tr>
-                <td>USER009</td>
-                <td>윤서연</td>
-                <td>yoon@example.com</td>
-                <td>010-4444-5555</td>
-                <td>지점</td>
-                <td>2024-06-29</td>
-                <td>반려</td>
-                <td>2024-06-30</td>
-            </tr>
-        </table>
+        <h1>유저 리스트 및 관리</h1>
+        <p>유저리스트</p>
+			<table border="1">
+				<tr>
+					<th>번호</th>
+					<th>이름</th>
+					<th>지점 번호</th>
+					<th>auth code</th>
+					<th>비고</th>
+				</tr>
+					
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.no }</td>
+						<td>${vo.name }</td>
+						<td>${vo.branchId }</td>
+						<td>
+            				<c:choose>
+                				<c:when test="${vo.authCode eq 0}">승인 대기</c:when>
+                				<c:when test="${vo.authCode eq 1}">지점 담당자</c:when>
+                				<c:when test="${vo.authCode eq 2}">관리자</c:when>
+                				<c:otherwise>알 수 없음</c:otherwise>
+           					</c:choose>
+        				</td>
+        				<td>
+        					<c:choose>
+        						<c:when test="${vo.authCode eq 0}"><a href = "<c:url value="/usermanage/${vo.no }/confirm"/>">승인</a></c:when>
+        					</c:choose>
+        					<c:choose>
+                				<c:when test="${vo.authCode eq 0 || vo.authCode eq 1}"><a href = "<c:url value="/usermanage/${vo.no }/delete"/>">삭제</a></c:when>
+                				<c:otherwise>비워뒀음</c:otherwise>
+           					</c:choose>
+        				</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<a href="<c:url value="/admins"/>">admin 홈으로 돌아가기</a>
     </div>
 </body>
 
