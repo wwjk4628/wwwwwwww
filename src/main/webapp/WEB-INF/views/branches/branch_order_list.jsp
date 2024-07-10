@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -63,6 +64,24 @@
 
     <div class="content">
         <h1>발주 페이지</h1>
+        
+        <h1>branch id: ${authUser.branchId }의 발주 기록</h1>
+        <table border="1">
+				<tr>
+					<th>order_id</th>
+					<th>order_date</th>
+					<th>checked</th>
+				</tr>
+					
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.orderId}</td>
+						<td>${vo.orderDate}</td>
+						<td>${vo.checked}</td>
+					</tr>
+				</c:forEach>
+			</table>
+        
         <h3><a href="/branches/branch_order_detail.html">발주 기록</a></h3>
         <div class="order-form">
             <select>
@@ -93,14 +112,5 @@
 
     </div>
 
-    <script>
-        function addToCart() {
-            // 장바구니에 항목을 추가하는 로직
-        }
-
-        function submitOrder() {
-            // 발주를 제출하는 로직
-        }
-    </script>
 </body>
 </html>

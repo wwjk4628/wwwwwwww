@@ -33,14 +33,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserVo getUser(String name, String password) {
 		UserVo userVo = userDao.selectUser(name, password);
-		System.out.println(userVo);
-		
 		return userVo;
 	}
 
 	@Override
 	public boolean isAuthenticated(HttpServletRequest request) {
-		//	세션을 통해서 사용자 인증 상태를 체크
+		//	이거 딱히 필요 없을 수도
 		HttpSession session = request.getSession(false);
 		
 		if (session != null) {	//	인증했을 가능성이 있음

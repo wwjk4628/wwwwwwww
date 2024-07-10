@@ -1,6 +1,8 @@
 package com.inventory.repositories.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,30 @@ public class BookInventoryDaoImpl implements BookInventoryDao {
 	@Override
 	public List<BookInventoryVo> list(String id) {
 		List <BookInventoryVo> list = sqlSession.selectList("bookInventory.selectInventory", id);
+		return list;
+	}
+
+	@Override
+	public List<BookInventoryVo> search(String id, String keyword) {
+		Map <String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("keyword", keyword);
+		List <BookInventoryVo> list = sqlSession.selectList("bookInventory.searchInventory", map);
+		return list;
+	}
+
+	@Override
+	public List<BookInventoryVo> checkedList(String id) {
+		List<BookInventoryVo> list = sqlSession.selectList("bookInventory.selectInventoryCheck", id);
+		return list;
+	}
+
+	@Override
+	public List<BookInventoryVo> checkedSearch(String id, String keyword) {
+		Map <String, String> map = new HashMap<>();
+		map.put("id", id);
+		map.put("keyword", keyword);
+		List <BookInventoryVo> list = sqlSession.selectList("bookInventory.searchInventoryCheck", map);
 		return list;
 	}
 

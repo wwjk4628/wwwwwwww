@@ -24,28 +24,23 @@ public class UserDaoImpl implements UserDao{
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new UserDaoException("회원 가입 중 문제", vo);
-		}
-		
+		}	
 	}
 
 	@Override
 	public UserVo selectUser(String name) {
 		UserVo userVo = sqlSession.selectOne("users.selectUserByName", name);
-		
 		return userVo;
 	}
 
 	@Override
 	public UserVo selectUser(String name, String password) {
 		//	mybatis parameterType =map 으로 전달하기
-		System.err.println(name + password);
 		Map<String, String> userMap = new HashMap<>();
 		userMap.put("name", name);
 		userMap.put("password", password);
-		System.out.println(userMap);
-		
+
 		UserVo userVo = sqlSession.selectOne("users.selectUserByNameAndPassword", userMap);
-		System.err.println(userVo);
 		return userVo;
 	}
 
@@ -76,7 +71,8 @@ public class UserDaoImpl implements UserDao{
 		
 		Map<String, Integer> userMap = new HashMap<>();
 		userMap.put("no", no);
-		userMap.put("authCode", 1);
+		userMap.put("authCode", 1);	//	auth code를 1로 수정 -> 지점 담당자
+		//	관리자 계정으로 수정하기 -> 1을 2로 바꾸는 장치
 		return sqlSession.update("users.confirmUserAcount", userMap);
 	}
 }

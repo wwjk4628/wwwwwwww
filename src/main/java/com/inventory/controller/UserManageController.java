@@ -23,12 +23,14 @@ public class UserManageController {
 	@RequestMapping({"/list", "/", ""}) 
     public String userList(HttpSession session,  RedirectAttributes redirectAttributes, Model model) {
     	UserVo authUser = (UserVo) session.getAttribute("authUser");
-    	if (authUser == null) {
-			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
+    	//	로그인 정보 판단
+    	if (!("2").equals(authUser.getAuthCode())) {
+			//	로그인 안 한 경우 홈으로 리다이렉트
+			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
 			return "redirect:/";
 		}
-    	List<UserVo> list = userService.getList();
+    	
+    	List<UserVo> list = userService.getList();	//	계정 리스트
 		model.addAttribute("list", list);
         return "admins/user_list";
     }

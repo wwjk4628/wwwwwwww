@@ -49,6 +49,13 @@
     <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
     <div class="content">
         <h1>branch id: ${authUser.branchId }의 교재 재고 현황</h1>
+        <h3>목록 (검색어: ${param.keyword })</h3>
+		<form id="search-form">
+			<label for="keyword">검색어</label> <input type="text" name="keyword">
+			<input type="submit" value="검색">
+			<input type="checkbox" name="check" id="check" value="check" />
+            <label for="check">재고</label>
+		</form>	<br/>
         <table border="1">
 				<tr>
 					<th>book_code</th>
@@ -64,6 +71,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<p><a href ="<c:url value = "/order/list"/>">오더 리스트 보기</a></p>
     </div>
 </body>
 </html>
