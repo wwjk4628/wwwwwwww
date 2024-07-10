@@ -20,4 +20,22 @@ public class BookInventoryServiceImpl implements BookInventoryService {
 		return list;
 	}
 
+	@Override
+	public List<BookInventoryVo> search(String id, String keyword) {
+		List <BookInventoryVo> list = bookInventoryDao.search(id, keyword);
+		return list;
+	}
+
+	@Override
+	public List<BookInventoryVo> checkedGetList(String id) {
+		List<BookInventoryVo> list = bookInventoryDao.checkedList(id);
+		return list;
+	}
+
+	@Override
+	public List<BookInventoryVo> checkedSearch(String id, String keyword) {
+		List <BookInventoryVo> list = bookInventoryDao.checkedSearch(id, keyword);
+		return list;
+	}
+
 }

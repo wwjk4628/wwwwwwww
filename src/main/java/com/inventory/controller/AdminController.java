@@ -23,7 +23,7 @@ public class AdminController {
     	//	authUser = null 일때 오류 나니까 수정 필요
     	if (!("2").equals(authUser.getAuthCode())) {
 			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
+			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치");
 			return "redirect:/";
 		}
     	

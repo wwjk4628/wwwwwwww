@@ -82,8 +82,7 @@
     <%@ include file="/WEB-INF/views/admin_includes/navigation.jsp" %>
 
     <div class="content">
-        <h1>회원 승인 히스토리</h1>
-        <h3><a href="/admins/confirm_list.html">회원 승인</a></h3>
+        <h1>유저 리스트 및 관리</h1>
         <p>유저리스트</p>
 			<table border="1">
 				<tr>

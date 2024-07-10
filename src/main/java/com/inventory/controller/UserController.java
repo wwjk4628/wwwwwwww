@@ -25,7 +25,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-
 	@GetMapping("/join")
 	public String join() {
 		return "users/join";
@@ -35,23 +34,19 @@ public class UserController {
 	public String join(@ModelAttribute @Valid UserVo userVo,
 			@RequestParam("checkedName") String checkedName,
 			Model model) {
-		System.out.println(userVo);
-		System.out.println(checkedName);
 		
-		if("y".equals(checkedName)) {
+		if("y".equals(checkedName)) {	//	이름 중복 체크 여부 판단
 			boolean success = userService.join(userVo);
 			if (success) {	//	가입 성공
-			//	성공 페이지로 리다이렉트
 				System.out.println("가입 성공");
 				return "redirect:/users/joinsuccess";
 			} else {
-			//	다시 가입 폼으로 보내
 				System.err.println("실패!");
 				return "redirect:/users/join";
 			}
 			
 		} else {
-			System.err.println("실패!");
+			System.err.println("중복 체크 안 함");
 			return "redirect:/users/join";
 		}
 		
@@ -66,16 +61,12 @@ public class UserController {
 	@ResponseBody	//	메시지 컨버터 
 	@RequestMapping("/checkName")
 	public Object checkName(@RequestParam (value="name", required = true, defaultValue="") String name) {
-		System.err.println("작동함");
 		UserVo vo = userService.getUser(name);
-		System.out.println(vo);
 		boolean exists = vo != null ? true : false;
-		System.out.println(exists);
 		
 		Map<String, Object> json = new HashMap<>();
 		json.put("result", "success");
 		json.put("exists", exists);
-		System.out.println(json);
 		return json;
 	}
 	
@@ -88,28 +79,32 @@ public class UserController {
 	public String loginAction(@RequestParam(value="name", required=false, defaultValue="") String name,
 			@RequestParam(value="password", required=false, defaultValue="") String password,
 			HttpSession session) {
-		System.out.println("name: " + name);
-		System.out.println("password: " + password);
 		
 		if (name.length() == 0 || password.length() == 0) {
-			System.out.println("이메일 혹은 페스워드 입력되이 잖음");
+			//	이름이나 비밀번호가 입력되지 않았을 경우 로그인 페이지로 리다이렉트.
 			return "redirect:/users/login";
-			
 		}
 		
-		//	이메일과 패스워드 이용해서 사용자 정보 질의ㅏ
+		//	이메일과 패스워드 이용해서 사용자 정보 질의
 		UserVo authUser = userService.getUser(name, password);
 		if (authUser != null) {
-			//	록드인 처리 해주어야
+			//	로그인 정보 session에 기록
 			session.setAttribute("authUser", authUser);
 			if (authUser.getAuthCode().equals("1")) {
+				//	auth code가 1일 경우 지점 페이지
 				return "redirect:/branches/home";
+				
 			} else if (authUser.getAuthCode().equals("2")) {
+				//	auth code가 2일 경우 관리자 페이지
 				return "redirect:/admins/home"; 
+				
 			} else {
+				//	그외 (기본 0)의 경우 가입 승인 대기 페이지
 				return "users/authcode";
 			}
+			
 		} else {
+			//	계정 정보가 없을 경우 (로그인 실패)
 			return "redirect:/users/login";
 		}
 	}

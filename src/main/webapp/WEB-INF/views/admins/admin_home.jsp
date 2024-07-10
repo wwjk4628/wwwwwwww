@@ -53,7 +53,7 @@
         <h1>교재 주문목록</h1>
         <!-- 교재 주문목록 내용 -->
         
-        <h1>계정 승인요청</h1>
+        <h1>계정 승인 요청</h1>
         <p>${count}</p>
         <a href="<c:url value='/usermanage/list'/>">보러 가기</a>
     </div>
