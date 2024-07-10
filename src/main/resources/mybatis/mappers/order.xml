@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="book">
+<mapper namespace="order">
 	<!-- 목록 -->
-	<select id="selectAll" resultType="OrderVo">
-		SELECT * FROM book_order
+	<insert id="insert" parameterType="String">
+		insert into book_order
+		(branch_id, checked) VALUES(#{orderId}, '0')
+	</insert>
+	<select id="getMax" resultType="String">
+		SELECT MAX(order_id) AS
+		max_order_id FROM book_order
 	</select>
-	
-	<delete id="delete" parameterType="String">
-		DELETE FROM book_order
-		WHERE
-		#{order_id} = #{order_id}
-	</delete>
-	
-	<insert id="insert" parameterType="OrderVo">
-		INSERT INTO book_order
-		(book_code, branch_id, quantity, checked) VALUES (#{book_code},
-		#{branch_id}, #{quantity}, #{checked})
+	<insert id="insertDetail" parameterType="OrderBasketVo">
+		insert into order_basket
+		(order_id, branch_id, book_code, quantity) VALUES(#{order_id}, '1',
+		#{book_code},#{quantity})
 	</insert>
 	
+	<select id="selectOrderList" resultType="OrderBasketVo">
+		SELECT * FROM order_basket
+	</select>
+
 </mapper>
