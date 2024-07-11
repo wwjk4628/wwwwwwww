@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.inventory.repositories.vo.OrderBasketVo;
-import com.inventory.repositories.vo.OrderDetailVo;
 import com.inventory.repositories.vo.OrderVo;
 
 @Repository("OrderDao")
@@ -29,7 +27,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public int insertDetail(OrderBasketVo vo) {
+	public int insertDetail(OrderVo vo) {
 
 		return sqlSession.insert("order.insertDetail", vo);
 	}
@@ -41,8 +39,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<OrderDetailVo> getDetailList(String orderId) {
-		List<OrderDetailVo> list = sqlSession.selectList("order.selectDetailList", orderId);
+	public List<OrderVo> getDetailList(String orderId) {
+		List<OrderVo> list = sqlSession.selectList("order.selectDetailList", orderId);
 		return list;
 	}
 	

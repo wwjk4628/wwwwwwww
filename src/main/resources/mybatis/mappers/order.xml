@@ -12,10 +12,10 @@
 		SELECT MAX(order_id) AS
 		max_order_id FROM book_order
 	</select>
-	<insert id="insertDetail" parameterType="OrderBasketVo">
+	<insert id="insertDetail" parameterType="OrderVo">
 		insert into order_detail
-		(order_id, book_code, quantity) VALUES(#{order_id},
-		#{book_code},#{quantity})
+		(order_id, book_code, quantity) VALUES(#{orderId},
+		#{bookCode},#{quantity})
 	</insert>
 
 	<select id="selectOrderList" resultType="OrderVo">
@@ -26,7 +26,7 @@
 	</select>
 
 	<select id="selectDetailList" parameterType="String"
-		resultType="OrderDetailVo">
+		resultType="OrderVo">
 		SELECT order_id as orderId, book_code as bookCode, quantity
 		FROM order_detail
 		WHERE order_id = #{orderId}

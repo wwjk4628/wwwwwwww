@@ -9,14 +9,22 @@ public class OrderVo {
 	private String branchId;
 	private Date orderDate;
 	private String checked;
+	private String bookCode;
+	private String bookName;
+	private int quantity;
 
 	public OrderVo(String branchId) {
-
 		this.branchId = branchId;
 	}
 
 	public OrderVo() {
 
+	}
+	
+	public OrderVo(String bookCode, String bookName, int quantity) {
+		this.bookCode= bookCode;
+		this.bookName = bookName;
+		this.quantity = quantity;
 	}
 
 	public OrderVo(String orderId, String branchId, Date orderDate, String checked) {
@@ -25,6 +33,28 @@ public class OrderVo {
 		this.branchId = branchId;
 		this.orderDate = orderDate;
 		this.checked = checked;
+	}
+
+	public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, int quantity) {
+		super();
+		this.orderId = orderId;
+		this.branchId = branchId;
+		this.orderDate = orderDate;
+		this.checked = checked;
+		this.bookCode = bookCode;
+		this.quantity = quantity;
+	}
+
+	public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, String bookName,
+			int quantity) {
+		super();
+		this.orderId = orderId;
+		this.branchId = branchId;
+		this.orderDate = orderDate;
+		this.checked = checked;
+		this.bookCode = bookCode;
+		this.bookName = bookName;
+		this.quantity = quantity;
 	}
 
 	public String getOrderId() {
@@ -63,10 +93,34 @@ public class OrderVo {
 		this.checked = checked;
 	}
 
+	public String getBookCode() {
+		return bookCode;
+	}
+
+	public void setBookCode(String bookCode) {
+		this.bookCode = bookCode;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked="
-				+ checked + "]";
+				+ checked + ", bookCode=" + bookCode + ", quantity=" + quantity + "]";
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 }
