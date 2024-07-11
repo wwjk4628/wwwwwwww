@@ -19,6 +19,7 @@
 		<typeAlias type="com.inventory.repositories.vo.OrderBasketVo" alias="OrderBasketVo" />
 		<typeAlias type="com.inventory.repositories.vo.BookInventoryVo" alias="BookInventoryVo" />
 		<typeAlias type="com.inventory.repositories.vo.OrderVo" alias="OrderVo" />
+		<typeAlias type="com.inventory.repositories.vo.OrderDetailVo" alias="OrderDetailVo" />
 	</typeAliases>
 
 	<mappers>

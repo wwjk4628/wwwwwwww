@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.OrderDao;
 import com.inventory.repositories.vo.OrderBasketVo;
+import com.inventory.repositories.vo.OrderDetailVo;
 import com.inventory.repositories.vo.OrderVo;
 
 @Service("OrderService")
@@ -39,6 +40,13 @@ public class OrderServiceImpl implements OrderService{
 		List<OrderVo> list = orderDao.getOrderList();
 		return list;
 	}
+
+	@Override
+	public List<OrderDetailVo> getDetailList(String orderId) {
+		List<OrderDetailVo> list = orderDao.getDetailList(orderId);
+		return list;
+	}
+	
 	
 	
 	
