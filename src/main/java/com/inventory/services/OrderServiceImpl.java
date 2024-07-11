@@ -1,10 +1,13 @@
 package com.inventory.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.OrderDao;
 import com.inventory.repositories.vo.OrderBasketVo;
+import com.inventory.repositories.vo.OrderVo;
 
 @Service("OrderService")
 public class OrderServiceImpl implements OrderService{
@@ -29,6 +32,12 @@ public class OrderServiceImpl implements OrderService{
 	public boolean insertDetail(OrderBasketVo vo) {
 		int insertedCount = orderDao.insertDetail(vo);
 		return 1 == insertedCount;
+	}
+
+	@Override
+	public List<OrderVo> getOrderList() {
+		List<OrderVo> list = orderDao.getOrderList();
+		return list;
 	}
 	
 	

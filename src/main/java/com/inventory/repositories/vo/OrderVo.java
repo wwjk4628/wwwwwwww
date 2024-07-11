@@ -1,40 +1,30 @@
 package com.inventory.repositories.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OrderVo {
 
 	private String orderId;
-	private String bookCode;
 	private String branchId;
-	private Integer quantity;
 	private Date orderDate;
 	private String checked;
-	
-	public OrderVo () {
-		
+
+	public OrderVo(String branchId) {
+
+		this.branchId = branchId;
 	}
 
-	public OrderVo(String orderId, String bookCode, String branchId, Integer quantity, Date orderDate, String checked) {
-		super();
+	public OrderVo() {
+
+	}
+
+	public OrderVo(String orderId, String branchId, Date orderDate, String checked) {
+
 		this.orderId = orderId;
-		this.bookCode = bookCode;
 		this.branchId = branchId;
-		this.quantity = quantity;
 		this.orderDate = orderDate;
 		this.checked = checked;
-	}
-	
-	public OrderVo(String orderId, Date orderDate, String checked) {
-		this.orderId = orderId;
-		this.orderDate = orderDate;
-		this.checked = checked;
-	}
-	
-	public OrderVo (String bookCode, String branchId, Integer quantity) {
-		this.bookCode = bookCode;
-		this.branchId = branchId;
-		this.quantity = quantity;
 	}
 
 	public String getOrderId() {
@@ -45,14 +35,6 @@ public class OrderVo {
 		this.orderId = orderId;
 	}
 
-	public String getBookCode() {
-		return bookCode;
-	}
-
-	public void setBookCode(String bookCode) {
-		this.bookCode = bookCode;
-	}
-
 	public String getBranchId() {
 		return branchId;
 	}
@@ -61,16 +43,12 @@ public class OrderVo {
 		this.branchId = branchId;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	public Date getOrderDate() {
-		return orderDate;
+	public String getOrderDate() {
+		if (orderDate == null) {
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
+		return dateFormat.format(orderDate);
 	}
 
 	public void setOrderDate(Date orderDate) {
@@ -87,9 +65,8 @@ public class OrderVo {
 
 	@Override
 	public String toString() {
-		return "OrderVo [orderId=" + orderId + ", bookCode=" + bookCode + ", branchId=" + branchId + ", quantity="
-				+ quantity + ", orderDate=" + orderDate + ", checked=" + checked + "]";
+		return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked="
+				+ checked + "]";
 	}
-	
-	
+
 }

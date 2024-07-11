@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inventory.repositories.vo.BookVo;
 import com.inventory.repositories.vo.OrderBasketVo;
+import com.inventory.repositories.vo.OrderVo;
 import com.inventory.services.BookService;
 import com.inventory.services.OrderService;
 
@@ -82,24 +83,30 @@ public class OrderController {
 	}
 
 	@RequestMapping("orderhistory")
-	public String orderHistory() {
+	public String orderHistory(Model model) {
+		
+		List<OrderVo> list = orderService.getOrderList();
+		model.addAttribute("list", list);
 		return "branches/branch_order_detail";
 	}
 
 	@RequestMapping("/ordering")
 	public String ordering(HttpSession session) {
 		List<OrderBasketVo> cart = (List<OrderBasketVo>) session.getAttribute("cart");
-		System.out.println("ordering====" + cart);
-		orderService.insert("1");
-		System.err.println("================" + orderService.getMax());
+		
+		
 		if (cart != null && !cart.isEmpty()) {
-		    for (OrderBasketVo item : cart) {
-		    	item.setOrder_id(orderService.getMax());
-		        System.err.println(item); // 예시: 각 아이템 출력
-		        orderService.insertDetail(item);
-		    }
+			orderService.insert("1");
+			for (OrderBasketVo item : cart) {
+				item.setOrder_id(orderService.getMax());
+				System.err.println(item); // 예시: 각 아이템 출력
+				orderService.insertDetail(item);
+			}
 		} else {
-		    System.err.println("장바구니가 비어 있습니다.");
+			System.err.println("장바구니가 비어 있습니다.");
+			session.removeAttribute("cart");
+
+			return "redirect:/orderlist";
 		}
 		// session에서 "cart" 속성을 삭제합니다.
 		session.removeAttribute("cart");
@@ -107,5 +114,22 @@ public class OrderController {
 		return "redirect:/orderhistory";
 
 	}
+
+	@RequestMapping("/searchbooks")
+	public String searchBooks(@RequestParam("book_name") String book_name, HttpSession session, Model model) {
+		System.out.println("con" + book_name);
+		List<BookVo> list = bookService.search(book_name);
+		model.addAttribute("list", list);
+		Object cartObject = session.getAttribute("cart");
+
+		// cart 객체가 List<OrderBasketVo> 형태로 저장된다고 가정
+		List<OrderBasketVo> cartList = (List<OrderBasketVo>) cartObject;
+
+		model.addAttribute("cartList", cartList);
+
+		return "branches/branch_order_list"; // 정상적인 경우 이렇게 반환할 것입니다.
+	}
+	
+	
 
 }

@@ -18,9 +18,13 @@
 		#{book_code},#{quantity})
 	</insert>
 
-	<select id="selectOrderList" resultType="OrderBasketVo">
-		SELECT * FROM
-		order_detail
+	<select id="selectOrderList" resultType="OrderVo">
+		SELECT order_id as
+		orderId, branch_id as branchId, order_date as orderDate, checked FROM
+		book_order
+
 	</select>
+
+
 
 </mapper>

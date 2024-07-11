@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -139,16 +140,16 @@ button {
 						</tr>
 					</c:forEach>
 				</table>
-				<form id="submitOrderForm" action="<c:url value='/ordering'/>"
+				<form id="orderForm" action="<c:url value='/ordering'/>"
 					method="post">
-					<button type="button">발주 제출</button>
+					<button type="button" onclick="submitOrderForm()">발주 제출</button>
 				</form>
 			</div>
 		</div>
 
 		<!-- 오른쪽 컨텐츠 -->
 		<div class="right-content">
-			<form action="<c:url value="/admin/searchbooks" />" method="GET">
+			<form action="<c:url value="/searchbooks" />" method="GET">
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>
@@ -197,7 +198,6 @@ button {
 			form.submit();
 		}
 
-
 		function filterBooks() {
 			var input, filter, select, options, option, i, txtValue;
 			input = document.getElementById("bookSearch");
@@ -214,6 +214,11 @@ button {
 					option.style.display = "none";
 				}
 			}
+		}
+
+		function submitOrderForm() {
+			var form = document.getElementById("orderForm");
+			form.submit();
 		}
 
 		// 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정
