@@ -11,4 +11,6 @@ public interface OrderCheckService {
 	public List <OrderVo> getBranchsList(String id);
 	
 	public List <OrderVo> getOrderDetail(String id);
+	
+	public int refuseOrder(String no);
 }

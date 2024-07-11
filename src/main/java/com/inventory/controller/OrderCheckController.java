@@ -63,4 +63,14 @@ public class OrderCheckController {
 		
 		return "admins/order_check_detail";
 	}
+	
+	@RequestMapping("/{id}/ref")
+	public String orderRefuse() {
+		return "";
+	}
+	
+	@RequestMapping("/{id}/con")
+	public String orderConfirm() {
+		return"";
+	}
 }

@@ -32,4 +32,9 @@ public class OrderCheckServiceImpl implements OrderCheckService {
 		return list;
 	}
 
+	@Override
+	public int refuseOrder(String no) {
+		return OrderCheckDao.refuseOrder(no);
+	}
+
 }

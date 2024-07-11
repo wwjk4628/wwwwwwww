@@ -32,4 +32,9 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 		return list;
 	}
 
+	@Override
+	public int refuseOrder(String no) {
+		return sqlSession.update("orderCheck.refuseOrder", no);
+	}
+
 }

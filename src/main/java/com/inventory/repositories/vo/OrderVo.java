@@ -5,29 +5,28 @@ import java.util.Date;
 
 public class OrderVo {
 
-	private String orderId;
-	private String bookCode;
-	private String branchId;
-	private Integer quantity;
-	private Date orderDate;
-	private String checked;
+    private String orderId;
+    private String bookCode;
+    private String branchId;
+    private Integer quantity;
+    private Date orderDate;
+    private String checked;
+    private String bookName;
 
-	public OrderVo(String branchId) {
+    // Default constructor
+    public OrderVo() {
+    }
 
-		this.branchId = branchId;
-	}
-
-	public OrderVo() {
-
-	}
-
-    // Full constructor
-    public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookName) {
-        this.orderId = orderId;
+    // Constructor with branchId
+    public OrderVo(String branchId) {
         this.branchId = branchId;
-        this.orderDate = orderDate;
-        this.checked = checked;
+    }
+
+    // Constructor with bookCode, bookName, and quantity
+    public OrderVo(String bookCode, String bookName, int quantity) {
+        this.bookCode = bookCode;
         this.bookName = bookName;
+        this.quantity = quantity;
     }
 
     // Constructor for order list verification
@@ -36,6 +35,27 @@ public class OrderVo {
         this.branchId = branchId;
         this.orderDate = orderDate;
         this.checked = checked;
+    }
+
+    // Full constructor
+    public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, int quantity) {
+        this.orderId = orderId;
+        this.branchId = branchId;
+        this.orderDate = orderDate;
+        this.checked = checked;
+        this.bookCode = bookCode;
+        this.quantity = quantity;
+    }
+
+    // Full constructor with bookName
+    public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, String bookName, int quantity) {
+        this.orderId = orderId;
+        this.branchId = branchId;
+        this.orderDate = orderDate;
+        this.checked = checked;
+        this.bookCode = bookCode;
+        this.bookName = bookName;
+        this.quantity = quantity;
     }
 
     // Getters and Setters
@@ -75,6 +95,22 @@ public class OrderVo {
         this.checked = checked;
     }
 
+    public String getBookCode() {
+        return bookCode;
+    }
+
+    public void setBookCode(String bookCode) {
+        this.bookCode = bookCode;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String getBookName() {
         return bookName;
     }
@@ -87,6 +123,6 @@ public class OrderVo {
     @Override
     public String toString() {
         return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked=" + checked 
-             + ", bookName=" + bookName + "]";
+             + ", bookCode=" + bookCode + ", bookName=" + bookName + ", quantity=" + quantity + "]";
     }
 }

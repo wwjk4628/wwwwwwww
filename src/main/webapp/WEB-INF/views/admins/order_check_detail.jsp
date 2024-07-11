@@ -82,7 +82,7 @@
     <%@ include file="/WEB-INF/views/admin_includes/navigation.jsp" %>
 
     <div class="content">
-        <h1>${id }번 발주 디테일</h1>
+        <h1>${id }번 order detail</h1>
         <h3><a href="<c:url value="/order/check/list"/>">발주 리스트 돌아가기</a></h3>
         <table border="1">
 				<tr>
@@ -93,7 +93,6 @@
 					<th>quantity</th>
 					<th>book_name</th>
 					<th>order_check</th>
-					<th>상세보기</th>
 				</tr>
 					
 				<c:forEach items="${list }" var="vo">
@@ -110,11 +109,11 @@
                 			<c:when test="${vo.checked eq 2}">처리 완료</c:when>
                 			<c:otherwise>알 수 없음</c:otherwise>
            				</c:choose></td>
-						
-						<td><a href = "<c:url value="/order/check/${vo.orderId }/detail"/>">보러 가기</a></td>
 					</tr>
 				</c:forEach>
 			</table>
+			<p><a href = "<c:url value="/order/check/${id }/ref"/>">반려</a></p>
+			<p><a href = "<c:url value="/order/check/${id }/con"/>">승인</a></p>
     </div>
 </body>
 </html>
