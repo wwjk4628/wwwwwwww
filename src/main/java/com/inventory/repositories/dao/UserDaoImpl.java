@@ -86,10 +86,10 @@ public class UserDaoImpl implements UserDao{
 			
 			//	인벤토리 초기화 로직
 			for (BookVo bookVo :list) {
-				Map <String, Integer> inventoryMap = new HashMap<>();
-				Integer bookCode = Integer.parseInt(bookVo.getBook_code());
-				inventoryMap.put("bookCode", bookCode);
-				inventoryMap.put("id", id);		// branch_id
+				Map <String, String> inventoryMap = new HashMap<>();
+				String branchId = String.valueOf(id);
+				inventoryMap.put("bookCode", bookVo.getBookCode());
+				inventoryMap.put("id", branchId);		// branch_id
 				sqlSession.insert("bookInventory.initialization", inventoryMap);
 			}
 			

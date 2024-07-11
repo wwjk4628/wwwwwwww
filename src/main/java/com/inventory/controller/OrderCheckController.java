@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.inventory.repositories.vo.OrderCheckVo;
+import com.inventory.repositories.vo.OrderVo;
 import com.inventory.repositories.vo.UserVo;
 import com.inventory.services.OrderCheckService;
 
@@ -33,7 +33,7 @@ public class OrderCheckController {
 		}
     	
     	session.setAttribute("authUser", authUser);
-    	List<OrderCheckVo> list = OrderCheckService.getList();
+    	List<OrderVo> list = OrderCheckService.getList();
     	model.addAttribute("list", list);
     	
     	return "admins/order_check_list";
@@ -49,7 +49,7 @@ public class OrderCheckController {
 			return "redirect:/";
 		}
 		
-		List<OrderCheckVo> list = OrderCheckService.getBranchsList(no);
+		List<OrderVo> list = OrderCheckService.getBranchsList(no);
     	model.addAttribute("list", list);
 		
 		return "admins/order_check_list";
@@ -58,7 +58,7 @@ public class OrderCheckController {
 	@RequestMapping("/{id}/detail")
 	public String orderCheckdetail( @PathVariable ("id") String id, HttpSession session) {
 		
-		List <OrderCheckVo> list = OrderCheckService.getOrderDetail(id);
+		List <OrderVo> list = OrderCheckService.getOrderDetail(id);
 		session.setAttribute("list", list);
 		
 		return "admins/order_check_detail";

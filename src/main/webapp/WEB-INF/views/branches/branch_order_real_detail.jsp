@@ -66,30 +66,15 @@ th {
 			</h3>
 			<table>
 				<tr>
-					<th>발주 번호</th>
-					<th>날짜</th>
-					<th>상태</th>
+					<th>책 이름</th>
+					<th>가격</th>
+					<th>수량</th>
 				</tr>
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td><a
-							href="<c:url value="/orderdetail" />?orderId=${vo.orderId}">
-								${vo.orderId }</a></td>
-						<td>${vo.orderDate }</td>
-						<c:choose>
-							<c:when test="${vo.checked eq 0}">
-								<td style="color: red;">미확인</td>
-							</c:when>
-							<c:when test="${vo.checked eq 1}">
-								<td style="color: blue;">처리중</td>
-							</c:when>
-							<c:when test="${vo.checked eq 2}">
-								<td style="color: green;">도착</td>
-							</c:when>
-							<c:otherwise>
-								<td>????</td>
-							</c:otherwise>
-						</c:choose>
+						<td>${vo.orderId }</td>
+						<td>${vo.bookCode }</td>
+						<td>${vo.quantity }</td>
 
 					</tr>
 				</c:forEach>

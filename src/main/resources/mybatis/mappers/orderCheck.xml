@@ -6,18 +6,18 @@
 <mapper namespace="orderCheck">
 	
 	<!-- order check list -->
-	<select id="orderCheckList" resultType="OrderCheckVo">
-		select order_id as orderId, branch_id as branchId, order_date as orderDate, order_check as checked from book_order order by order_date desc
+	<select id="orderCheckList" resultType="OrderVo">
+		select order_id as orderId, branch_id as branchId, order_date as orderDate, checked from book_order order by order_date desc
 	</select>
 
 	<!-- order check list 지점 별로 구분하기 -->
-	<select id = "orderCheckbranch" parameterType="String" resultType="OrderCheckVo">
-		select order_id as orderId, branch_id as branchId, order_date as orderDate, order_check as checked from book_order where branch_id = #{id} order by order_date desc
+	<select id = "orderCheckbranch" parameterType="String" resultType="OrderVo">
+		select order_id as orderId, branch_id as branchId, order_date as orderDate, checked from book_order where branch_id = #{id} order by order_date desc
 	</select>
 	
 	<!-- order detail 조회 -->
-	<select id ="selectOrderDetail" parameterType="String" resultType="OrderCheckVo">
-		select bo.order_id as orderId, bo.branch_id as branchId, bo.order_date as orderDate, bo.order_check as checked, od.book_code as bookCode, od.quantity as quantity, 
+	<select id ="selectOrderDetail" parameterType="String" resultType="OrderVo">
+		select bo.order_id as orderId, bo.branch_id as branchId, bo.order_date as orderDate, bo.checked, od.book_code as bookCode, od.quantity as quantity, 
 		bl.book_name as bookName
 		from book_order bo join order_detail od on bo.order_id = od.order_id 
 		join book_list bl on od.book_code = bl.book_code where bo.order_id = #{id}

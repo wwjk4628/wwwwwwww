@@ -6,11 +6,8 @@
 <mapper namespace="users">
 	<!-- 회원가입 시 기본 auth_code 0으로 잡아 승인 대기 -->
 	<insert id="insert" parameterType="UserVo">
-		<selectKey keyProperty="no" resultType="long" order="BEFORE">
-			Select seq_users_pk.nextval from dual
-		</selectKey>
-		insert into users (user_no, user_name, password, branch_id, auth_code)
-		values(#{no}, #{name}, #{password}, #{branchId}, 0)
+		insert into users (user_name, password, branch_id, auth_code)
+		values(#{name}, #{password}, #{branchId}, 0)
 	</insert>
 	
 	<!-- name 정보로 사용자 정보 select (중복 가입 막기) -->

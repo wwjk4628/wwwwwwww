@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.OrderCheckDao;
-import com.inventory.repositories.vo.OrderCheckVo;
+import com.inventory.repositories.vo.OrderVo;
 
 @Service("OrderCheckService")
 public class OrderCheckServiceImpl implements OrderCheckService {
@@ -15,20 +15,20 @@ public class OrderCheckServiceImpl implements OrderCheckService {
 	private OrderCheckDao OrderCheckDao;
 	
 	@Override
-	public List<OrderCheckVo> getList() {
-		List<OrderCheckVo> list = OrderCheckDao.getAllList();
+	public List<OrderVo> getList() {
+		List<OrderVo> list = OrderCheckDao.getAllList();
 		return list;
 	}
 
 	@Override
-	public List<OrderCheckVo> getBranchsList(String id) {
-		List<OrderCheckVo> list = OrderCheckDao.getBranchsList(id);
+	public List<OrderVo> getBranchsList(String id) {
+		List<OrderVo> list = OrderCheckDao.getBranchsList(id);
 		return list;
 	}
 
 	@Override
-	public List<OrderCheckVo> getOrderDetail(String id) {
-		List <OrderCheckVo> list = OrderCheckDao.getOrderDetail(id);
+	public List<OrderVo> getOrderDetail(String id) {
+		List <OrderVo> list = OrderCheckDao.getOrderDetail(id);
 		return list;
 	}
 

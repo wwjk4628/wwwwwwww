@@ -1,116 +1,229 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>발주 페이지</title>
-    <style>
-        /* 이전 스타일 유지 */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .content {
-            padding: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .order-form {
-            margin-bottom: 20px;
-        }
-        .order-list {
-            margin-top: 20px;
-        }
-        button {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>발주 페이지</title>
+<style>
+/* 이전 스타일 유지 */
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+nav {
+	background-color: #333;
+	padding: 10px;
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+nav ul li {
+	display: inline;
+	margin-right: 20px;
+}
+
+nav ul li a {
+	color: white;
+	text-decoration: none;
+}
+
+.content {
+	padding: 20px;
+	display: flex; /* flexbox 설정 */
+	justify-content: space-between; /* 좌우 정렬 */
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+.order-form {
+	margin-bottom: 20px;
+}
+
+.order-list {
+	margin-top: 20px;
+}
+
+button {
+	padding: 5px 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.left-content {
+	width: 48%;
+	overflow-y: auto;
+	height: calc(100vh - 280px); /* Adjust height as needed */
+	max-height: calc(100vh - 280px); /* Adjust max-height as needed */
+}
+
+.right-content {
+	width: 48%;
+	overflow-y: auto;
+	height: calc(100vh - 280px); /* Adjust height as needed */
+	max-height: calc(100vh - 280px); /* Adjust max-height as needed */
+}
+
+/* 발주 기록 스타일 */
+.order-history {
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+</style>
+
 </head>
 <body>
-    <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
+	<%@ include file="/WEB-INF/views/branch_includes/navigation.jsp"%>
 
-    <div class="content">
-        <h1>발주 페이지</h1>
-        
-        <h1>branch id: ${authUser.branchId }의 발주 기록</h1>
-        <table border="1">
-				<tr>
-					<th>order_id</th>
-					<th>order_date</th>
-					<th>checked</th>
-				</tr>
-					
-				<c:forEach items="${list }" var="vo">
+	<h1>발주 페이지</h1>
+	<h3>
+		<a href="<c:url value="/orderhistory" />">발주 기록</a>
+	</h3>
+	<div class="content">
+
+		<!-- 왼쪽 컨텐츠 -->
+		<div class="left-content">
+			<form id="addToCartForm" action="<c:url value='/add-to-cart'/>"
+				method="post">
+				<input type="text" id="bookSearch" placeholder="교재 검색...">
+				<div class="order-form">
+					<select id="bookSelect" name="bookCode">
+						<option value="">교재 선택</option>
+						<c:forEach items="${list }" var="vo" varStatus="status">
+							<option value="${vo.bookCode }">${vo.bookName }</option>
+						</c:forEach>
+					</select> <input type="number" name="quantity" id="quantity" min="1"
+						value="1">
+					<button type="button" onclick="addToCart()">장바구니에 추가</button>
+				</div>
+			</form>
+
+			<div class="order-list">
+				<table id="cartTable">
 					<tr>
-						<td>${vo.orderId}</td>
-						<td>${vo.orderDate}</td>
-						<td>${vo.checked}</td>
+						<th>교재명</th>
+						<th>수량</th>
+						<th>작업</th>
+					</tr>
+					<c:forEach items="${cartList }" var="vo" varStatus="status">
+						<tr>
+							<td>${vo.bookName }</td>
+							<td>${vo.quantity }</td>
+							<td>
+								<form action="remove-from-cart" method="post">
+									<input type="hidden" name="bookCode" value="${vo.bookCode}">
+									<button type="submit">삭제</button>
+								</form>
+							</td>
+						</tr>
+					</c:forEach>
+				</table>
+				<form id="orderForm" action="<c:url value='/ordering'/>"
+					method="post">
+					<button type="button" onclick="submitOrderForm()">발주 제출</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- 오른쪽 컨텐츠 -->
+		<div class="right-content">
+			<form action="<c:url value="/searchbooks" />" method="GET">
+				<table border="1" width="100%">
+					<tr>
+						<th>교재명</th>
+						<td><input type="text" name="book_name"></td>
+						<td><input type="submit" value="검색"></td>
+					</tr>
+				</table>
+			</form>
+			<br>
+			<table id="bookInventory">
+				<tr>
+					<th>교재명</th>
+					<th>교재 코드</th>
+				</tr>
+				<c:forEach items="${list }" var="vo" varStatus="status">
+					<tr>
+						<td>${vo.bookName }</td>
+						<td>${vo.bookCode }</td>
 					</tr>
 				</c:forEach>
 			</table>
-        
-        <h3><a href="/branches/branch_order_detail.html">발주 기록</a></h3>
-        <div class="order-form">
-            <select>
-                <option value="">교재 선택</option>
-                <option value="book1">국어 기본서</option>
-                <option value="book2">수학 문제집</option>
-                <option value="book3">영어 단어장</option>
-                <option value="book4">과학 실험서</option>
-                <option value="book5">사회 참고서</option>
-            </select>
-            <input type="number" id="quantity" min="1" value="1">
-            <button onclick="addToCart()">장바구니에 추가</button>
-        </div>
+		</div>
+	</div>
 
-        <div class="order-list">
-            <table>
-                <tr>
-                    <th>교재명</th>
-                    <th>수량</th>
-                    <th>작업</th>
-                </tr>
-                <tr><td>국어 기본서</td><td>10</td><td><button>삭제</button></td></tr>
-                <tr><td>수학 문제집</td><td>5</td><td><button>삭제</button></td></tr>
-                <tr><td>영어 단어장</td><td>15</td><td><button>삭제</button></td></tr>
-            </table>
-            <button onclick="submitOrder()">발주 제출</button>
-        </div>
+	<script>
+		function addToCart() {
+			var bookSelect = document.getElementById("bookSelect");
+			var quantity = document.getElementById("quantity").value;
 
-    </div>
+			// 교재 선택 여부 확인
+			if (bookSelect.value === "") {
+				alert("교재를 선택해주세요.");
+				return; // 교재를 선택하지 않으면 함수 종료
+			}
 
+			// 장바구니 추가 알림
+			alert("장바구니에 상품이 추가되었습니다.");
+
+			// 폼을 제출하지 않도록 preventDefault() 호출
+			event.preventDefault(); // 폼 제출 방지
+
+			// 추가 로직 (필요하면 추가)
+
+			// 폼을 제출하는 방식으로 변경
+			var form = document.getElementById("addToCartForm");
+			form.submit();
+		}
+
+		function filterBooks() {
+			var input, filter, select, options, option, i, txtValue;
+			input = document.getElementById("bookSearch");
+			filter = input.value.toUpperCase();
+			select = document.getElementById("bookSelect");
+			options = select.getElementsByTagName("option");
+
+			for (i = 0; i < options.length; i++) {
+				option = options[i];
+				txtValue = option.textContent || option.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+					option.style.display = "";
+				} else {
+					option.style.display = "none";
+				}
+			}
+		}
+
+		function submitOrderForm() {
+			var form = document.getElementById("orderForm");
+			form.submit();
+		}
+
+		// 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정
+		document.getElementById("bookSearch").addEventListener("input",
+				filterBooks);
+	</script>
 </body>
 </html>

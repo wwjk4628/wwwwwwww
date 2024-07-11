@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.inventory.repositories.vo.OrderCheckVo;
+import com.inventory.repositories.vo.OrderVo;
 
 @Repository("OrderCheckDao")
 public class OrderCheckDaoImpl implements OrderCheckDao {
@@ -15,20 +15,20 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<OrderCheckVo> getAllList() {
-		List <OrderCheckVo> list = sqlSession.selectList("orderCheck.orderCheckList");
+	public List<OrderVo> getAllList() {
+		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckList");
 		return list;
 	}
 
 	@Override
-	public List<OrderCheckVo> getBranchsList(String id) {
-		List <OrderCheckVo> list = sqlSession.selectList("orderCheck.orderCheckbranch", id);
+	public List<OrderVo> getBranchsList(String id) {
+		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckbranch", id);
 		return list;
 	}
 
 	@Override
-	public List<OrderCheckVo> getOrderDetail(String id) {
-		List <OrderCheckVo> list = sqlSession.selectList("orderCheck.selectOrderDetail", id);
+	public List<OrderVo> getOrderDetail(String id) {
+		List <OrderVo> list = sqlSession.selectList("orderCheck.selectOrderDetail", id);
 		return list;
 	}
 
