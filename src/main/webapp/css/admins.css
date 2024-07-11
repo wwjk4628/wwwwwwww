@@ -4,10 +4,9 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #72edf2 10%, #5151e5 100%);
+    padding-top: 50px;
 }
 
 h2 {
@@ -16,14 +15,14 @@ h2 {
     margin-bottom: 20px;
 }
 
-form, .message-box {
+form, .content-box {
     width: 300px;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    text-align: center;
+    margin-bottom: 20px;
 }
 
 label {
@@ -33,7 +32,7 @@ label {
     text-align: left;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], button, input[type="submit"] {
     width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 20px;
@@ -43,11 +42,8 @@ input[type="text"], input[type="password"] {
 }
 
 button, input[type="submit"] {
-    width: 100%;
-    padding: 10px;
     background-color: #5cb85c;
     border: none;
-    border-radius: 5px;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -70,22 +66,20 @@ a:hover {
     text-decoration: underline;
 }
 
-.message-box p {
-    font-size: 18px;
-    color: #555;
-    margin: 20px 0;
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-.message-box a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #5cb85c;
-    color: white;
-    border-radius: 5px;
+ul li {
+    margin-bottom: 10px;
+}
+
+ul li a {
+    color: #007bff;
     text-decoration: none;
 }
 
-.message-box a:hover {
-    background-color: #4cae4c;
+ul li a:hover {
+    text-decoration: underline;
 }

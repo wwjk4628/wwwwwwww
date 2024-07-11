@@ -18,9 +18,17 @@
 		(order_id, book_code, quantity) VALUES(#{orderId}, #{bookCode}, #{quantity})
 	</insert>
 
-	<select id="selectOrderList" resultType="OrderVo">
-		SELECT order_id as orderId, branch_id as branchId, order_date as orderDate, checked
-		FROM book_order ORDER BY orderId DESC
+
+	<select id="selectOrderList" parameterType="String" resultType="OrderVo">
+		SELECT order_id as
+		orderId, branch_id as branchId, order_date as orderDate, checked FROM 
+		book_order WHERE branch_id = #{branchId} ORDER BY orderId DESC
+	</select>
+	
+	<select id="selectAllOrderList" parameterType="String" resultType="OrderVo">
+		SELECT order_id as
+		orderId, branch_id as branchId, order_date as orderDate, checked FROM 
+		book_order WHERE ORDER BY orderId DESC
 	</select>
 
 	<select id="selectDetailList" parameterType="String" resultType="OrderVo">

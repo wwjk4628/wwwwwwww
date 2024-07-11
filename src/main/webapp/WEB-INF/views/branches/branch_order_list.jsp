@@ -162,12 +162,12 @@ button {
 			<table id="bookInventory">
 				<tr>
 					<th>교재명</th>
-					<th>교재 코드</th>
+					<th>수량</th>
 				</tr>
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
 						<td>${vo.bookName }</td>
-						<td>${vo.bookCode }</td>
+						<td>${vo.inventory }</td>
 					</tr>
 				</c:forEach>
 			</table>

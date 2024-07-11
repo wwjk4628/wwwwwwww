@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.inventory.repositories.vo.BookInventoryVo;
 import com.inventory.repositories.vo.BookVo;
 
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.UserVo;
+import com.inventory.services.BookInventoryService;
 import com.inventory.services.BookService;
 import com.inventory.services.OrderService;
 
@@ -25,10 +28,13 @@ public class OrderController {
 	BookService bookService;
 	@Autowired
 	OrderService orderService;
+	@Autowired
+	BookInventoryService bookInventoryService;
 
 	@RequestMapping("orderlist")
 	public String orderList(HttpSession session, Model model) {
-		List<BookVo> list = bookService.getbookList();
+		UserVo vo = (UserVo)session.getAttribute("authUser");
+		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
 		model.addAttribute("list", list);
 //		System.out.println("orderlist" + session.getAttribute("cart"));
 		// 세션에서 cart 객체 가져오기
@@ -45,12 +51,14 @@ public class OrderController {
 	@PostMapping("/add-to-cart")
 	public String addToCart(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity,
 			HttpSession session) {
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		// 예시 교재 목록 (실제 구현에서는 데이터베이스에서 가져와야 함)
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
 		BookVo book = bookService.getData(bookCode);
 
 		String bookName = book.getBookName();
 		OrderVo vo = new OrderVo(bookCode, bookName, quantity);
+		vo.setBranchId(authUser.getBranchId());
 		if (cart == null) {
 			cart = new ArrayList<>();
 		}
@@ -86,9 +94,10 @@ public class OrderController {
 	}
 
 	@RequestMapping("orderhistory")
-	public String orderHistory(Model model) {
-		
-		List<OrderVo> list = orderService.getOrderList();
+	public String orderHistory(Model model, HttpSession session) {
+		UserVo vo = (UserVo)session.getAttribute("authUser");
+		System.out.println("orderhistory" + vo.getBranchId());
+		List<OrderVo> list = orderService.getOrderList(vo.getBranchId());
 		model.addAttribute("list", list);
 		return "branches/branch_order_detail";
 	}
@@ -96,10 +105,10 @@ public class OrderController {
 	@RequestMapping("/ordering")
 	public String ordering(HttpSession session) {
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
-		
+		UserVo vo = (UserVo)session.getAttribute("authUser");
 		
 		if (cart != null && !cart.isEmpty()) {
-			orderService.insert("1");
+			orderService.insert(vo.getBranchId());
 			for (OrderVo item : cart) {
 				item.setOrderId(orderService.getMax());
 				System.err.println(item); // 예시: 각 아이템 출력
@@ -121,7 +130,8 @@ public class OrderController {
 	@RequestMapping("/searchbooks")
 	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
 		System.out.println("con" + bookName);
-		List<BookVo> list = bookService.search(bookName);
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		List<BookInventoryVo> list = bookInventoryService.search(authUser.getBranchId(), bookName);
 		model.addAttribute("list", list);
 		Object cartObject = session.getAttribute("cart");
 
