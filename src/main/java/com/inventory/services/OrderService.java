@@ -8,6 +8,6 @@ public interface OrderService {
 	public boolean insert(String branchId);
 	public String getMax();
 	public boolean insertDetail(OrderVo vo);
-	public List<OrderVo> getOrderList();
+	public List<OrderVo> getOrderList(String branchId);
 	public List<OrderVo> getDetailList(String orderId);
 }

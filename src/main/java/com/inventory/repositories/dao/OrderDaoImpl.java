@@ -33,8 +33,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	@Override
-	public List<OrderVo> getOrderList() {
-		List<OrderVo> list = sqlSession.selectList("order.selectOrderList");
+	public List<OrderVo> getOrderList(String branchId) {
+		List<OrderVo> list = sqlSession.selectList("order.selectOrderList", branchId);
 		return list;
 	}
 

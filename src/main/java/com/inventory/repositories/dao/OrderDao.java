@@ -13,7 +13,7 @@ public interface OrderDao {
 	
 	public int insertDetail(OrderVo vo);
 	
-	public List<OrderVo> getOrderList();
+	public List<OrderVo> getOrderList(String branchId);
 	
 	public List<OrderVo> getDetailList(String orderId);
 }

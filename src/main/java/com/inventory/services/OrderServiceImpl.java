@@ -34,8 +34,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<OrderVo> getOrderList() {
-		List<OrderVo> list = orderDao.getOrderList();
+	public List<OrderVo> getOrderList(String branchId) {
+		List<OrderVo> list = orderDao.getOrderList(branchId);
 		return list;
 	}
 
