@@ -2,7 +2,7 @@ package com.inventory.repositories.vo;
 
 import java.util.Date;
 
-public class OrderVo {
+public class OrderCheckVo {
 
 	private String orderId;
 	private String bookCode;
@@ -12,12 +12,12 @@ public class OrderVo {
 	private String checked;
 	private String bookName;
 	
-	public OrderVo () {
+	public OrderCheckVo () {
 		
 	}
 	
 	// 전체 생성자, detail 확인용.
-	public OrderVo(String orderId, String bookCode, String branchId, Integer quantity, Date orderDate, String checked, String bookName) {
+	public OrderCheckVo(String orderId, String bookCode, String branchId, Integer quantity, Date orderDate, String checked, String bookName) {
 		super();
 		this.orderId = orderId;
 		this.bookCode = bookCode;
@@ -29,14 +29,14 @@ public class OrderVo {
 	}
 	
 	//	오더 리스트 확인용 생성자
-	public OrderVo(String orderId, String branchId, Date orderDate, String checked) {
+	public OrderCheckVo(String orderId, String branchId, Date orderDate, String checked) {
 		this.orderId = orderId;
 		this.branchId = branchId;
 		this.orderDate = orderDate;
 		this.checked = checked;
 	}
 	
-	public OrderVo (String bookCode, String branchId, Integer quantity) {
+	public OrderCheckVo (String bookCode, String branchId, Integer quantity) {
 		this.bookCode = bookCode;
 		this.branchId = branchId;
 		this.quantity = quantity;

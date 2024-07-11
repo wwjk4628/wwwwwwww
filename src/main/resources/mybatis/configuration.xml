@@ -16,7 +16,7 @@
         <typeAlias type="com.inventory.repositories.vo.BookVo" alias="BookVo" />
         <typeAlias type="com.inventory.repositories.vo.UserVo" alias="UserVo" />
         <typeAlias type="com.inventory.repositories.vo.BookInventoryVo" alias="BookInventoryVo" />
-        <typeAlias type="com.inventory.repositories.vo.OrderVo" alias="OrderVo" />
+        <typeAlias type="com.inventory.repositories.vo.OrderCheckVo" alias="OrderCheckVo" />
     </typeAliases>
 
     <mappers>
