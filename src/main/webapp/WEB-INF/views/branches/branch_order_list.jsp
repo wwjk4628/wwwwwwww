@@ -112,7 +112,7 @@ button {
 					<select id="bookSelect" name="bookCode">
 						<option value="">교재 선택</option>
 						<c:forEach items="${list }" var="vo" varStatus="status">
-							<option value="${vo.book_code }">${vo.book_name }</option>
+							<option value="${vo.bookCode }">${vo.bookName }</option>
 						</c:forEach>
 					</select> <input type="number" name="quantity" id="quantity" min="1"
 						value="1">
@@ -129,11 +129,11 @@ button {
 					</tr>
 					<c:forEach items="${cartList }" var="vo" varStatus="status">
 						<tr>
-							<td>${vo.book_name }</td>
+							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
 							<td>
 								<form action="remove-from-cart" method="post">
-									<input type="hidden" name="bookCode" value="${vo.book_code}">
+									<input type="hidden" name="bookCode" value="${vo.bookCode}">
 									<button type="submit">삭제</button>
 								</form>
 							</td>
@@ -153,7 +153,7 @@ button {
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>
-						<td><input type="text" name="book_name"></td>
+						<td><input type="text" name="bookName"></td>
 						<td><input type="submit" value="검색"></td>
 					</tr>
 				</table>
@@ -166,8 +166,8 @@ button {
 				</tr>
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td>${vo.book_name }</td>
-						<td>${vo.book_code }</td>
+						<td>${vo.bookName }</td>
+						<td>${vo.bookCode }</td>
 					</tr>
 				</c:forEach>
 			</table>

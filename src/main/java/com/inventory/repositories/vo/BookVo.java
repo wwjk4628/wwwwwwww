@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 
 public class BookVo {
 
-	private String book_code;
-	private String book_name;
+	private String bookCode;
+	private String bookName;
 	private int price;
-	private String kindcode;
+	private String kindCode;
 	
 	
 
@@ -15,20 +15,20 @@ public class BookVo {
 		
 	}
 
-	public String getBook_code() {
-		return book_code;
+	public String getBookCode() {
+		return bookCode;
 	}
 
-	public void setBook_code(String book_code) {
-		this.book_code = book_code;
+	public void setBookCode(String bookCode) {
+		this.bookCode = bookCode;
 	}
 
-	public String getBook_name() {
-		return book_name;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setBook_name(String book_name) {
-		this.book_name = book_name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 	public int getPrice() {
@@ -39,29 +39,29 @@ public class BookVo {
 		this.price = price;
 	}
 
-	public String getKindcode() {
-		return kindcode;
+	public String getKindCode() {
+		return kindCode;
 	}
 
-	public void setKindcode(String kindcode) {
-		this.kindcode = kindcode;
+	public void setKindCode(String kindCode) {
+		this.kindCode = kindCode;
 	}
 
 	@Override
 	public String toString() {
-		return "BookVo [book_code=" + book_code + ", book_name=" + book_name + ", price=" + price + ", kindcode="
-				+ kindcode + "]";
+		return "BookVo [bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", KindCode="
+				+ kindCode + "]";
 	}
 
-	public BookVo(String book_code, String book_name, int price, String kindcode) {
-		this.book_code = book_code;
-		this.book_name = book_name;
+	public BookVo(String bookCode, String bookName, int price, String kindCode) {
+		this.bookCode = bookCode;
+		this.bookName = bookName;
 		this.price = price;
-		this.kindcode = kindcode;
+		this.kindCode = kindCode;
 	}
 
-	public BookVo(String book_name) {
-		this.book_name = book_name;
+	public BookVo(String bookName) {
+		this.bookName = bookName;
 	}
 	
 	

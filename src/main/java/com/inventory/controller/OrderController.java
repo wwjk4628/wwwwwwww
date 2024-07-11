@@ -49,7 +49,7 @@ public class OrderController {
 		// 예시 교재 목록 (실제 구현에서는 데이터베이스에서 가져와야 함)
 		List<OrderBasketVo> cart = (List<OrderBasketVo>) session.getAttribute("cart");
 		BookVo book = bookService.getData(bookCode);
-		String book_name = book.getBook_name();
+		String book_name = book.getBookName();
 		OrderBasketVo vo = new OrderBasketVo(bookCode, book_name, quantity);
 		if (cart == null) {
 			cart = new ArrayList<>();
@@ -70,7 +70,7 @@ public class OrderController {
 			Iterator<OrderBasketVo> iterator = cart.iterator();
 			while (iterator.hasNext()) {
 				OrderBasketVo vo = iterator.next();
-				if (vo.getBook_code().equals(bookCode)) {
+				if (vo.getBookCode().equals(bookCode)) {
 					iterator.remove();
 					break;
 				}
@@ -99,7 +99,7 @@ public class OrderController {
 		if (cart != null && !cart.isEmpty()) {
 			orderService.insert("1");
 			for (OrderBasketVo item : cart) {
-				item.setOrder_id(orderService.getMax());
+				item.setOrderId(orderService.getMax());
 				System.err.println(item); // 예시: 각 아이템 출력
 				orderService.insertDetail(item);
 			}
@@ -117,9 +117,9 @@ public class OrderController {
 	}
 
 	@RequestMapping("/searchbooks")
-	public String searchBooks(@RequestParam("book_name") String book_name, HttpSession session, Model model) {
-		System.out.println("con" + book_name);
-		List<BookVo> list = bookService.search(book_name);
+	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
+		System.out.println("con" + bookName);
+		List<BookVo> list = bookService.search(bookName);
 		model.addAttribute("list", list);
 		Object cartObject = session.getAttribute("cart");
 
@@ -137,7 +137,7 @@ public class OrderController {
 		List<BookVo> bookList = new ArrayList<>();
 		for (OrderDetailVo vo : list) {
 			BookVo bookVo = bookService.getData(vo.getBookCode());
-			vo.setBookName(bookVo.getBook_name());
+			vo.setBookName(bookVo.getBookName());
 			vo.setPrice(bookVo.getPrice());
 		}
 		model.addAttribute("list", list);

@@ -9,13 +9,13 @@ import com.inventory.repositories.vo.BookVo;
 public interface BookService {
 	public List<BookVo> getbookList();
 
-	public List<BookVo> search(String book_name);
+	public List<BookVo> search(String bookName);
 
 	public boolean writebook(BookVo vo);
 
-	public boolean deletebook(String book_code);
+	public boolean deletebook(String bookCode);
 	
 	public boolean updatebook(BookVo vo);
 	
-	public BookVo getData(String book_code);
+	public BookVo getData(String bookCode);
 }

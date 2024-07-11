@@ -30,9 +30,9 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public boolean deletebook(String book_code) {
-		int deletedCount = bookDao.delete(book_code);
-		System.out.println("service" + book_code + "count" + deletedCount);
+	public boolean deletebook(String bookCode) {
+		int deletedCount = bookDao.delete(bookCode);
+		System.out.println("service" + bookCode + "count" + deletedCount);
 		return 1 == deletedCount;
 	}
 
@@ -43,15 +43,15 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public List<BookVo> search(String book_name) {
-		System.out.println("ser" + book_name);
-		List<BookVo> list = bookDao.search(book_name);
+	public List<BookVo> search(String bookName) {
+		System.out.println("ser" + bookName);
+		List<BookVo> list = bookDao.search(bookName);
 		return list;
 	}
 
 	@Override
-	public BookVo getData(String book_code) {
-		BookVo vo = bookDao.getData(book_code);
+	public BookVo getData(String bookCode) {
+		BookVo vo = bookDao.getData(bookCode);
 		return vo;
 	}
 

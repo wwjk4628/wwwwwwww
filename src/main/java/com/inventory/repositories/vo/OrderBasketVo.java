@@ -4,81 +4,81 @@ import java.util.Date;
 
 public class OrderBasketVo {
 
-	private int basket_id;
-	private String order_id;
-	private String branch_id;
-	private String book_code;
-	private String book_name;
+	private int basketId;
+	private String orderId;
+	private String branchId;
+	private String bookCode;
+	private String bookName;
 	private int quantity;
 
 	public OrderBasketVo() {
 
 	}
 
-	public OrderBasketVo(String book_code, String book_name, int quantity) {
+	public OrderBasketVo(String bookCode, String bookName, int quantity) {
 
-		this.book_code = book_code;
-		this.book_name = book_name;
+		this.bookCode = bookCode;
+		this.bookName = bookName;
 		this.quantity = quantity;
 	}
 
-	public OrderBasketVo(String order_id, String branch_id, String book_code, int quantity) {
+	public OrderBasketVo(String orderId, String branchId, String bookCode, int quantity) {
 		
-		this.order_id = order_id;
-		this.branch_id = branch_id;
-		this.book_code = book_code;
+		this.orderId = orderId;
+		this.branchId = branchId;
+		this.bookCode = bookCode;
 		this.quantity = quantity;
 	}
 
-	public OrderBasketVo(int basket_id, String order_id, String branch_id, String book_code, String book_name,
+	public OrderBasketVo(int basketId, String orderId, String branchId, String bookCode, String bookName,
 			int quantity) {
 
-		this.basket_id = basket_id;
-		this.order_id = order_id;
-		this.branch_id = branch_id;
-		this.book_code = book_code;
-		this.book_name = book_name;
+		this.basketId = basketId;
+		this.orderId = orderId;
+		this.branchId = branchId;
+		this.bookCode = bookCode;
+		this.bookName = bookName;
 		this.quantity = quantity;
 	}
 
-	public int getBasket_id() {
-		return basket_id;
+	public int getBasketId() {
+		return basketId;
 	}
 
-	public void setBasket_id(int basket_id) {
-		this.basket_id = basket_id;
+	public void setBasketId(int basketId) {
+		this.basketId = basketId;
 	}
 
-	public String getOrder_id() {
-		return order_id;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setOrder_id(String order_id) {
-		this.order_id = order_id;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
-	public String getBranch_id() {
-		return branch_id;
+	public String getBranchId() {
+		return branchId;
 	}
 
-	public void setBranch_id(String branch_id) {
-		this.branch_id = branch_id;
+	public void setBranchId(String branchId) {
+		this.branchId = branchId;
 	}
 
-	public String getBook_code() {
-		return book_code;
+	public String getBookCode() {
+		return bookCode;
 	}
 
-	public void setBook_code(String book_code) {
-		this.book_code = book_code;
+	public void setBookCode(String bookCode) {
+		this.bookCode = bookCode;
 	}
 
-	public String getBook_name() {
-		return book_name;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setBook_name(String book_name) {
-		this.book_name = book_name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 	public int getQuantity() {
@@ -91,8 +91,8 @@ public class OrderBasketVo {
 
 	@Override
 	public String toString() {
-		return "OrderBasketVo [basket_id=" + basket_id + ", order_id=" + order_id + ", branch_id=" + branch_id
-				+ ", book_code=" + book_code + ", book_name=" + book_name + ", quantity=" + quantity + "]";
+		return "OrderBasketVo [basketId=" + basketId + ", orderId=" + orderId + ", branchId=" + branchId
+				+ ", bookCode=" + bookCode + ", bookName=" + bookName + ", quantity=" + quantity + "]";
 	}
 
 }

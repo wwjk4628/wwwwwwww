@@ -32,10 +32,10 @@ public class BookController {
 		return "admins/book_update";
 	}
 
-	@RequestMapping("/deletebook/{book_code}")
-	public String delete(@PathVariable("book_code") String book_code) {
-		System.out.println("delete controller" + book_code);
-		boolean success = bookService.deletebook(book_code);
+	@RequestMapping("/deletebook/{bookCode}")
+	public String delete(@PathVariable("bookCode") String bookCode) {
+		System.out.println("delete controller" + bookCode);
+		boolean success = bookService.deletebook(bookCode);
 		return "redirect:/admin/booklist";
 	}
 	
@@ -46,16 +46,16 @@ public class BookController {
     }
 	
 	@GetMapping("/searchbooks")
-    public String searchBooks(@RequestParam("book_name") String book_name, Model model) {
-        System.out.println("con" + book_name);
-        List<BookVo> list = bookService.search(book_name);
+    public String searchBooks(@RequestParam("bookName") String bookName, Model model) {
+        System.out.println("con" + bookName);
+        List<BookVo> list = bookService.search(bookName);
         model.addAttribute("list", list);
         return "admins/book_update"; // 정상적인 경우 이렇게 반환할 것입니다.
     }
 	
-	@GetMapping("/updatebooks/{book_code}")
-	public String updateBooks(@PathVariable("book_code") String book_code, Model model) {
-		BookVo vo = bookService.getData(book_code);
+	@GetMapping("/updatebooks/{bookCode}")
+	public String updateBooks(@PathVariable("bookCode") String bookCode, Model model) {
+		BookVo vo = bookService.getData(bookCode);
 		model.addAttribute("vo", vo);
 		return "admins/book_modify";
 	}
