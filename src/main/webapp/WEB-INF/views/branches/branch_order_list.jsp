@@ -153,7 +153,7 @@ button {
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>
-						<td><input type="text" name="book_name"></td>
+						<td><input type="text" name="bookName"></td>
 						<td><input type="submit" value="검색"></td>
 					</tr>
 				</table>

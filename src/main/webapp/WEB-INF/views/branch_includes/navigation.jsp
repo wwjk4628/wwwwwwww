@@ -4,8 +4,8 @@
 
 <nav>
 	<ul>
-		<li><a href="/branches/branch_home.jsp">교재 재고</a></li>
+		<li><a href="<%=request.getContextPath()%>/branches">교재 재고</a></li>
 		<li><a href="<%=request.getContextPath()%>/orderlist">발주</a></li>
 		<li><a href="/branches/branch_stock_in_list.jsp">입고</a></li>
-		<li><a href="/branches/branch_stock_out_list.jsp">출고</a></li>
+		<li><a href="<%=request.getContextPath()%>/branch/stock_out_list">출고</a></li>
 </nav>

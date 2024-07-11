@@ -11,7 +11,17 @@ public class OrderVo {
 	private String checked;
 	private String bookCode;
 	private String bookName;
+	private int price;
 	private int quantity;
+
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
 
 	public OrderVo(String branchId) {
 		this.branchId = branchId;
@@ -112,7 +122,8 @@ public class OrderVo {
 	@Override
 	public String toString() {
 		return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked="
-				+ checked + ", bookCode=" + bookCode + ", quantity=" + quantity + "]";
+				+ checked + ", bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", quantity="
+				+ quantity + "]";
 	}
 
 	public String getBookName() {
