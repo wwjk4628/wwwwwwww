@@ -10,12 +10,14 @@ public class OrderVo {
 	private Integer quantity;
 	private Date orderDate;
 	private String checked;
+	private String bookName;
 	
 	public OrderVo () {
 		
 	}
-
-	public OrderVo(String orderId, String bookCode, String branchId, Integer quantity, Date orderDate, String checked) {
+	
+	// 전체 생성자, detail 확인용.
+	public OrderVo(String orderId, String bookCode, String branchId, Integer quantity, Date orderDate, String checked, String bookName) {
 		super();
 		this.orderId = orderId;
 		this.bookCode = bookCode;
@@ -23,10 +25,13 @@ public class OrderVo {
 		this.quantity = quantity;
 		this.orderDate = orderDate;
 		this.checked = checked;
+		this.bookName = bookName;
 	}
 	
-	public OrderVo(String orderId, Date orderDate, String checked) {
+	//	오더 리스트 확인용 생성자
+	public OrderVo(String orderId, String branchId, Date orderDate, String checked) {
 		this.orderId = orderId;
+		this.branchId = branchId;
 		this.orderDate = orderDate;
 		this.checked = checked;
 	}
@@ -89,6 +94,14 @@ public class OrderVo {
 	public String toString() {
 		return "OrderVo [orderId=" + orderId + ", bookCode=" + bookCode + ", branchId=" + branchId + ", quantity="
 				+ quantity + ", orderDate=" + orderDate + ", checked=" + checked + "]";
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 	
 	

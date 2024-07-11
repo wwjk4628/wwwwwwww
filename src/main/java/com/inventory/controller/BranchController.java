@@ -29,7 +29,7 @@ public class BranchController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		if (!("1").equals(authUser.getAuthCode())) {
 			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "로그인을 해얗자 ");
+			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
 			return "redirect:/";
 		}
 		if (check != null && check.equals("check")) {

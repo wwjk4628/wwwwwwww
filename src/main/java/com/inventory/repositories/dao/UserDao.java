@@ -18,5 +18,5 @@ public interface UserDao {
 	//	계정 삭제
 	public int delete(long no);
 	//	계정 승인 (auth_code 수정)
-	public int confirm(int no);
+	public int confirm(int no, int id);
 }

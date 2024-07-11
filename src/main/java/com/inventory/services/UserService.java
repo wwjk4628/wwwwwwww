@@ -20,7 +20,7 @@ public interface UserService {
 	//	계정 삭제
 	public boolean delete(long no);
 	//	계정 승인
-	public boolean confirm(int no);
+	public boolean confirm(int no, int id);
 	
 	//	인증 체크 메서드 
 	public boolean isAuthenticated(HttpServletRequest request);

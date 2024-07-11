@@ -70,7 +70,7 @@
 						<td>${vo.inventory}</td>
 					</tr>
 				</c:forEach>
-			</table>
+		</table>
 			<p><a href ="<c:url value = "/order/list"/>">오더 리스트 보기</a></p>
     </div>
 </body>
