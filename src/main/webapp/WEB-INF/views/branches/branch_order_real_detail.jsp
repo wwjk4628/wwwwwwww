@@ -60,9 +60,9 @@ th {
 
 	<div class="content">
 		<div class="order-history">
-			<h2>발주 기록</h2>
+			<h2>주문번호: ${orderId }</h2>
 			<h3>
-				<a href="<c:url value="/orderlist" />">발주</a>
+				<a href="<c:url value="/orderhistory" />">발주 기록</a>
 			</h3>
 			<table>
 				<tr>
@@ -70,14 +70,15 @@ th {
 					<th>가격</th>
 					<th>수량</th>
 				</tr>
+
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td>${vo.orderId }</td>
-						<td>${vo.bookCode }</td>
+						<td>${vo.bookName }</td>
+						<td>${vo.price }</td>
 						<td>${vo.quantity }</td>
-
 					</tr>
 				</c:forEach>
+
 
 			</table>
 		</div>

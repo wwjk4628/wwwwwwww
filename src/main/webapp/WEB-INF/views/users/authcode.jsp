@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Join Success</title>
-
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/users.css'/>">
 </head>
 <body>
 	<div id="container">

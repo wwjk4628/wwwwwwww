@@ -30,9 +30,9 @@ public class BookDaoImpl implements BookDao{
 	}
 
 	@Override
-	public int delete(String book_code) {
-	    System.out.println("service" + book_code + "count");
-	    return sqlSession.delete("book.delete", book_code);
+	public int delete(String bookCode) {
+	    System.out.println("service" + bookCode + "count");
+	    return sqlSession.delete("book.delete", bookCode);
 	}
 
 
@@ -43,15 +43,15 @@ public class BookDaoImpl implements BookDao{
 	}
 
 	@Override
-	public List<BookVo> search(String book_name) {
-		List<BookVo> list = sqlSession.selectList("book.searchList", book_name);
+	public List<BookVo> search(String bookName) {
+		List<BookVo> list = sqlSession.selectList("book.searchList", bookName);
 		System.out.println("dao" + list);
 		return list;
 	}
 
 	@Override
-	public BookVo getData(String book_code) {
-		BookVo vo = sqlSession.selectOne("book.getData",book_code);
+	public BookVo getData(String bookCode) {
+		BookVo vo = sqlSession.selectOne("book.getData",bookCode);
 		return vo;
 	}
 

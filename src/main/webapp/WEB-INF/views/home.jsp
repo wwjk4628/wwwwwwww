@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>환영합니다! 메인 페이지 - 로그인 및 회원가입</title>
+    
     <style>
         body {
             display: flex;
@@ -41,10 +42,11 @@
 </head>
 <body>
     <div class="container">
-        test
         <a href="<c:url value="users/login"/>" class="btn btn-login">로그인</a>
         <a href="<c:url value="users/join"/>" class="btn btn-signup">회원가입</a>
     </div>
+    <br>
+    <br>
     <%@ include file="/WEB-INF/views/admin_includes/footer.jsp" %>
 
 </body>

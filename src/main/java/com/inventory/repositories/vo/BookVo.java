@@ -5,9 +5,7 @@ public class BookVo {
 	private String bookCode;
 	private String bookName;
 	private int price;
-	private String kindcode;
-	
-	
+	private String kindCode;
 
 	public BookVo() {
 		
@@ -37,26 +35,28 @@ public class BookVo {
 		this.price = price;
 	}
 
-	public String getKindcode() {
-		return kindcode;
+	public String getKindCode() {
+		return kindCode;
 	}
 
-	public void setKindcode(String kindcode) {
-		this.kindcode = kindcode;
+	public void setKindCode(String kindCode) {
+		this.kindCode = kindCode;
 	}
 
-	
-	public BookVo(String bookCode, String bookName, int price, String kindcode) {
+	@Override
+	public String toString() {
+		return "BookVo [bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", kindCode="
+				+ kindCode + "]";
+	}
+
+	public BookVo(String bookCode, String bookName, int price, String kindCode) {
 		this.bookCode = bookCode;
 		this.bookName = bookName;
 		this.price = price;
-		this.kindcode = kindcode;
+		this.kindCode = kindCode;
 	}
 
 	public BookVo(String bookName) {
 		this.bookName = bookName;
 	}
-	
-	
-
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inventory.repositories.vo.BookVo;
+
 import com.inventory.repositories.vo.OrderVo;
 import com.inventory.services.BookService;
 import com.inventory.services.OrderService;
@@ -47,6 +48,7 @@ public class OrderController {
 		// 예시 교재 목록 (실제 구현에서는 데이터베이스에서 가져와야 함)
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
 		BookVo book = bookService.getData(bookCode);
+
 		String bookName = book.getBookName();
 		OrderVo vo = new OrderVo(bookCode, bookName, quantity);
 		if (cart == null) {
@@ -67,7 +69,9 @@ public class OrderController {
 			// 장바구니에서 해당 상품 코드에 해당하는 항목 삭제
 			Iterator<OrderVo> iterator = cart.iterator();
 			while (iterator.hasNext()) {
+
 				OrderVo vo = iterator.next();
+
 				if (vo.getBookCode().equals(bookCode)) {
 					iterator.remove();
 					break;
@@ -115,9 +119,9 @@ public class OrderController {
 	}
 
 	@RequestMapping("/searchbooks")
-	public String searchBooks(@RequestParam("book_name") String book_name, HttpSession session, Model model) {
-		System.out.println("con" + book_name);
-		List<BookVo> list = bookService.search(book_name);
+	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
+		System.out.println("con" + bookName);
+		List<BookVo> list = bookService.search(bookName);
 		model.addAttribute("list", list);
 		Object cartObject = session.getAttribute("cart");
 
@@ -131,11 +135,18 @@ public class OrderController {
 	
 	@RequestMapping("/orderdetail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
+
 		List<OrderVo> list = orderService.getDetailList(orderId);
-		model.addAttribute("list", list);
+		List<BookVo> bookList = new ArrayList<>();
 		for (OrderVo vo : list) {
-			bookService.getData(vo.getBookCode());
+			BookVo bookVo = bookService.getData(vo.getBookCode());
+			vo.setBookName(bookVo.getBookName());
+			vo.setPrice(bookVo.getPrice());
+
+
 		}
+		model.addAttribute("list", list);
+		model.addAttribute("orderId", orderId);
 		return "branches/branch_order_real_detail";
 	}
 	

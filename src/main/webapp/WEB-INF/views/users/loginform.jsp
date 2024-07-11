@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>My Home: Login</title>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/users.css'/>">
 </head>
 <body>
 	<form id="login-form" 
@@ -22,6 +23,8 @@
 
 		<input type="submit" value="로그인">
 	</form>
+    <br>
+    <br>
     
 	<p><a href = "<%=request.getContextPath()%>">초기화면으로 돌아가기</a></p>
 </body>

@@ -6,12 +6,13 @@ import java.util.Date;
 public class OrderVo {
 
     private String orderId;
-    private String bookCode;
     private String branchId;
-    private Integer quantity;
     private Date orderDate;
     private String checked;
+    private String bookCode;
     private String bookName;
+    private int price;
+    private int quantity;
 
     // Default constructor
     public OrderVo() {
@@ -47,14 +48,15 @@ public class OrderVo {
         this.quantity = quantity;
     }
 
-    // Full constructor with bookName
-    public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, String bookName, int quantity) {
+    // Full constructor with bookName and price
+    public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, String bookName, int price, int quantity) {
         this.orderId = orderId;
         this.branchId = branchId;
         this.orderDate = orderDate;
         this.checked = checked;
         this.bookCode = bookCode;
         this.bookName = bookName;
+        this.price = price;
         this.quantity = quantity;
     }
 
@@ -119,10 +121,18 @@ public class OrderVo {
         this.bookName = bookName;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     // toString method
     @Override
     public String toString() {
         return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked=" + checked 
-             + ", bookCode=" + bookCode + ", bookName=" + bookName + ", quantity=" + quantity + "]";
+             + ", bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", quantity=" + quantity + "]";
     }
 }

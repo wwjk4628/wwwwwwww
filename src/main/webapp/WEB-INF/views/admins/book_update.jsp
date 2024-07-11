@@ -93,10 +93,10 @@ button {
 					<th>추가</th>
 				</tr>
 				<tr>
-					<th><input type="text" name="book_code"></th>
-					<th><input type="text" name="book_name"></th>
+					<th><input type="text" name="bookCode"></th>
+					<th><input type="text" name="bookName"></th>
 					<th><input type="text" name="price"></th>
-					<th><input type="text" name="kindcode"></th>
+					<th><input type="text" name="kindCode"></th>
 					<th><input type="submit" value="추가"></th>
 				</tr>
 			</table>
@@ -105,7 +105,7 @@ button {
 			<table border="1" width="500">
 				<tr>
 					<th>교재명</th>
-					<td><input type="text" name="book_name"></td>
+					<td><input type="text" name="bookName"></td>
 					<td><input type="submit" value="검색"></td>
 				</tr>
 			</table>
@@ -123,7 +123,7 @@ button {
 					<td>[${vo.bookCode }]</td>
 					<td>${vo.bookName }</td>
 					<td>${vo.price }</td>
-					<td>${vo.kindcode }</td>
+					<td>${vo.kindCode }</td>
 					<td>
 					<a
 						href="<c:url value="/admin/updatebooks/${vo.bookCode }" />">수정
