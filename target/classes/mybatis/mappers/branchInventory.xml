@@ -38,5 +38,9 @@
     		order by bookCode
     		]]>
 	</select>
+	
+	<insert id="initialization" parameterType="map">
+		insert into branch_inventory (branch_id, book_code, inventory) values (#{id}, #{bookCode}, 0)
+	</insert>
 
 </mapper>

@@ -21,8 +21,15 @@
 	<select id="selectOrderList" resultType="OrderVo">
 		SELECT order_id as
 		orderId, branch_id as branchId, order_date as orderDate, checked FROM
-		book_order
+		book_order ORDER BY orderId DESC
 
+	</select>
+
+	<select id="selectDetailList" parameterType="String"
+		resultType="OrderDetailVo">
+		SELECT order_id as orderId, book_code as bookCode, quantity
+		FROM order_detail
+		WHERE order_id = #{orderId}
 	</select>
 
 
