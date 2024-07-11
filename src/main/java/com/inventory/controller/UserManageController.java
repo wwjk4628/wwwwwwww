@@ -41,9 +41,9 @@ public class UserManageController {
 		return "redirect:/usermanage/list";
 	}
 	
-	@RequestMapping("/{no}/confirm")
-	public String confirm (@PathVariable ("no") int no) {
-		userService.confirm(no);
+	@RequestMapping("/{userId}/confirm/{branchId}")
+	public String confirm (@PathVariable ("userId") int no, @PathVariable ("branchId") int id) {
+		userService.confirm(no, id);
 		return "redirect:/usermanage/list";
 	}
 	

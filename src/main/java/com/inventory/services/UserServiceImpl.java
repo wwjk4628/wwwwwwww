@@ -70,8 +70,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean confirm(int no) {
-		int updateCount = userDao.confirm(no);
+	public boolean confirm(int no, int id) {
+		int updateCount = userDao.confirm(no, id);
 		return updateCount == 1;
 	}
 

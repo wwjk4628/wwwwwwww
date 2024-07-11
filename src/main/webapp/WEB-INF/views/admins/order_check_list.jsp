@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -83,78 +84,32 @@
 
     <div class="content">
         <h1>발주 승인</h1>
-        <h3><a href="/admins/order_chek_detail.html">발주 상세</a></h3>
-        <table>
-            <tr>
-                <th>발주 번호</th>
-                <th>지점명</th>
-                <th>교재명</th>
-                <th>수량</th>
-                <th>발주일</th>
-                <th>상태</th>
-                <th>작업</th>
-            </tr>
-            <tr>
-                <td>ORD001</td>
-                <td>서울 강남점</td>
-                <td>국어 기본서</td>
-                <td>50</td>
-                <td>2024-07-06</td>
-                <td>대기중</td>
-                <td>
-                    <button class="approve">승인</button>
-                    <button class="reject">반려</button>
-                </td>
-            </tr>
-            <tr>
-                <td>ORD002</td>
-                <td>부산 해운대점</td>
-                <td>수학 문제집</td>
-                <td>30</td>
-                <td>2024-07-05</td>
-                <td>대기중</td>
-                <td>
-                    <button class="approve">승인</button>
-                    <button class="reject">반려</button>
-                </td>
-            </tr>
-            <tr>
-                <td>ORD003</td>
-                <td>대구 중앙점</td>
-                <td>영어 단어장</td>
-                <td>40</td>
-                <td>2024-07-04</td>
-                <td>대기중</td>
-                <td>
-                    <button class="approve">승인</button>
-                    <button class="reject">반려</button>
-                </td>
-            </tr>
-            <tr>
-                <td>ORD004</td>
-                <td>인천 송도점</td>
-                <td>과학 실험서</td>
-                <td>25</td>
-                <td>2024-07-03</td>
-                <td>대기중</td>
-                <td>
-                    <button class="approve">승인</button>
-                    <button class="reject">반려</button>
-                </td>
-            </tr>
-            <tr>
-                <td>ORD005</td>
-                <td>광주 상무점</td>
-                <td>사회 참고서</td>
-                <td>35</td>
-                <td>2024-07-02</td>
-                <td>대기중</td>
-                <td>
-                    <button class="approve">승인</button>
-                    <button class="reject">반려</button>
-                </td>
-            </tr>
-        </table>
+        <h3><a href="<c:url value="/order/check/list"/>">초기화</a></h3>
+        <table border="1">
+				<tr>
+					<th>order_id</th>
+					<th>branch_id</th>
+					<th>order_date</th>
+					<th>order_check</th>
+					<th>상세보기</th>
+				</tr>
+					
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.orderId}</td>
+						<td><a href="<c:url value="/order/check/${vo.branchId }/list"/>">${vo.branchId}</a></td>
+						<td>${vo.orderDate}</td>
+						<td><c:choose>
+                			<c:when test="${vo.checked eq 0}">미확인</c:when>
+                			<c:when test="${vo.checked eq 1}">반려</c:when>
+                			<c:when test="${vo.checked eq 2}">처리 완료</c:when>
+                			<c:otherwise>알 수 없음</c:otherwise>
+           				</c:choose></td>
+						
+						<td><a href = "<c:url value="/order/check/${vo.orderId }/detail"/>">보러 가기</a></td>
+					</tr>
+				</c:forEach>
+			</table>
     </div>
 </body>
 
