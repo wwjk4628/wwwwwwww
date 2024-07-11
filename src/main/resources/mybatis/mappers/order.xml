@@ -2,14 +2,36 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-<mapper namespace="bookInventory">
-	
-	<!-- book inventory list -->
-	<select id="selectInventory" resultType="OrderVo">
-		select bi.branch_id as branchId, bi.book_code as bookCode, bl.book_name as bookName, bi.inventory as inventory 
-		from branch_inventory bi join book_list bl on bi.book_code = bl.book_code 
-		where bi.branch_id = #{id} order by bookCode
+<mapper namespace="order">
+	<!-- 목록 -->
+	<insert id="insert" parameterType="String">
+		insert into book_order
+		(branch_id, checked) VALUES(#{branchId}, '0')
+	</insert>
+	<select id="getMax" resultType="String">
+		SELECT MAX(order_id) AS
+		max_order_id FROM book_order
 	</select>
+	<insert id="insertDetail" parameterType="OrderBasketVo">
+		insert into order_detail
+		(order_id, book_code, quantity) VALUES(#{order_id},
+		#{book_code},#{quantity})
+	</insert>
+
+	<select id="selectOrderList" resultType="OrderVo">
+		SELECT order_id as
+		orderId, branch_id as branchId, order_date as orderDate, checked FROM
+		book_order ORDER BY orderId DESC
+
+	</select>
+
+	<select id="selectDetailList" parameterType="String"
+		resultType="OrderDetailVo">
+		SELECT order_id as orderId, book_code as bookCode, quantity
+		FROM order_detail
+		WHERE order_id = #{orderId}
+	</select>
+
+
 
 </mapper>
