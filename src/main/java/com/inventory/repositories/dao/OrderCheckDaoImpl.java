@@ -33,6 +33,12 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 	}
 
 	@Override
+	public long getCount() {
+		long count = sqlSession.selectOne("orderCheck.countNewOrder");
+		return count;
+	}
+	
+	@Override
 	public int refuseOrder(String no) {
 		return sqlSession.update("orderCheck.refuseOrder", no);
 	}

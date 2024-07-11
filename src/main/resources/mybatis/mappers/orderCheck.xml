@@ -23,9 +23,14 @@
 		join book_list bl on od.book_code = bl.book_code where bo.order_id = #{id}
 	</select>
 	
+	<!-- 오더 미확인 갯수 출력 -->
+	<select id = "countNewOrder" resultType="long">
+		SELECT COUNT(*) FROM book_order WHERE checked = '0'
+	</select>
+	
 	<!-- order 거절 -> orderList의 order_chheck만 코드 수정 -->
 	<update id="refuseOrder" parameterType="String">
-		UPDATE book_order SET order_check = '1' WHERE order_id = #{no}
+		UPDATE book_order SET checked = '1' WHERE order_id = #{no}
 	</update>
 	
 	<!-- order 승인 -> orderList의 order_check 코드 수정 -->
