@@ -1,15 +1,11 @@
 package com.inventory.repositories.vo;
 
-import java.math.BigDecimal;
-
 public class BookVo {
 
 	private String bookCode;
 	private String bookName;
 	private int price;
 	private String kindCode;
-	
-	
 
 	public BookVo() {
 		
@@ -49,7 +45,7 @@ public class BookVo {
 
 	@Override
 	public String toString() {
-		return "BookVo [bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", KindCode="
+		return "BookVo [bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", kindCode="
 				+ kindCode + "]";
 	}
 
@@ -63,7 +59,4 @@ public class BookVo {
 	public BookVo(String bookName) {
 		this.bookName = bookName;
 	}
-	
-	
-
 }

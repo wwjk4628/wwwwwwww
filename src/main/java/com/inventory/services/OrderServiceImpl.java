@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.OrderDao;
-import com.inventory.repositories.vo.OrderBasketVo;
-import com.inventory.repositories.vo.OrderDetailVo;
 import com.inventory.repositories.vo.OrderVo;
 
 @Service("OrderService")
@@ -30,7 +28,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public boolean insertDetail(OrderBasketVo vo) {
+	public boolean insertDetail(OrderVo vo) {
 		int insertedCount = orderDao.insertDetail(vo);
 		return 1 == insertedCount;
 	}
@@ -42,8 +40,8 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<OrderDetailVo> getDetailList(String orderId) {
-		List<OrderDetailVo> list = orderDao.getDetailList(orderId);
+	public List<OrderVo> getDetailList(String orderId) {
+		List<OrderVo> list = orderDao.getDetailList(orderId);
 		return list;
 	}
 	
