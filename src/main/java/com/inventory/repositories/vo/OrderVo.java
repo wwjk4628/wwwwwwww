@@ -67,6 +67,20 @@ public class OrderVo {
 		this.quantity = quantity;
 	}
 
+	
+	
+	public OrderVo(String orderId, String branchId, Date orderDate, String checked, String bookCode, String bookName,
+			int price, int quantity) {
+		this.orderId = orderId;
+		this.branchId = branchId;
+		this.orderDate = orderDate;
+		this.checked = checked;
+		this.bookCode = bookCode;
+		this.bookName = bookName;
+		this.price = price;
+		this.quantity = quantity;
+	}
+
 	public String getOrderId() {
 		return orderId;
 	}
