@@ -51,11 +51,12 @@
     <!-- Main content: 교재 주문목록과 계정 승인요청 브리핑 -->
     <div class="content">
         <h1>교재 주문목록</h1>
+        <p>${orderCount}</p>
         <a href="<c:url value='/order/check'/>">보러가기</a>
         
         
         <h1>계정 승인 요청</h1>
-        <p>${count}</p>
+        <p>${userCount}</p>
         <a href="<c:url value='/usermanage/list'/>">보러 가기</a>
     </div>
     

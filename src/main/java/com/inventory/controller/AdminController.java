@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.inventory.repositories.vo.UserVo;
+import com.inventory.services.OrderCheckService;
 import com.inventory.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -16,6 +17,8 @@ import jakarta.servlet.http.HttpSession;
 public class AdminController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrderCheckService orderCheckService;
 
     @RequestMapping({"/home", "/", ""}) 
     public String adminHome(HttpSession session,  RedirectAttributes redirectAttributes, Model model) {
@@ -29,8 +32,11 @@ public class AdminController {
     	
     	//	계정 승인 요청 
     	long taikiUser = userService.userCount();
-    	System.out.println(taikiUser);
-    	model.addAttribute("count", taikiUser);
+    	
+    	long orderCount = orderCheckService.getCount();
+    	
+    	model.addAttribute("userCount", taikiUser);
+    	model.addAttribute("orderCount", orderCount);
     	
         return "admins/admin_home";
     }
