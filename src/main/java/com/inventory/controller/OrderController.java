@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inventory.repositories.vo.BookVo;
 import com.inventory.repositories.vo.OrderBasketVo;
+import com.inventory.repositories.vo.OrderDetailVo;
 import com.inventory.repositories.vo.OrderVo;
 import com.inventory.services.BookService;
 import com.inventory.services.OrderService;
@@ -130,6 +131,15 @@ public class OrderController {
 		return "branches/branch_order_list"; // 정상적인 경우 이렇게 반환할 것입니다.
 	}
 	
+	@RequestMapping("/orderdetail")
+	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
+		List<OrderDetailVo> list = orderService.getDetailList(orderId);
+		model.addAttribute("list", list);
+		for (OrderDetailVo vo : list) {
+			bookService.getData(vo.getBookCode());
+		}
+		return "branches/branch_order_real_detail";
+	}
 	
 
 }
