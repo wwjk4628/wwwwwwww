@@ -59,7 +59,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public long userCount() {
 		long count = userDao.getCount();
-		System.out.println(count);
 		return count;
 	}
 
