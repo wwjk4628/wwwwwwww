@@ -134,10 +134,14 @@ public class OrderController {
 	@RequestMapping("/orderdetail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 		List<OrderDetailVo> list = orderService.getDetailList(orderId);
-		model.addAttribute("list", list);
+		List<BookVo> bookList = new ArrayList<>();
 		for (OrderDetailVo vo : list) {
-			bookService.getData(vo.getBookCode());
+			BookVo bookVo = bookService.getData(vo.getBookCode());
+			vo.setBookName(bookVo.getBook_name());
+			vo.setPrice(bookVo.getPrice());
 		}
+		model.addAttribute("list", list);
+		model.addAttribute("orderId", orderId);
 		return "branches/branch_order_real_detail";
 	}
 	

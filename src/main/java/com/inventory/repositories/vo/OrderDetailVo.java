@@ -4,6 +4,8 @@ public class OrderDetailVo {
 
 	private String orderId;
 	private String bookCode;
+	private String bookName;
+	private int price;
 	private int quantity;
 
 	public OrderDetailVo() {
@@ -13,6 +15,22 @@ public class OrderDetailVo {
 	public OrderDetailVo(String orderId) {
 
 		this.orderId = orderId;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public OrderDetailVo(String orderId, String bookCode, int quantity) {
@@ -48,7 +66,8 @@ public class OrderDetailVo {
 
 	@Override
 	public String toString() {
-		return "OrderDetailVo [orderId=" + orderId + ", bookCode=" + bookCode + ", quantity=" + quantity + "]";
+		return "OrderDetailVo [orderId=" + orderId + ", bookCode=" + bookCode + ", bookName=" + bookName + ", price="
+				+ price + ", quantity=" + quantity + "]";
 	}
 
 }
