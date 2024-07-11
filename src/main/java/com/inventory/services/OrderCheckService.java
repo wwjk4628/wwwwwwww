@@ -12,5 +12,7 @@ public interface OrderCheckService {
 	
 	public List <OrderVo> getOrderDetail(String id);
 	
+	public long getCount();
+	
 	public int refuseOrder(String no);
 }

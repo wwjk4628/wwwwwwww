@@ -31,6 +31,11 @@ public class OrderCheckServiceImpl implements OrderCheckService {
 		List <OrderVo> list = OrderCheckDao.getOrderDetail(id);
 		return list;
 	}
+	
+	@Override
+	public long getCount() {
+		return OrderCheckDao.getCount();
+	}
 
 	@Override
 	public int refuseOrder(String no) {

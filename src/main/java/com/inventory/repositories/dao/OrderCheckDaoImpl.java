@@ -22,7 +22,7 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 
 	@Override
 	public List<OrderVo> getBranchsList(String id) {
-		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckbranch", id);
+		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckBranch", id);
 		return list;
 	}
 
@@ -32,6 +32,12 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 		return list;
 	}
 
+	@Override
+	public long getCount() {
+		long count = sqlSession.selectOne("orderCheck.countNewOrder");
+		return count;
+	}
+	
 	@Override
 	public int refuseOrder(String no) {
 		return sqlSession.update("orderCheck.refuseOrder", no);
