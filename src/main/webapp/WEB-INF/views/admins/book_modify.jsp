@@ -81,7 +81,7 @@ button {
 
 	<div class="content">
 		<form action="<c:url value="/admin/modify" />" method="POST">
-			<input type="hidden" name="book_code" value="${vo.book_code }" />
+			<input type="hidden" name="book_code" value="${vo.bookCode }" />
 			<table>
 				<tr>
 
@@ -94,7 +94,7 @@ button {
 				<tr>
 
 					<th><input type="text" name="book_name"
-						value="${vo.book_name }"></th>
+						value="${vo.bookName }"></th>
 					<th><input type="text" name="price" value="${vo.price }"></th>
 					<th><input type="text" name="kindcode" value="${vo.kindcode }"></th>
 					<th><input type="submit" value="수정"></th>
