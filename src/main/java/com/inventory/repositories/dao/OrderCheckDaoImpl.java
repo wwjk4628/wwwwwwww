@@ -22,7 +22,7 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 
 	@Override
 	public List<OrderVo> getBranchsList(String id) {
-		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckbranch", id);
+		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckBranch", id);
 		return list;
 	}
 
