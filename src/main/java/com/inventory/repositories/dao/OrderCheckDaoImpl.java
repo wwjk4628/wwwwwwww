@@ -1,12 +1,15 @@
 package com.inventory.repositories.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.StockVo;
 
 @Repository("OrderCheckDao")
 public class OrderCheckDaoImpl implements OrderCheckDao {
@@ -41,6 +44,34 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 	@Override
 	public int refuseOrder(String no) {
 		return sqlSession.update("orderCheck.refuseOrder", no);
+	}
+
+	@Override
+	public int confirmOrderCode(String no) {
+		return sqlSession.update("orderCheck.confirmOrderCode", no);
+	}
+
+	@Override
+	public int confirmAndInsertStockIn(String orderId, String branchId) {
+		Map <String, String> map = new HashMap<>();
+		map.put("orderId", orderId);
+		map.put("branchId", branchId);
+		return sqlSession.insert("orderCheck.confirmAndInsertStockIn", map);
+	}
+
+	@Override
+	public int getStockIn(String orderId) {
+		return sqlSession.selectOne("orderCheck.getStockInIdByOrderId", orderId);
+	}
+
+	@Override
+	public int confirmAndInsertInDetail(StockVo vo) {
+		return sqlSession.insert("orderCheck.confirmAndInsertInDetail", vo);
+	}
+
+	@Override
+	public String getBranchId(String orderId) {
+		return sqlSession.selectOne("orderCheck.getBranchId", orderId);
 	}
 
 }
