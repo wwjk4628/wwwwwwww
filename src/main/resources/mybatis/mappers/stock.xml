@@ -11,9 +11,9 @@
 	</select>
 	
 	<select id="stockInDetail" parameterType="String" resultType="StockVo">
-		select si.in_id as id, si.order_id as orderId, si.in_date as flucDate, si.checked_id as checkedIn, si.branch_id as branchId, 
-		inde.book_code as bookCode, inde.quantity, bl.book_name as bookName, inde.comments
-		from stock_in as si	join in_detail as inde on si.in_id = inde.in_id join book_list as bl on inde.book_code = bl.book_code 
-		where si.in_id = #{id} 
+		select si.in_id as id, si.order_id as orderId, si.in_date as flucDate, si.checked_in as checkedIn, si.branch_id as branchId, 
+		inde.book_code as bookCode, inde.quantity, bl.book_name as bookName, inde.comments 
+		from stock_in si join in_detail inde on si.in_id = inde.in_id join book_list bl on inde.book_code = bl.book_code 
+		where si.in_id = #{inId} 
 	</select>
 </mapper>

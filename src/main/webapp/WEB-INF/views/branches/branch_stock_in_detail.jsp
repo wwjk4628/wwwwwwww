@@ -83,14 +83,16 @@
 					<th>book_name</th>
 					<th>quantity</th>
 					<th>check</th>
+					<th>comments</th>
 					<th>상세보기</th>
 				</tr>
 					
 				<c:forEach items="${list }" var="vo">
 					<tr>
-						<td>${vo.id}</td>
-						<td>${vo.orderId }</td>
 						<td>${vo.flucDate}</td>
+						<td>${vo.bookCode}</td>
+						<td>${vo.bookName}</td>
+						<td>${vo.quantity}</td>
 						<td>
 						${vo.checkedIn }, 
 						<c:choose>
@@ -99,6 +101,7 @@
                 			<c:otherwise>알 수 없음</c:otherwise>
            				</c:choose>
            				</td>
+           				<td>${vo.comments}</td>
 						
 						<td><a href = "<c:url value="/stock/in/${vo.id }/detail"/>">보러 가기</a></td>
 					</tr>
