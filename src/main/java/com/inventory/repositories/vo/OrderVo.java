@@ -23,9 +23,7 @@ public class OrderVo {
 		this.price = price;
 	}
 
-	public OrderVo(String branchId) {
-		this.branchId = branchId;
-	}
+	
 
 	public OrderVo() {
 
