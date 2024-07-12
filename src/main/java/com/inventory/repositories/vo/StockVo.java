@@ -1,5 +1,6 @@
 package com.inventory.repositories.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class StockVo {
@@ -12,11 +13,12 @@ public class StockVo {
 	private String comments;
 	private String checkedIn;
 	private String bookName;
-	
-	public StockVo () {
-		
+
+	public StockVo() {
+
 	}
 
+	// stock_in detail 볼 때 사용
 	public StockVo(int id, String branchId, Date flucDate, int orderId, String bookCode, int quantity, String comments,
 			String checkedIn, String bookName) {
 		this.id = id;
@@ -30,6 +32,7 @@ public class StockVo {
 		this.bookName = bookName;
 	}
 
+	// stock_in list 볼 때 사용
 	public StockVo(int id, String branchId, Date flucDate, int orderId, String checkedIn) {
 		super();
 		this.id = id;
@@ -44,11 +47,19 @@ public class StockVo {
 		this.flucDate = flucDate;
 		this.orderId = orderId;
 	}
-	
+
+	// in_detail 입력에 사용
 	public StockVo(int id, String bookCode, int quantity) {
 		this.quantity = quantity;
 		this.id = id;
 		this.bookCode = bookCode;
+	}
+
+	// 재고 반영에 사용
+	public StockVo(String branchId, String bookCode, int quantity) {
+		this.branchId = branchId;
+		this.bookCode = bookCode;
+		this.quantity = quantity;
 	}
 
 	public int getId() {
@@ -67,8 +78,12 @@ public class StockVo {
 		this.branchId = branchId;
 	}
 
-	public Date getFlucDate() {
-		return flucDate;
+	public String getFlucDate() {
+		if (flucDate == null) {
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
+		return dateFormat.format(flucDate);
 	}
 
 	public void setFlucDate(Date flucDate) {

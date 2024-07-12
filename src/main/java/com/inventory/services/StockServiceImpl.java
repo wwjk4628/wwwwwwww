@@ -25,5 +25,14 @@ public class StockServiceImpl implements StockService {
 		List<StockVo>list = stockDao.getStockInDetail(inId);
 		return list;
 	}
+	
+	@Override
+	public boolean stockInCheck(String inId) {
+		return stockDao.stockInCheck(inId);
+	}
 
+	@Override
+	public boolean confirnStockIn(StockVo vo) {
+		return stockDao.confirmStockIn(vo);
+	}
 }

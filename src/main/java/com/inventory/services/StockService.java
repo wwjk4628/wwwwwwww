@@ -9,5 +9,7 @@ public interface StockService {
 	public List <StockVo> getStockInList (String branchId);
 	
 	public List <StockVo> getStockInDetail (String inId);
-
+	
+	public boolean stockInCheck(String inId);
+	public boolean confirnStockIn(StockVo vo);
 }

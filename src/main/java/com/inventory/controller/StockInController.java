@@ -32,7 +32,27 @@ public class StockInController {
 	@RequestMapping("/in/{id}/detail")
 	public String stockIndetail(@PathVariable ("id") String inId, Model model) {
 		List<StockVo> list = stockService.getStockInDetail(inId);
+		
+		String i = null;
+		for(StockVo vo:list) {
+			i = vo.getCheckedIn();
+		}
+		model.addAttribute("check", i);
 		model.addAttribute("list", list);
+		model.addAttribute("inId", inId);
 		return "branches/branch_stock_in_detail";
+	}
+	
+	@RequestMapping("/in/{id}/confirm")
+	public String confirmStockIn(@PathVariable ("id") String inId) {
+		stockService.stockInCheck(inId);
+		List<StockVo>list = stockService.getStockInDetail(inId);
+		
+		for (StockVo vo :list) {
+			StockVo insertVo = new StockVo (vo.getBranchId(), vo.getBookCode(), vo.getQuantity());
+			stockService.confirnStockIn(insertVo);
+		}
+		
+		return "redirect:/branches/home";
 	}
 }

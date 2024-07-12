@@ -84,7 +84,6 @@
 					<th>quantity</th>
 					<th>check</th>
 					<th>comments</th>
-					<th>상세보기</th>
 				</tr>
 					
 				<c:forEach items="${list }" var="vo">
@@ -94,7 +93,6 @@
 						<td>${vo.bookName}</td>
 						<td>${vo.quantity}</td>
 						<td>
-						${vo.checkedIn }, 
 						<c:choose>
                 			<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
                 			<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
@@ -102,11 +100,17 @@
            				</c:choose>
            				</td>
            				<td>${vo.comments}</td>
-						
-						<td><a href = "<c:url value="/stock/in/${vo.id }/detail"/>">보러 가기</a></td>
 					</tr>
 				</c:forEach>
 			</table>
-
+			
+			<c:choose>
+    			<c:when test="${check eq 0}">
+        			<a href="<c:url value='/stock/in/${inId}/confirm' />">도착했어요~~</a>
+    			</c:when>
+    			<c:otherwise>
+        		<!-- Do nothing or display alternative content -->
+    			</c:otherwise>
+			</c:choose>
     </div>
 </body>

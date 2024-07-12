@@ -89,7 +89,6 @@
 						<td>${vo.orderId }</td>
 						<td>${vo.flucDate}</td>
 						<td>
-						${vo.checkedIn }, 
 						<c:choose>
                 			<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
                 			<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
