@@ -12,14 +12,15 @@
         <setting name="autoMappingBehavior" value="PARTIAL" />
     </settings>
 
-    <typeAliases>
-        <typeAlias type="com.inventory.repositories.vo.StockOutVo" alias="StockOutVo" />
-        <typeAlias type="com.inventory.repositories.vo.BookVo" alias="BookVo" />
-        <typeAlias type="com.inventory.repositories.vo.UserVo" alias="UserVo" />
-        <typeAlias type="com.inventory.repositories.vo.BookInventoryVo" alias="BookInventoryVo" />
-        <typeAlias type="com.inventory.repositories.vo.OrderVo" alias="OrderVo" />
-        <typeAlias type="com.inventory.repositories.vo.StockVo" alias="StockVo" />
-    </typeAliases>
+
+	<typeAliases>
+		<typeAlias type="com.inventory.repositories.vo.StockOutVo" alias="StockOutVo" />
+		<typeAlias type="com.inventory.repositories.vo.BookVo" alias="BookVo" />
+		<typeAlias type="com.inventory.repositories.vo.UserVo" alias="UserVo" />
+		<typeAlias type="com.inventory.repositories.vo.BookInventoryVo" alias="BookInventoryVo" />
+		<typeAlias type="com.inventory.repositories.vo.OrderVo" alias="OrderVo" />
+		<typeAlias type="com.inventory.repositories.vo.StockVo" alias="StockVo" />
+	</typeAliases>
 
     <mappers>
         <mapper resource="mybatis/mappers/branchInventory.xml" />
