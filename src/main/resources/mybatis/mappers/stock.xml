@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="stock">
+	
+	<!-- 지점 코드에 맞는 Stock in list 불러오기 -->
+	<select id="stockInList" parameterType="String" resultType="StockVo">
+		select in_id as id, order_id as orderId, in_date as flucDate, checked_in as checkedIn, branch_id as branchId FROM stock_in where branch_id = #{branchId}
+	</select>
+	
+	<select id="stockInDetail" parameterType="String" resultType="StockVo">
+		select si.in_id as id, si.order_id as orderId, si.in_date as flucDate, si.checked_id as checkedIn, si.branch_id as branchId, 
+		inde.book_code as bookCode, inde.quantity, bl.book_name as bookName, inde.comments
+		from stock_in as si	join in_detail as inde on si.in_id = inde.in_id join book_list as bl on inde.book_code = bl.book_code 
+		where si.in_id = #{id} 
+	</select>
+</mapper>

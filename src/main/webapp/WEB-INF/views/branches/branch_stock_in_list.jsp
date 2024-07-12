@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -73,33 +74,33 @@
     <div class="content">
         <h1>입고</h1>
         <h3><a href="/branches/branch_stock_in_detail.html">입고 기록</a></h3>
-        <table>
-            <tr>
-                <th>발주 번호</th>
-                <th>교재명</th>
-                <th>주문 수량</th>
-                <th>입고 수량</th>
-                <th>상태</th>
-                <th>작업</th>
-            </tr>
-            <tr>
-                <td>ORD001</td>
-                <td>국어 기본서</td>
-                <td>10</td>
-                <td><input type="number" value="10" min="0"></td>
-                <td>대기 중</td>
-                <td><button>입고 확인</button></td>
-            </tr>
-            <tr>
-                <td>ORD001</td>
-                <td>수학 문제집</td>
-                <td>5</td>
-                <td><input type="number" value="5" min="0"></td>
-                <td>대기 중</td>
-                <td><button>입고 확인</button></td>
-            </tr>
-        </table>
-
+        <table border="1">
+				<tr>
+					<th>in_id</th>
+					<th>order_id</th>
+					<th>date</th>
+					<th>check</th>
+					<th>상세보기</th>
+				</tr>
+					
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.id}</td>
+						<td>${vo.orderId }</td>
+						<td>${vo.flucDate}</td>
+						<td>
+						${vo.checkedIn }, 
+						<c:choose>
+                			<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
+                			<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
+                			<c:otherwise>알 수 없음</c:otherwise>
+           				</c:choose>
+           				</td>
+						
+						<td><a href = "<c:url value="/stock/in/${vo.id }/detail"/>">보러 가기</a></td>
+					</tr>
+				</c:forEach>
+			</table>
         
     </div>
 </body>

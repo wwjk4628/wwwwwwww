@@ -28,5 +28,6 @@
 		<mapper resource="mybatis/mappers/users.xml" />
 		<mapper resource="mybatis/mappers/order.xml" />
         <mapper resource="mybatis/mappers/orderCheck.xml" />
+        <mapper resource="mybatis/mappers/stock.xml" />
 	</mappers>
 </configuration>

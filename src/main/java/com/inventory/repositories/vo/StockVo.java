@@ -5,32 +5,43 @@ import java.util.Date;
 public class StockVo {
 	private int id;
 	private String branchId;
-	private Date date;
+	private Date flucDate;
 	private int orderId;
 	private String bookCode;
 	private int quantity;
 	private String comments;
 	private String checkedIn;
+	private String bookName;
 	
 	public StockVo () {
 		
 	}
 
-	public StockVo(int id, String branchId, Date date, int orderId, String bookCode, int quantity, String comments,
-			String checkedIn) {
+	public StockVo(int id, String branchId, Date flucDate, int orderId, String bookCode, int quantity, String comments,
+			String checkedIn, String bookName) {
 		this.id = id;
 		this.branchId = branchId;
-		this.date = date;
+		this.flucDate = flucDate;
 		this.orderId = orderId;
 		this.bookCode = bookCode;
 		this.quantity = quantity;
 		this.comments = comments;
 		this.checkedIn = checkedIn;
+		this.bookName = bookName;
 	}
 
-	public StockVo(String branchId, Date date, int orderId) {
+	public StockVo(int id, String branchId, Date flucDate, int orderId, String checkedIn) {
+		super();
+		this.id = id;
 		this.branchId = branchId;
-		this.date = date;
+		this.flucDate = flucDate;
+		this.orderId = orderId;
+		this.checkedIn = checkedIn;
+	}
+
+	public StockVo(String branchId, Date flucDate, int orderId) {
+		this.branchId = branchId;
+		this.flucDate = flucDate;
 		this.orderId = orderId;
 	}
 	
@@ -56,12 +67,12 @@ public class StockVo {
 		this.branchId = branchId;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getFlucDate() {
+		return flucDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setFlucDate(Date flucDate) {
+		this.flucDate = flucDate;
 	}
 
 	public int getOrderId() {
@@ -102,5 +113,13 @@ public class StockVo {
 
 	public void setCheckedIn(String checkedIn) {
 		this.checkedIn = checkedIn;
+	}
+
+	public String getBookName() {
+		return bookName;
+	}
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 }
