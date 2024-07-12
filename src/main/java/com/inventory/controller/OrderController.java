@@ -35,7 +35,8 @@ public class OrderController {
 	@RequestMapping("orderlist")
 	public String orderList(HttpSession session, Model model) {
 //		로그인 시 저장한 session authUser를 받아와 branchId 기반으로
-//		지점 book_order 테이블 데이터 연결
+//		지점 branch_inventory 테이블 데이터 연결
+//		데이터를 받아와 지점 교재 재고 현황을 모델에 저장
 
 		UserVo vo = (UserVo) session.getAttribute("authUser");
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
@@ -154,24 +155,30 @@ public class OrderController {
 
 	}
 
+//	발주 페이지 지점 재고 현황 검색
 	@RequestMapping("/searchbooks")
 	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
-
+//		session에서 authUser 받아와 branchId와 jsp에서 넘어온 교재 이름으로
+//		branch_inventory에서 데이터를 받아 리스트에 저장후 모델에 저장 
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		List<BookInventoryVo> list = bookInventoryService.search(authUser.getBranchId(), bookName);
 		model.addAttribute("list", list);
+		
+//		장바구니 세션 받아와 리스트에 저장후 모델에 저장
 		Object cartObject = session.getAttribute("cart");
 
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
 
 		model.addAttribute("cartList", cartList);
 
-		return "branches/branch_order_list"; // 정상적인 경우 이렇게 반환할 것입니다.
+		return "branches/branch_order_list"; // 발주 페이지로 연결 (리다이렉트하면 재고 검색이 초기화됨)
 	}
 
+//	주문 상세 페이지
 	@RequestMapping("/orderdetail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 
+//		받아온 orderId 기반으로 주문 상세 페이지로 연결
 		List<OrderVo> list = orderService.getDetailList(orderId);
 		List<BookVo> bookList = new ArrayList<>();
 		for (OrderVo vo : list) {
