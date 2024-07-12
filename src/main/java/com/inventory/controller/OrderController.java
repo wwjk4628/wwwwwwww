@@ -40,15 +40,6 @@ public class OrderController {
 
 		UserVo vo = (UserVo) session.getAttribute("authUser");
 
-		// Null 체크
-		if (vo == null) {
-		    // 세션에서 authUser가 null인 경우 처리할 로직 추가
-		    // 예: 에러 메시지 출력하거나, 다시 로그인 페이지로 리다이렉트 등
-		    System.out.println("세션에서 authUser를 가져오지 못했습니다.");
-		    // 예외 처리
-		    throw new IllegalStateException("인증된 사용자 정보를 가져오지 못했습니다.");
-		}
-		
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
 		model.addAttribute("list", list);
 
@@ -126,6 +117,7 @@ public class OrderController {
 //		로그인 시 저장한 session authUser를 받아오는 기능
 		UserVo vo = (UserVo) session.getAttribute("authUser");
 
+
 //		branchId 기반으로 주문 기록 뽑아와 리스트에 저장 후 모델에 실어서
 //		jsp에 전달
 		List<OrderVo> list = orderService.getOrderList(vo.getBranchId());
@@ -140,6 +132,7 @@ public class OrderController {
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
 		UserVo vo = (UserVo) session.getAttribute("authUser");
 
+
 //		장바구니가 있으면 book_order테이블에
 //		지점 아이디 기반으로 데이터 생성
 		if (cart != null && !cart.isEmpty()) {
@@ -151,7 +144,7 @@ public class OrderController {
 				item.setOrderId(orderService.getMax());
 				orderService.insertDetail(item);
 			}
-			
+
 //			장바구니 리스트 삭제
 			session.removeAttribute("cart");
 
@@ -175,7 +168,7 @@ public class OrderController {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		List<BookInventoryVo> list = bookInventoryService.search(authUser.getBranchId(), bookName);
 		model.addAttribute("list", list);
-		
+
 //		장바구니 세션 받아와 리스트에 저장후 모델에 저장
 		Object cartObject = session.getAttribute("cart");
 
