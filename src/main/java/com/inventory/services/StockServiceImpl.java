@@ -35,4 +35,9 @@ public class StockServiceImpl implements StockService {
 	public boolean confirnStockIn(StockVo vo) {
 		return stockDao.confirmStockIn(vo);
 	}
+
+	@Override
+	public int getInId(String branchId) {
+		return stockDao.getInId(branchId);
+	}
 }

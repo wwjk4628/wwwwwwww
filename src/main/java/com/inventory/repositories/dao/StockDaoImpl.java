@@ -37,4 +37,9 @@ public class StockDaoImpl implements StockDao {
 		return true;
 	}
 
+	@Override
+	public int getInId(String branchId) {
+		return sqlSession.selectOne("stock.getStockInIdBybranchId", branchId);
+	}
+
 }

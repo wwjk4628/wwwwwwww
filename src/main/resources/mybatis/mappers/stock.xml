@@ -28,4 +28,11 @@
 		UPDATE branch_inventory SET inventory = inventory + #{quantity}
 		WHERE branch_id = #{branchId} AND book_code = #{bookCode}
 	</update>
+	
+	<!-- 비밀 코드 -->
+	<select id ="getStockInIdBybranchId" parameterType="String" resultType="int">
+		SELECT in_id FROM stock_in WHERE branch_id = #{branchId}
+		ORDER BY in_date DESC FETCH FIRST 1 ROW ONLY
+	</select> 
+	
 </mapper>

@@ -86,7 +86,12 @@
 				<c:forEach items="${list }" var="vo">
 					<tr>
 						<td>${vo.id}</td>
-						<td>${vo.orderId }</td>
+						<td>
+						<c:choose>
+							<c:when test="${vo.orderId eq -1 }">임의 입고</c:when>
+							<c:otherwise>${vo.orderId}</c:otherwise>
+						</c:choose>
+						</td>
 						<td>${vo.flucDate}</td>
 						<td>
 						<c:choose>

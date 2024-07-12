@@ -12,4 +12,6 @@ public interface StockDao {
 	
 	public boolean stockInCheck(String inId);
 	public boolean confirmStockIn(StockVo vo);
+	
+	public int getInId (String branchId);
 }

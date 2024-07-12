@@ -42,12 +42,6 @@ public class StockVo {
 		this.checkedIn = checkedIn;
 	}
 
-	public StockVo(String branchId, Date flucDate, int orderId) {
-		this.branchId = branchId;
-		this.flucDate = flucDate;
-		this.orderId = orderId;
-	}
-
 	// in_detail 입력에 사용
 	public StockVo(int id, String bookCode, int quantity) {
 		this.quantity = quantity;
@@ -60,6 +54,13 @@ public class StockVo {
 		this.branchId = branchId;
 		this.bookCode = bookCode;
 		this.quantity = quantity;
+	}
+
+	public StockVo(String branchId, String bookCode, int quantity, String bookName) {
+		this.branchId = branchId;
+		this.bookCode = bookCode;
+		this.quantity = quantity;
+		this.bookName = bookName;
 	}
 
 	public int getId() {
