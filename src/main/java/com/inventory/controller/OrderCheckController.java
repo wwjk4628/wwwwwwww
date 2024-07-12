@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.StockVo;
 import com.inventory.repositories.vo.UserVo;
 import com.inventory.services.OrderCheckService;
 
@@ -65,12 +66,26 @@ public class OrderCheckController {
 	}
 	
 	@RequestMapping("/{id}/ref")
-	public String orderRefuse() {
-		return "";
+	public String orderRefuse(@PathVariable ("id") String id) {
+		OrderCheckService.refuseOrder(id);
+		return "redirect:/order/check/list";
 	}
 	
 	@RequestMapping("/{id}/con")
-	public String orderConfirm() {
-		return"";
+	public String orderConfirm(@PathVariable ("id") String id) {
+		OrderCheckService.confirmOrderCode(id);
+		
+		String branchId = OrderCheckService.getBranchId(id);
+		OrderCheckService.confirmAndInsertStockIn(id, branchId);
+		
+		int inId = OrderCheckService.getStockIn(id);
+		
+		List <OrderVo> list = OrderCheckService.getOrderDetail(id);
+		for (OrderVo vo :list) {
+			StockVo stockVo = new StockVo(inId, vo.getBookCode(), vo.getQuantity());
+			OrderCheckService.confirmAndInsertInDetail(stockVo);
+		}
+		
+		return "redirect:/order/check/list";
 	}
 }

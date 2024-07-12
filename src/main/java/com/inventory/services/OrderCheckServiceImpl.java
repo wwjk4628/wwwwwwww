@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.OrderCheckDao;
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.StockVo;
 
 @Service("OrderCheckService")
 public class OrderCheckServiceImpl implements OrderCheckService {
@@ -41,5 +42,32 @@ public class OrderCheckServiceImpl implements OrderCheckService {
 	public int refuseOrder(String no) {
 		return OrderCheckDao.refuseOrder(no);
 	}
+
+	@Override
+	public int confirmOrderCode(String no) {
+		return OrderCheckDao.confirmOrderCode(no);
+	}
+
+	@Override
+	public int confirmAndInsertStockIn(String orderId, String branchId) {
+		return OrderCheckDao.confirmAndInsertStockIn(orderId, branchId);
+	}
+
+	@Override
+	public int getStockIn(String orderId) {
+		return OrderCheckDao.getStockIn(orderId);
+	}
+
+	@Override
+	public int confirmAndInsertInDetail(StockVo vo) {
+		return OrderCheckDao.confirmAndInsertInDetail(vo);
+	}
+
+	@Override
+	public String getBranchId(String orderId) {
+		return OrderCheckDao.getBranchId(orderId);
+	}
+	
+	
 
 }
