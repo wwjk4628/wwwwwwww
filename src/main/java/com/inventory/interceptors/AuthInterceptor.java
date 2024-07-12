@@ -19,9 +19,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 	            throws Exception {
 	        HttpSession session = request.getSession();
 	        UserVo authUser = (UserVo) session.getAttribute("authUser");
-	        String authCode = authUser.getAuthCode();
+
 	        // 인증된 사용자가 없으면 로그인 페이지로 리다이렉트
-	        if (authUser == null || authCode == "0") {
+	        if (authUser == null) {
 	            logger.warn("Unauthorized access detected. Redirecting to login page.");
 	            response.sendRedirect(request.getContextPath() + "/users/login");
 	            return false; // 요청 처리 중단
