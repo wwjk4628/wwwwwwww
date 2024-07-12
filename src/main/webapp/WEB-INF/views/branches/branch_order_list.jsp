@@ -125,12 +125,15 @@ button {
 					<tr>
 						<th>교재명</th>
 						<th>수량</th>
+						<th>금액</th>
 						<th>작업</th>
 					</tr>
 					<c:forEach items="${cartList }" var="vo" varStatus="status">
 						<tr>
 							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
+							<td>${vo.price * vo.quantity}</td>
+
 							<td>
 								<form action="remove-from-cart" method="post">
 									<input type="hidden" name="bookCode" value="${vo.bookCode}">
@@ -138,12 +141,23 @@ button {
 								</form>
 							</td>
 						</tr>
+						<c:set var="totalQuantity"
+							value="${totalQuantity + (vo.quantity)}" />
+						<c:set var="totalPrice"
+							value="${totalPrice + (vo.price * vo.quantity)}" />
 					</c:forEach>
+					<tr>
+						<td><strong>총합</strong></td>
+						<td><strong>${totalQuantity}</strong></td>
+						<td><strong>${totalPrice}</strong></td>
+						<td>
+							<form id="orderForm" action="<c:url value='/ordering'/>"
+								method="post">
+								<button type="button" onclick="submitOrderForm()">발주 제출</button>
+							</form>
+						</td>
+					</tr>
 				</table>
-				<form id="orderForm" action="<c:url value='/ordering'/>"
-					method="post">
-					<button type="button" onclick="submitOrderForm()">발주 제출</button>
-				</form>
 			</div>
 		</div>
 
@@ -225,5 +239,6 @@ button {
 		document.getElementById("bookSearch").addEventListener("input",
 				filterBooks);
 	</script>
+	<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>
 </body>
 </html>
