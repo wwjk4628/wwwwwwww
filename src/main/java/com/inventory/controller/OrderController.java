@@ -39,6 +39,16 @@ public class OrderController {
 //		데이터를 받아와 지점 교재 재고 현황을 모델에 저장
 
 		UserVo vo = (UserVo) session.getAttribute("authUser");
+
+		// Null 체크
+		if (vo == null) {
+		    // 세션에서 authUser가 null인 경우 처리할 로직 추가
+		    // 예: 에러 메시지 출력하거나, 다시 로그인 페이지로 리다이렉트 등
+		    System.out.println("세션에서 authUser를 가져오지 못했습니다.");
+		    // 예외 처리
+		    throw new IllegalStateException("인증된 사용자 정보를 가져오지 못했습니다.");
+		}
+		
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
 		model.addAttribute("list", list);
 
@@ -66,7 +76,9 @@ public class OrderController {
 //		객체에서 bookName을 뽑아와 bookName에 저장 후 주문 객체에 추가,
 //		수량과 교재 코드도 저장
 		String bookName = book.getBookName();
+		int price = book.getPrice();
 		OrderVo vo = new OrderVo(bookCode, bookName, quantity);
+		vo.setPrice(price);
 		vo.setBranchId(authUser.getBranchId());
 
 //		장바구니가 비었으면 리스트만 생성 후 jsp전달
