@@ -153,7 +153,7 @@ button {
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>
-						<td><input type="text" name="book_name"></td>
+						<td><input type="text" name="bookName"></td>
 						<td><input type="submit" value="검색"></td>
 					</tr>
 				</table>
@@ -162,12 +162,12 @@ button {
 			<table id="bookInventory">
 				<tr>
 					<th>교재명</th>
-					<th>교재 코드</th>
+					<th>수량</th>
 				</tr>
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
 						<td>${vo.bookName }</td>
-						<td>${vo.bookCode }</td>
+						<td>${vo.inventory }</td>
 					</tr>
 				</c:forEach>
 			</table>
