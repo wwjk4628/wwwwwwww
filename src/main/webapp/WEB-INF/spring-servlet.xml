@@ -47,6 +47,10 @@
 			<mvc:exclude-mapping path="/main" />
 			<mvc:exclude-mapping path="/except" />
 			<mvc:exclude-mapping path="/users/**" />
+			<mvc:exclude-mapping path="/css/**" />
+			<mvc:exclude-mapping path= "/js/**" />
+
+
 			<bean class="com.inventory.interceptors.AuthInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
