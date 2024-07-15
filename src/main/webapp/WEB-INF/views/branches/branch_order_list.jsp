@@ -72,9 +72,7 @@ th {
 				</tr>
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td><a
-							href="<c:url value="/brnach/order/list" />?orderId=${vo.orderId}">
-								${vo.orderId }</a></td>
+						<td><a href="<c:url value="/brnach/order/list" />?orderId=${vo.orderId}">${vo.orderId }</a></td>
 						<td>${vo.orderDate }</td>
 						<c:choose>
 							<c:when test="${vo.checked eq 0}">

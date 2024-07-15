@@ -106,6 +106,6 @@ public class InitialSettingController {
 		}
 		session.setAttribute("authUser", userVo);
 		
-		return "redirect:/branch/";
+		return "redirect:/branch/inventory";
 	}
 }

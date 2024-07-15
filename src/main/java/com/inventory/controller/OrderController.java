@@ -32,7 +32,6 @@ public class OrderController {
 	@Autowired
 	BookInventoryService bookInventoryService;
 
-//	지점 주문 페이지로 연결
 	@RequestMapping("/form")
 	public String orderList(HttpSession session, Model model) {
 //		로그인 시 저장한 session authUser를 받아와 branchId 기반으로
@@ -81,7 +80,7 @@ public class OrderController {
 
 		cart.add(vo);
 		session.setAttribute("cart", cart);
-		return "redirect:/branch/order/list";
+		return "redirect:/branch/order/form";
 	}
 
 //	지점 주문 페이지 장바구니 삭제 기능
@@ -108,7 +107,6 @@ public class OrderController {
 			// 수정된 장바구니 세션에 저장
 			session.setAttribute("cart", cart);
 		}
-
 		return "redirect:/branch/order/list"; // 장바구니 목록 페이지로 리다이렉트
 	}
 
@@ -125,6 +123,7 @@ public class OrderController {
 		model.addAttribute("list", list);
 		return "branches/branch_order_list";
 	}
+
 
 //	발주 페이지 주문 확정 기능
 	@RequestMapping("/submit")
@@ -161,7 +160,6 @@ public class OrderController {
 
 	}
 
-//	발주 페이지 지점 재고 현황 검색
 	@RequestMapping("/search")
 	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
 //		session에서 authUser 받아와 branchId와 jsp에서 넘어온 교재 이름으로
@@ -180,7 +178,6 @@ public class OrderController {
 		return "branches/branch_order_form"; // 발주 페이지로 연결 (리다이렉트하면 재고 검색이 초기화됨)
 	}
 
-//	주문 상세 페이지
 	@RequestMapping("/detail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 

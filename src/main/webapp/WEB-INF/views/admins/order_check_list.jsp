@@ -13,7 +13,11 @@
 
     <div class="content">
         <h1>발주 승인</h1>
+<<<<<<< HEAD
         <h3><a href="<c:url value='/admin/ordercheck/list'/>">초기화</a></h3>
+=======
+        <h3><a href="<c:url value='/admin/ordercheck'/>">초기화</a></h3>
+>>>>>>> branch 'TEST' of https://github.com/ktw1021/TEAM_Inventory_Project.git
         <table>
             <tr>
                 <th>order_id</th>

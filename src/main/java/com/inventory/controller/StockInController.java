@@ -53,6 +53,6 @@ public class StockInController {
 			stockService.confirnStockIn(insertVo);
 		}
 		
-		return "redirect:/branch/";
+		return "redirect:/branch/inventory";
 	}
 }

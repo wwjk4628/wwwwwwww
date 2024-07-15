@@ -14,7 +14,11 @@
 
     <div class="content">
         <h1>${id }번 order detail</h1>
+<<<<<<< HEAD
         <h3><a href="<c:url value='/admin/ordercheck/list'/>">발주 리스트 돌아가기</a></h3>
+=======
+        <h3><a href="<c:url value='/admin/ordercheck'/>">발주 리스트 돌아가기</a></h3>
+>>>>>>> branch 'TEST' of https://github.com/ktw1021/TEAM_Inventory_Project.git
         <table>
             <tr>
                 <th>order_id</th>
