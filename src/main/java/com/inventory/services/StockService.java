@@ -15,4 +15,6 @@ public interface StockService {
 	
 	public int getInId(String branchId);
 	public int initialStockIn(String orderId, String branchId);
+	
+	public List <StockVo> getStockOutList (String branchId);
 }

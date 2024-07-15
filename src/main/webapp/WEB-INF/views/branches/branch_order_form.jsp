@@ -163,7 +163,7 @@ button {
 
 		<!-- 오른쪽 컨텐츠 -->
 		<div class="right-content">
-			<form action="<c:url value="/searchbooks" />" method="GET">
+			<form action="<c:url value="/branch/order/search" />" method="GET">
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>

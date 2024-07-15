@@ -30,6 +30,11 @@
 		WHERE branch_id = #{branchId} AND book_code = #{bookCode}
 	</update>
 	
+	<!-- stock out list 불러오기 -->
+	<select id = "stockOutList" parameterType="String" resultType="StockVo">
+		select out_id as id, out_date as flucDate, branch_id as branchId from stock_out where branch_id = #{branchId}
+	</select>
+	
 	<!-- 비밀 코드 -->
 	<select id ="getStockInIdBybranchId" parameterType="String" resultType="int">
 		SELECT in_id FROM stock_in WHERE branch_id = #{branchId}

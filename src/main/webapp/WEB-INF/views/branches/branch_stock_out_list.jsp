@@ -71,48 +71,23 @@ button {
 	<%@ include file="/WEB-INF/views/branch_includes/navigation.jsp"%>
 	<div class="content">
 		<h1>출고</h1>
-		<h3>
-			<a href="/branches/branch_stock_out_detail.html">출고 기록</a>
-		</h3>
-
-		<div class="form-group">
-			<select>
-				<option value="">교재 선택</option>
-				<option value="book1">국어 기본</option>
-				<option value="book2">수학 문제집</option>
-				<option value="book3">영어 단어장</option>
-				<option value="book4">과학 실험서</option>
-				<option value="book5">사회 참고서</option>
-			</select> <input type="number" placeholder="수량" min="1" value="1">
-			<button>출고 목록에 추가</button>
-		</div>
-
 		<h2>출고 목록</h2>
-		<table>
-			<thead>
+		<p><a href = "<c:url value="/branch/stockout/form"/>">출고 폼</a></p>
+		<table border="1">
 				<tr>
-					<th>출고 ID</th>
-					<th>교재명</th>
-					<th>수량</th>
-					<th>출고일</th>
-					<th>비고</th>
-					<th>지점 ID</th>
+					<th>out_id</th>
+					<th>date</th>
+					<th>상세보기</th>
 				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="stockOut" items="${stockOuts}">
+					
+				<c:forEach items="${list }" var="vo">
 					<tr>
-						<td>${stockOut.outId}</td>
-						<td>${stockOut.bookName}</td>
-						<td>${stockOut.quantity}</td>
-						<td>${stockOut.outDate}</td>
-						<td>${stockOut.comments}</td>
-						<td>${stockOut.branchId}</td>
+						<td>${vo.id}</td>
+						<td>${vo.flucDate}</td>
+						<td><a href = "<c:url value="/branch/stockout/detail/${vo.id }"/>">보러 가기</a></td>
 					</tr>
 				</c:forEach>
-			</tbody>
-		</table>
-		<button>출고 확인</button>
+			</table>
 	</div>
 	<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>
 </body>

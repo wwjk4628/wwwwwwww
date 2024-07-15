@@ -52,4 +52,10 @@ public class StockDaoImpl implements StockDao {
 		return sqlSession.insert("stock.initialStockIn", map);
 	}
 
+	@Override
+	public List<StockVo> getStockOutList(String branchId) {
+		
+		return sqlSession.selectList("stock.stockOutList", branchId);
+	}
+
 }
