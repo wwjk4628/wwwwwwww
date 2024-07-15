@@ -21,11 +21,9 @@
         
         <h1>계정 승인 요청</h1>
         <p>${userCount}</p>
-<<<<<<< HEAD
-        <a href="<c:url value='/admin/usermanage/list'/>">보러 가기</a>
-=======
+
         <a href="<c:url value='/admin/usermanage'/>">보러 가기</a>
->>>>>>> branch 'TEST' of https://github.com/ktw1021/TEAM_Inventory_Project.git
+
     </div>
     
     <!-- Include footer -->

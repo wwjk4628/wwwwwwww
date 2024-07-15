@@ -17,8 +17,8 @@
 	<insert id="insert" parameterType="BookVo">
 		INSERT INTO BOOK_LIST
 
-		(BOOK_CODE, BOOK_NAME, PRICE, KINDCODE) VALUES (#{book_code},
-		#{bookName}, #{price}, #{kindcode})
+		(BOOK_CODE, BOOK_NAME, PRICE, KINDCODE) VALUES (#{bookCode},
+		#{bookName}, #{price}, #{kindCode})
 	</insert>
 	<select id="searchList" parameterType="String"
 		resultType="BookVo">
