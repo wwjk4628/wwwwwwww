@@ -1,6 +1,8 @@
 package com.inventory.repositories.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,14 @@ public class StockDaoImpl implements StockDao {
 	@Override
 	public int getInId(String branchId) {
 		return sqlSession.selectOne("stock.getStockInIdBybranchId", branchId);
+	}
+
+	@Override
+	public int initialStockIn(String orderId, String branchId) {
+		Map <String, String> map = new HashMap<>();
+		map.put("orderId", orderId);
+		map.put("branchId", branchId);
+		return sqlSession.insert("stock.initialStockIn", map);
 	}
 
 }

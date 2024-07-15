@@ -55,8 +55,8 @@
     <div class="container">
         <h1 class="mb-4">환영합니다!</h1>
         <p class="lead mb-4">로그인 또는 회원가입을 해주세요</p>
-        <a href="<c:url value='/users/login'/>" class="btn btn-custom btn-login">로그인</a>
-        <a href="<c:url value='/users/join'/>" class="btn btn-custom btn-signup">회원가입</a>
+        <a href="<c:url value='/user/login'/>" class="btn btn-custom btn-login">로그인</a>
+        <a href="<c:url value='/user/join'/>" class="btn btn-custom btn-signup">회원가입</a>
     </div>
     
     <div class="footer">

@@ -92,7 +92,7 @@ button {
 				<div class="order-form">
 					<select id="bookSelect" name="bookCode">
 						<option value="">교재 선택</option>
-						<c:forEach items="${list }" var="vo" varStatus="status">
+						<c:forEach items="${initialList }" var="vo" varStatus="status">
 							<option value="${vo.bookCode }">${vo.bookName }</option>
 						</c:forEach>
 					</select> <input type="number" name="quantity" id="quantity" min="1"
@@ -108,12 +108,12 @@ button {
 						<th>수량</th>
 						<th>작업</th>
 					</tr>
-					<c:forEach items="${cartList }" var="vo" varStatus="status">
+					<c:forEach items="${initialCart }" var="vo" varStatus="status">
 						<tr>
 							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
 							<td>
-								<form action="<c:url value="/branch/initial/del"/>" method="post">
+								<form action="<c:url value="/branch/initial/delete"/>" method="post">
 									<input type="hidden" name="bookCode" value="${vo.bookCode}">
 									<button type="submit">삭제</button>
 								</form>

@@ -81,7 +81,7 @@ th {
 			</c:forEach>
 		</table>
 		<p>
-			<a href="<c:url value = "/order/list"/>">오더 리스트 보기</a>
+			<a href="<c:url value = "/admin/order/list"/>">오더 리스트 보기</a>
 		</p>
 	</div>
 	<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>

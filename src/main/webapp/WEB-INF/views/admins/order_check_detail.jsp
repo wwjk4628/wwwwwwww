@@ -14,7 +14,7 @@
 
     <div class="content">
         <h1>${id }번 order detail</h1>
-        <h3><a href="<c:url value='/order/check/list'/>">발주 리스트 돌아가기</a></h3>
+        <h3><a href="<c:url value='/admin/ordercheck/list'/>">발주 리스트 돌아가기</a></h3>
         <table>
             <tr>
                 <th>order_id</th>
@@ -28,7 +28,7 @@
             <c:forEach items="${list}" var="vo">
                 <tr>
                     <td>${vo.orderId}</td>
-                    <td><a href="<c:url value='/order/check/${vo.branchId}/list'/>">${vo.branchId}</a></td>
+                    <td><a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchId}</a></td>
                     <td>${vo.orderDate}</td>
                     <td>${vo.bookCode}</td>
                     <td>${vo.quantity}</td>
@@ -44,8 +44,8 @@
                 </tr>
             </c:forEach>
         </table>
-        <p><a href="<c:url value='/order/check/${id}/ref'/>">반려</a></p>
-        <p><a href="<c:url value='/order/check/${id}/con'/>">승인</a></p>
+        <p><a href="<c:url value='/admin/ordercheck/refuse/${id}'/>">반려</a></p>
+        <p><a href="<c:url value='/admin/ordercheck/confirm/${id}'/>">승인</a></p>
     </div>
 
     <%@ include file="/WEB-INF/views/admin_includes/footer.jsp" %>

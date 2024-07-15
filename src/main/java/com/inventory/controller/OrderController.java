@@ -22,6 +22,7 @@ import com.inventory.services.OrderService;
 
 import jakarta.servlet.http.HttpSession;
 
+@RequestMapping("/branch/order")
 @Controller
 public class OrderController {
 	@Autowired
@@ -32,7 +33,7 @@ public class OrderController {
 	BookInventoryService bookInventoryService;
 
 //	지점 주문 페이지로 연결
-	@RequestMapping("orderlist")
+	@RequestMapping("/form")
 	public String orderList(HttpSession session, Model model) {
 //		로그인 시 저장한 session authUser를 받아와 branchId 기반으로
 //		지점 branch_inventory 테이블 데이터 연결
@@ -48,11 +49,11 @@ public class OrderController {
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
 
 		model.addAttribute("cartList", cartList);
-		return "branches/branch_order_list";
+		return "branches/branch_order_form";
 	}
 
 //	지점 주문 페이지 장바구니 추가 기능
-	@PostMapping("/add-to-cart")
+	@PostMapping("/add")
 	public String addToCart(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity,
 			HttpSession session) {
 //		로그인 시 저장한 session authUser를 받아오는 기능
@@ -80,11 +81,11 @@ public class OrderController {
 
 		cart.add(vo);
 		session.setAttribute("cart", cart);
-		return "redirect:/orderlist";
+		return "redirect:/branch/order/list";
 	}
 
 //	지점 주문 페이지 장바구니 삭제 기능
-	@PostMapping("/remove-from-cart")
+	@PostMapping("/remove")
 	public String removeFromCart(@RequestParam("bookCode") String bookCode, HttpSession session) {
 
 //	 	세션에서 장바구니 가져오기
@@ -108,11 +109,11 @@ public class OrderController {
 			session.setAttribute("cart", cart);
 		}
 
-		return "redirect:/orderlist"; // 장바구니 목록 페이지로 리다이렉트
+		return "redirect:/branch/order/list"; // 장바구니 목록 페이지로 리다이렉트
 	}
 
 //	발주 페이지 주문 기록 페이지
-	@RequestMapping("orderhistory")
+	@RequestMapping("/list")
 	public String orderHistory(Model model, HttpSession session) {
 //		로그인 시 저장한 session authUser를 받아오는 기능
 		UserVo vo = (UserVo) session.getAttribute("authUser");
@@ -122,11 +123,11 @@ public class OrderController {
 //		jsp에 전달
 		List<OrderVo> list = orderService.getOrderList(vo.getBranchId());
 		model.addAttribute("list", list);
-		return "branches/branch_order_detail";
+		return "branches/branch_order_list";
 	}
 
 //	발주 페이지 주문 확정 기능
-	@RequestMapping("/ordering")
+	@RequestMapping("/submit")
 	public String ordering(HttpSession session) {
 //		장바구니 세션 받아와 리스트에 저장, authUser 세션 받아와 객체에 저장
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
@@ -153,15 +154,15 @@ public class OrderController {
 			System.err.println("장바구니가 비어 있습니다.");
 			session.removeAttribute("cart");
 
-			return "redirect:/orderlist";
+			return "redirect:/branch/order/form";
 		}
 
-		return "redirect:/orderhistory";
+		return "redirect:/branch/order/list";
 
 	}
 
 //	발주 페이지 지점 재고 현황 검색
-	@RequestMapping("/searchbooks")
+	@RequestMapping("/search")
 	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
 //		session에서 authUser 받아와 branchId와 jsp에서 넘어온 교재 이름으로
 //		branch_inventory에서 데이터를 받아 리스트에 저장후 모델에 저장 
@@ -176,11 +177,11 @@ public class OrderController {
 
 		model.addAttribute("cartList", cartList);
 
-		return "branches/branch_order_list"; // 발주 페이지로 연결 (리다이렉트하면 재고 검색이 초기화됨)
+		return "branches/branch_order_form"; // 발주 페이지로 연결 (리다이렉트하면 재고 검색이 초기화됨)
 	}
 
 //	주문 상세 페이지
-	@RequestMapping("/orderdetail")
+	@RequestMapping("/detail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 
 //		받아온 orderId 기반으로 주문 상세 페이지로 연결
@@ -194,7 +195,7 @@ public class OrderController {
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("orderId", orderId);
-		return "branches/branch_order_real_detail";
+		return "branches/branch_order_detail";
 	}
 
 }

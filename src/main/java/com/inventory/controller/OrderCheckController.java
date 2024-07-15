@@ -16,7 +16,7 @@ import com.inventory.services.OrderCheckService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/order/check")
+@RequestMapping("/admin/ordercheck")
 @Controller
 public class OrderCheckController {
 
@@ -41,7 +41,7 @@ public class OrderCheckController {
 	}
 	
 	//	지점 별 오더 확인 위한 메서드
-	@RequestMapping("/{no}/list")
+	@RequestMapping("/list/{no}")
 	public String branchOrderCheckList (HttpSession session,  RedirectAttributes redirectAttributes, Model model, @PathVariable ("no") String no) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		if (!("2").equals(authUser.getAuthCode())) {
@@ -56,7 +56,7 @@ public class OrderCheckController {
 		return "admins/order_check_list";
 	}
 	
-	@RequestMapping("/{id}/detail")
+	@RequestMapping("/detail/{id}")
 	public String orderCheckdetail( @PathVariable ("id") String id, HttpSession session) {
 		
 		List <OrderVo> list = OrderCheckService.getOrderDetail(id);
@@ -65,13 +65,13 @@ public class OrderCheckController {
 		return "admins/order_check_detail";
 	}
 	
-	@RequestMapping("/{id}/ref")
+	@RequestMapping("/refuse/{id}")
 	public String orderRefuse(@PathVariable ("id") String id) {
 		OrderCheckService.refuseOrder(id);
-		return "redirect:/order/check/list";
+		return "redirect:/admin/ordercheck/list";
 	}
 	
-	@RequestMapping("/{id}/con")
+	@RequestMapping("/confirm/{id}")
 	public String orderConfirm(@PathVariable ("id") String id) {
 		OrderCheckService.confirmOrderCode(id);
 		
@@ -86,6 +86,6 @@ public class OrderCheckController {
 			OrderCheckService.confirmAndInsertInDetail(stockVo);
 		}
 		
-		return "redirect:/order/check/list";
+		return "redirect:/admin/ordercheck/list";
 	}
 }

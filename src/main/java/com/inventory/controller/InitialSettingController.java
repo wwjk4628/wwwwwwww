@@ -20,7 +20,7 @@ import com.inventory.services.StockService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/branch")
+@RequestMapping("/branch/initial")
 @Controller
 public class InitialSettingController {
 	@Autowired
@@ -32,28 +32,28 @@ public class InitialSettingController {
 	@Autowired
 	OrderCheckService orderCheckService;
 	
-	@RequestMapping({"/initial/setting", "/initial", "initial/"})
+	@RequestMapping("/setting")
 	public String moveToInitialSettingPage(HttpSession session) {
 		
 		//	교재 선택 리스트 출력
 		UserVo vo = (UserVo)session.getAttribute("authUser");
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
 		session.setAttribute("authUser", vo);
-		session.setAttribute("list", list);
+		session.setAttribute("initialList", list);
 		
 		//	카트 리스트 표시
-		List<OrderVo> cartList = (List<OrderVo>) session.getAttribute("cart");
-		session.setAttribute("cartList", cartList);
+		List<OrderVo> cartList = (List<OrderVo>) session.getAttribute("initialCart");
+		session.setAttribute("initialCart", cartList);
 		
 		return "branches/initial_setting/initial_setting_form";
 	}
 	
-	@RequestMapping("/initial/add")
+	@RequestMapping("/add")
 	public String addSettingList(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity, HttpSession session) {
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
-		List <StockVo> list = (List<StockVo>) session.getAttribute("cart");
+		List <StockVo> list = (List<StockVo>) session.getAttribute("initialCart");
 		if (list == null || list.isEmpty()) {
 			list = new ArrayList<StockVo>();
 		}
@@ -61,14 +61,14 @@ public class InitialSettingController {
 		//	카트 목록 삽입
 		StockVo vo = new StockVo (authUser.getBranchId(), bookCode, quantity, (bookService.getData(bookCode)).getBookName());
 		list.add(vo);
-		session.setAttribute("cart", list);
+		session.setAttribute("initialCart", list);
 		
 		return "redirect:/branch/initial/setting";
 	}
 	
-	@RequestMapping("/initial/del")
+	@RequestMapping("/delete")
 	public String delSettingList(@RequestParam("bookCode") String bookCode, HttpSession session) {
-		List <StockVo> list = (List<StockVo>) session.getAttribute("cart");
+		List <StockVo> list = (List<StockVo>) session.getAttribute("initialCart");
 		if(list != null && !list.isEmpty()) {
 			Iterator<StockVo>iterator = list.iterator();
 			while (iterator.hasNext()) {
@@ -78,18 +78,18 @@ public class InitialSettingController {
 					break;
 				}
 			}
-			session.setAttribute("cart", list);
+			session.setAttribute("initialCart", list);
 		}
 		return "redirect:/branch/initial/setting";
 	}
 	
-	@RequestMapping("/initial/confirm")
+	@RequestMapping("/confirm")
 	public String confirmSettingList(HttpSession session) {
-		List<StockVo> list = (List<StockVo>) session.getAttribute("cart");
+		List<StockVo> list = (List<StockVo>) session.getAttribute("initialCart");
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
 		
 		//	Stock_in 반영 로직
-		orderCheckService.confirmAndInsertStockIn("-1", userVo.getBranchId());
+		stockService.initialStockIn("-1", userVo.getBranchId());
 		
 		//	Stock_in의 in_id 받아오기
 		int inId = stockService.getInId(userVo.getBranchId());
@@ -106,6 +106,6 @@ public class InitialSettingController {
 		}
 		session.setAttribute("authUser", userVo);
 		
-		return "redirect:/branches/home";
+		return "redirect:/branch/";
 	}
 }
