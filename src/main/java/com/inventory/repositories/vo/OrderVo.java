@@ -11,10 +11,28 @@ public class OrderVo {
     private String checked;
     private String bookCode;
     private String bookName;
-    private int price;
-    private int quantity;
+    private String branchName;
+    public String getBranchName() {
+		return branchName;
+	}
 
-    // Default constructor
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+	private int price;
+    private int quantity;
+    private String userName;
+
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	// Default constructor
     public OrderVo() {
     }
 
@@ -130,10 +148,10 @@ public class OrderVo {
         this.price = price;
     }
 
-    // toString method
     @Override
-    public String toString() {
-        return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked=" + checked 
-             + ", bookCode=" + bookCode + ", bookName=" + bookName + ", price=" + price + ", quantity=" + quantity + "]";
-    }
+	public String toString() {
+		return "OrderVo [orderId=" + orderId + ", branchId=" + branchId + ", orderDate=" + orderDate + ", checked="
+				+ checked + ", bookCode=" + bookCode + ", bookName=" + bookName + ", branchName=" + branchName
+				+ ", price=" + price + ", quantity=" + quantity + ", userName=" + userName + "]";
+	}
 }

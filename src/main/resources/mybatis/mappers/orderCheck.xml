@@ -2,59 +2,87 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="orderCheck">
-	
+
 	<!-- order check list -->
 	<select id="orderCheckList" resultType="OrderVo">
-		select order_id as orderId, branch_id as branchId, order_date as orderDate, checked from book_order order by order_date desc
+		select bo.order_id AS
+		orderId, bo.branch_id AS branchId,
+		bo.order_date AS orderDate,
+		bo.checked, bo.user_name AS userName,
+		b.branch_name AS branchName FROM
+		book_order bo
+		JOIN branch b ON bo.branch_id = b.branch_id ORDER BY
+		bo.order_date DESC
 	</select>
 
 	<!-- order check list 지점 별로 구분하기 -->
-	<select id = "orderCheckBranch" parameterType="String" resultType="OrderVo">
-		select order_id as orderId, branch_id as branchId, order_date as orderDate, checked from book_order where branch_id = #{id} order by order_date desc
+	<select id="orderCheckBranch" parameterType="String"
+		resultType="OrderVo">
+		SELECT bo.order_id AS orderId, bo.branch_id AS branchId,
+		bo.order_date AS orderDate, bo.checked, bo.user_name AS userName,
+		b.branch_name AS branchName FROM book_order bo
+		JOIN branch b ON bo.branch_id = b.branch_id where bo.branch_id = #{id} order
+		by order_date desc
 	</select>
-	
+
 	<!-- order detail 조회 -->
-	<select id ="selectOrderDetail" parameterType="String" resultType="OrderVo">
-		select bo.order_id as orderId, bo.branch_id as branchId, bo.order_date as orderDate, bo.checked, od.book_code as bookCode, od.quantity as quantity, 
+	<select id="selectOrderDetail" parameterType="String"
+		resultType="OrderVo">
+		select bo.order_id as orderId, bo.branch_id as branchId,
+		bo.order_date as orderDate, bo.checked, od.book_code as bookCode,
+		od.quantity as quantity,
 		bl.book_name as bookName
-		from book_order bo join order_detail od on bo.order_id = od.order_id 
-		join book_list bl on od.book_code = bl.book_code where bo.order_id = #{id}
+		from book_order bo
+		join order_detail od on bo.order_id =
+		od.order_id
+		join book_list bl on
+		od.book_code = bl.book_code where bo.order_id = #{id}
 	</select>
-	
+
 	<!-- 오더 미확인 갯수 출력 -->
-	<select id = "countNewOrder" resultType="long">
-		SELECT COUNT(*) FROM book_order WHERE checked = '0'
+	<select id="countNewOrder" resultType="long">
+		SELECT COUNT(*) FROM
+		book_order WHERE checked = '0'
 	</select>
-	
+
 	<!-- order 거절 -> orderList의 order_chheck만 코드 수정 -->
 	<update id="refuseOrder" parameterType="String">
-		UPDATE book_order SET checked = '1' WHERE order_id = #{no}
+		UPDATE book_order SET
+		checked = '1' WHERE order_id = #{no}
 	</update>
-	
+
 	<!-- order 승인 -> orderList의 order_check 코드 수정 -->
 	<update id="confirmOrderCode" parameterType="String">
-		update book_order set checked = '2' where order_id = #{no}
+		update book_order
+		set checked = '2' where order_id = #{no}
 	</update>
-	
-	<select id = "getBranchId" parameterType="String" resultType="String">
-		select branch_id as branchId from book_order where order_id = #{id}
+
+	<select id="getBranchId" parameterType="String"
+		resultType="String">
+		select branch_id as branchId from book_order where order_id
+		= #{id}
 	</select>
-	
+
 	<!-- order 승인2 -> stock_in table에 새로운 데이터 입력 -->
-	<insert id="confirmAndInsertStockIn" parameterType = "map">
-		insert into stock_in (order_id, in_date, checked_in, branch_id) values (#{orderId}, (SYSDATE + INTERVAL '3' DAY), '0', #{branchId})
+	<insert id="confirmAndInsertStockIn" parameterType="map">
+		insert into
+		stock_in (order_id, in_date, checked_in, branch_id) values
+		(#{orderId}, (SYSDATE + INTERVAL '3' DAY), '0', #{branchId})
 	</insert>
-	
+
 	<!-- order 승인3 -> stock_in 테이블의 in_id 받아오기 -->
-	<select id = "getStockInIdByOrderId" parameterType="String" resultType="int">
+	<select id="getStockInIdByOrderId" parameterType="String"
+		resultType="int">
 		select in_id from stock_in where order_id = #{id}
 	</select>
-	
+
 	<!-- order 승인4 -> in_detail에 데이터 입력 -->
-	<insert id = "confirmAndInsertInDetail" parameterType = "StockVo">
-		insert into in_detail (in_id, book_code, quantity) values(#{id}, #{bookCode}, #{quantity})
+	<insert id="confirmAndInsertInDetail" parameterType="StockVo">
+		insert into
+		in_detail (in_id, book_code, quantity) values(#{id}, #{bookCode},
+		#{quantity})
 	</insert>
-	
+
 </mapper>

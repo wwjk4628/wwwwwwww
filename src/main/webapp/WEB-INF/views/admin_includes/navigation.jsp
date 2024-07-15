@@ -16,7 +16,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
+
                     <a class="nav-link" href="<%=request.getContextPath()%>/admin">본사 홈</a>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/ordercheck">발주 승인</a>
@@ -26,6 +28,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/usermanage/list">회원 승인</a>
+
                 </li>
             </ul>
         </div>
