@@ -15,11 +15,9 @@
         <h1>branch id: ${authUser.branchId }의 교재 재고 현황</h1>
         <h3>목록 (검색어: ${param.keyword })</h3>
         <form id="search-form">
-            <label for="keyword">검색어</label> 
-            <input type="text" name="keyword">
+            <input type="text" name="keyword"><label for="keyword">검색어</label> 
             <input type="submit" value="검색">
-            <input type="checkbox" name="check" id="check" value="check" />
-            <label for="check">재고</label>
+            <input type="checkbox" name="check" id="check" value="check" /><label for="check">재고</label>
         </form> 
         <br/>
         <table>

@@ -48,10 +48,10 @@ public class OrderController {
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
 
 		model.addAttribute("cartList", cartList);
-		System.err.println(cartList);
 		return "branches/branch_order_form";
 	}
 
+//	지점 주문 페이지 장바구니 추가 기능
 	@PostMapping("/add")
 	public String addToCart(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity,
 			HttpSession session) {
@@ -83,6 +83,7 @@ public class OrderController {
 		return "redirect:/branch/order/form";
 	}
 
+//	지점 주문 페이지 장바구니 삭제 기능
 	@PostMapping("/remove")
 	public String removeFromCart(@RequestParam("bookCode") String bookCode, HttpSession session) {
 
@@ -106,10 +107,10 @@ public class OrderController {
 			// 수정된 장바구니 세션에 저장
 			session.setAttribute("cart", cart);
 		}
-
-		return "redirect:/branch/order/form"; // 장바구니 목록 페이지로 리다이렉트
+		return "redirect:/branch/order/list"; // 장바구니 목록 페이지로 리다이렉트
 	}
 
+//	발주 페이지 주문 기록 페이지
 	@RequestMapping("/list")
 	public String orderHistory(Model model, HttpSession session) {
 //		로그인 시 저장한 session authUser를 받아오는 기능
@@ -123,6 +124,8 @@ public class OrderController {
 		return "branches/branch_order_list";
 	}
 
+
+//	발주 페이지 주문 확정 기능
 	@RequestMapping("/submit")
 	public String ordering(HttpSession session) {
 //		장바구니 세션 받아와 리스트에 저장, authUser 세션 받아와 객체에 저장
@@ -172,9 +175,9 @@ public class OrderController {
 
 		model.addAttribute("cartList", cartList);
 
-		return "branches/branch_order_form"; // 정상적인 경우 이렇게 반환할 것입니다.
+		return "branches/branch_order_form"; // 발주 페이지로 연결 (리다이렉트하면 재고 검색이 초기화됨)
 	}
-	
+
 	@RequestMapping("/detail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 

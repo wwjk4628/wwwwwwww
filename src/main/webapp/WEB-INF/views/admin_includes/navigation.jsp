@@ -25,7 +25,7 @@
                     <a class="nav-link" href="<%=request.getContextPath()%>/admin/book/list">교재 관리</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/usermanage">회원 승인</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/usermanage/list">회원 승인</a>
                 </li>
             </ul>
         </div>

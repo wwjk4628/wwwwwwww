@@ -95,6 +95,7 @@ button {
 						<td>${vo.flucDate}</td>
 						<td>
 						<c:choose>
+							<c:when test="${vo.checkedIn eq -1}">처리 완료</c:when>
                 			<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
                 			<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
                 			<c:otherwise>알 수 없음</c:otherwise>

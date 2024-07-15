@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,7 +22,7 @@ public class BookController {
 
 	@Autowired
 	BookService bookService;
-	
+
 	@RequestMapping("/list")
 	public String booklist(Model model) {
 //		book_list 테이블에서 전체 데이터를 뽑아와 list에 저장
@@ -36,7 +35,7 @@ public class BookController {
 	@RequestMapping("/delete/{bookCode}")
 	public String delete(@PathVariable("bookCode") String bookCode) {
 //		book_list 테이블에서 부분 데이터 삭제 기능
-		boolean success = bookService.deletebook(bookCode);
+		bookService.deletebook(bookCode);
 		return "redirect:/admin/book/list";
 	}
 
@@ -44,17 +43,18 @@ public class BookController {
 	@RequestMapping("/insert")
 	public String insertBook(@ModelAttribute BookVo vo) {
 //		book_list 테이블에서 부분 데이터 추가 기능
-		boolean success = bookService.writebook(vo);
-        return "redirect:/admin/book/list";
-    }
-	
+		bookService.writebook(vo);
+		return "redirect:/admin/book/list";
+	}
+
+//	본사 교재 리스트에서 교재 검색 기능
 	@GetMapping("/search")
-    public String searchBooks(@RequestParam("bookName") String bookName, Model model) {
-        System.out.println("con" + bookName);
-        List<BookVo> list = bookService.search(bookName);
-        model.addAttribute("list", list);
-        return "admins/book_update"; // 정상적인 경우 이렇게 반환할 것입니다.
-    }
+	public String searchBooks(@RequestParam("bookName") String bookName, Model model) {
+//		book_list 테이블의 데이터 검색 기능
+		List<BookVo> list = bookService.search(bookName);
+		model.addAttribute("list", list);
+		return "admins/book_update";
+	}
 	
 	@GetMapping("/update/{bookCode}")
 	public String updateBooks(@PathVariable("bookCode") String bookCode, Model model) {
@@ -68,7 +68,7 @@ public class BookController {
 	@PostMapping("/modify")
 	public String modify(@ModelAttribute BookVo vo) {
 //		model을 받아와 book_list테이블의 부분 데이터를 수정
-		boolean success = bookService.updatebook(vo);
+		bookService.updatebook(vo);
 		return "redirect:/admin/book/list";
 	}
 }
