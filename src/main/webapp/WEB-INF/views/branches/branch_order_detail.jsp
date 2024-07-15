@@ -62,24 +62,30 @@ th {
 		<div class="order-history">
 			<h2>주문번호: ${orderId }</h2>
 			<h3>
-				<a href="<c:url value="/admin/order/list" />">발주 기록</a>
+				<a href="<c:url value="/branch/order/list" />">발주 기록</a>
 			</h3>
 			<table>
 				<tr>
 					<th>책 이름</th>
-					<th>가격</th>
 					<th>수량</th>
+					<th>가격</th>
 				</tr>
 
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
 						<td>${vo.bookName }</td>
-						<td>${vo.price }</td>
 						<td>${vo.quantity }</td>
+						<td>${vo.price }</td>
 					</tr>
+					<c:set var="totalQuantity" value="${totalQuantity + (vo.quantity)}" />
+					<c:set var="totalPrice"
+						value="${totalPrice + (vo.price * vo.quantity)}" />
 				</c:forEach>
-
-
+				<tr>
+					<td><strong>총합</strong></td>
+					<td><strong>${totalQuantity}</strong></td>
+					<td><strong>${totalPrice}</strong></td>
+				</tr>
 			</table>
 		</div>
 	</div>

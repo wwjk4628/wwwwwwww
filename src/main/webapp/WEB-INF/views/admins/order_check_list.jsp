@@ -13,7 +13,9 @@
 
     <div class="content">
         <h1>발주 승인</h1>
+
         <h3><a href="<c:url value='/admin/ordercheck'/>">초기화</a></h3>
+
         <table>
             <tr>
                 <th>order_id</th>

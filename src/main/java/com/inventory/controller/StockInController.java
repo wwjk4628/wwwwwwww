@@ -14,7 +14,7 @@ import com.inventory.services.StockService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/branch/stockin/")
+@RequestMapping("/branch/stockin")
 @Controller
 public class StockInController {
 	

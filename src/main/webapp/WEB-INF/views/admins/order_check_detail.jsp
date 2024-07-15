@@ -14,15 +14,16 @@
 
     <div class="content">
         <h1>${id }번 order detail</h1>
+
         <h3><a href="<c:url value='/admin/ordercheck'/>">발주 리스트 돌아가기</a></h3>
+
         <table>
             <tr>
                 <th>order_id</th>
                 <th>branch_id</th>
                 <th>order_date</th>
-                <th>book_code</th>
-                <th>quantity</th>
                 <th>book_name</th>
+                <th>quantity</th>
                 <th>order_check</th>
             </tr>
             <c:forEach items="${list}" var="vo">
@@ -30,9 +31,8 @@
                     <td>${vo.orderId}</td>
                     <td><a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchId}</a></td>
                     <td>${vo.orderDate}</td>
-                    <td>${vo.bookCode}</td>
-                    <td>${vo.quantity}</td>
                     <td>${vo.bookName}</td>
+                    <td>${vo.quantity}</td>
                     <td>
                         <c:choose>
                             <c:when test="${vo.checked eq 0}">미확인</c:when>

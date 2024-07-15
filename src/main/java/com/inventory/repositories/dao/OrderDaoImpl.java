@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.UserVo;
 
 @Repository("OrderDao")
 public class OrderDaoImpl implements OrderDao {
@@ -15,8 +16,8 @@ public class OrderDaoImpl implements OrderDao {
 	SqlSession sqlSession;
 
 	@Override
-	public int insert(String branchId) {
-		int insertedCount = sqlSession.insert("order.insert", branchId);
+	public int insert(UserVo vo) {
+		int insertedCount = sqlSession.insert("order.insert", vo);
 		return insertedCount;
 	}
 

@@ -21,7 +21,9 @@
         
         <h1>계정 승인 요청</h1>
         <p>${userCount}</p>
+
         <a href="<c:url value='/admin/usermanage'/>">보러 가기</a>
+
     </div>
     
     <!-- Include footer -->

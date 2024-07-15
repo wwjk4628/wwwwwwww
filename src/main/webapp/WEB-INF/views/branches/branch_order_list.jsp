@@ -62,20 +62,20 @@ th {
 		<div class="order-history">
 			<h2>발주 기록</h2>
 			<h3>
-				<a href="<c:url value="/orderlist" />">발주</a>
+				<a href="<c:url value="/branch/order/form" />">발주</a>
 			</h3>
 			<table>
 				<tr>
 					<th>발주 번호</th>
 					<th>날짜</th>
+					<th>담당자</th>
 					<th>상태</th>
 				</tr>
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td><a
-							href="<c:url value="/branch/order/detail" />?orderId=${vo.orderId}">
-								${vo.orderId }</a></td>
+						<td><a href="<c:url value="/branch/order/detail" />?orderId=${vo.orderId}">${vo.orderId }</a></td>
 						<td>${vo.orderDate }</td>
+						<td>${vo.userName }</td>
 						<c:choose>
 							<c:when test="${vo.checked eq 0}">
 								<td style="color: red;">미확인</td>
@@ -97,5 +97,6 @@ th {
 			</table>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>
 </body>
 </html>

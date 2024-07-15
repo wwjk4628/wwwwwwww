@@ -92,6 +92,7 @@ public class UserController {
 			session.setAttribute("authUser", authUser);
 			if (authUser.getAuthCode().equals("1")) {
 				//	auth code가 1일 경우 지점 페이지
+
 				return "redirect:/branch/inventory";
 				
 			} else if (authUser.getAuthCode().equals("2")) {
