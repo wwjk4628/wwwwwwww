@@ -132,7 +132,7 @@ button {
 							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
 							<td>
-								<form action="/branch/order/remove" method="post">
+								<form action="<c:url value='/branch/order/remove'/>" method="post">
 									<input type="hidden" name="bookCode" value="${vo.bookCode}">
 									<button type="submit">삭제</button>
 								</form>
