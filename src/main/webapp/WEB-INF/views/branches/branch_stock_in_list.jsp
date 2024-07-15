@@ -18,6 +18,7 @@
 	<%@ include file="/WEB-INF/views/branch_includes/navigation.jsp"%>
 	<div class="content">
 		<h1>입고</h1>
+		<a href="<c:url value="/branch/initial/setting"/>">발주 외 입고</a>
 		<table border="1">
 			<tr>
 				<th>in_id</th>
