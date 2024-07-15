@@ -20,7 +20,7 @@ import com.inventory.services.StockService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/branch")
+@RequestMapping("/branch/initial")
 @Controller
 public class InitialSettingController {
 	@Autowired
@@ -32,7 +32,7 @@ public class InitialSettingController {
 	@Autowired
 	OrderCheckService orderCheckService;
 	
-	@RequestMapping({"/initial/setting", "/initial", "initial/"})
+	@RequestMapping("/setting")
 	public String moveToInitialSettingPage(HttpSession session) {
 		
 		//	교재 선택 리스트 출력
@@ -48,7 +48,7 @@ public class InitialSettingController {
 		return "branches/initial_setting/initial_setting_form";
 	}
 	
-	@RequestMapping("/initial/add")
+	@RequestMapping("/add")
 	public String addSettingList(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity, HttpSession session) {
 		
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
@@ -66,7 +66,7 @@ public class InitialSettingController {
 		return "redirect:/branch/initial/setting";
 	}
 	
-	@RequestMapping("/initial/del")
+	@RequestMapping("/delete")
 	public String delSettingList(@RequestParam("bookCode") String bookCode, HttpSession session) {
 		List <StockVo> list = (List<StockVo>) session.getAttribute("cart");
 		if(list != null && !list.isEmpty()) {
@@ -83,7 +83,7 @@ public class InitialSettingController {
 		return "redirect:/branch/initial/setting";
 	}
 	
-	@RequestMapping("/initial/confirm")
+	@RequestMapping("/confirm")
 	public String confirmSettingList(HttpSession session) {
 		List<StockVo> list = (List<StockVo>) session.getAttribute("cart");
 		UserVo userVo = (UserVo)session.getAttribute("authUser");
@@ -106,6 +106,6 @@ public class InitialSettingController {
 		}
 		session.setAttribute("authUser", userVo);
 		
-		return "redirect:/branches/home";
+		return "redirect:/branch/inventory";
 	}
 }
