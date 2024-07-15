@@ -23,7 +23,7 @@ public class OrderCheckController {
 	@Autowired
 	private OrderCheckService OrderCheckService;
 	
-	@RequestMapping({"", "/", "list"})
+	@RequestMapping({"", "/", "/list"})
 	public String orderCheckList(HttpSession session,  RedirectAttributes redirectAttributes, Model model) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
     	//	로그인 정보 판단
