@@ -19,21 +19,23 @@
         <table>
             <tr>
                 <th>order_id</th>
-                <th>branch_id</th>
+                <th>branch_name</th>
                 <th>order_date</th>
+                <th>담당자</th>
                 <th>order_check</th>
                 <th>상세보기</th>
             </tr>
             <c:forEach items="${list}" var="vo">
                 <tr>
                     <td>${vo.orderId}</td>
-                    <td><a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchId}</a></td>
+                    <td><a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchName}</a></td>
                     <td>${vo.orderDate}</td>
+                    <td>${vo.userName }</td>
                     <td>
                         <c:choose>
-                            <c:when test="${vo.checked eq 0}">미확인</c:when>
-                            <c:when test="${vo.checked eq 1}">반려</c:when>
-                            <c:when test="${vo.checked eq 2}">처리 완료</c:when>
+                            <c:when test="${vo.checked eq 0}" ><span style="color: red;">미확인</span></c:when>
+                            <c:when test="${vo.checked eq 1}" ><span style="color: yellow;">반려</span></c:when>
+                            <c:when test="${vo.checked eq 2}" ><span style="color: green;">처리 완료</span></c:when>
                             <c:otherwise>알 수 없음</c:otherwise>
                         </c:choose>
                     </td>

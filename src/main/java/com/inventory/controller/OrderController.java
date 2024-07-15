@@ -131,17 +131,18 @@ public class OrderController {
 //		장바구니 세션 받아와 리스트에 저장, authUser 세션 받아와 객체에 저장
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
 		UserVo vo = (UserVo) session.getAttribute("authUser");
-
+		
 
 //		장바구니가 있으면 book_order테이블에
 //		지점 아이디 기반으로 데이터 생성
 		if (cart != null && !cart.isEmpty()) {
-			orderService.insert(vo.getBranchId());
+			orderService.insert(vo);
 
 //			장바구니 리스트를 순회하며 방금 생성된 주문 번호 기반으로 
 //			order_detail에 저장
 			for (OrderVo item : cart) {
 				item.setOrderId(orderService.getMax());
+				item.setUserName(vo.getName());
 				orderService.insertDetail(item);
 			}
 
@@ -174,6 +175,7 @@ public class OrderController {
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
 
 		model.addAttribute("cartList", cartList);
+		model.addAttribute("bookName", bookName);
 
 		return "branches/branch_order_form"; // 발주 페이지로 연결 (리다이렉트하면 재고 검색이 초기화됨)
 	}

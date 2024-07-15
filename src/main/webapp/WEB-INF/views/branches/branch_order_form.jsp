@@ -107,7 +107,7 @@ button {
 		<div class="left-content">
 			<form id="addToCartForm" action="<c:url value='/branch/order/add'/>"
 				method="post">
-				<input type="text" id="bookSearch" placeholder="교재 검색...">
+				<!-- <input type="text" id="bookSearch" placeholder="교재 검색..."> -->
 				<div class="order-form">
 					<select id="bookSelect" name="bookCode">
 						<option value="">교재 선택</option>
@@ -133,9 +133,9 @@ button {
 							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
 							<td>${vo.price * vo.quantity}</td>
-
 							<td>
-								<form action="<c:url value='/branch/order/remove'/>" method="post">
+								<form onsubmit="return confirm('정말로 삭제하시겠습니까?');"
+									action="<c:url value='/branch/order/remove'/>" method="post">
 									<input type="hidden" name="bookCode" value="${vo.bookCode}">
 									<button type="submit">삭제</button>
 								</form>
@@ -151,9 +151,10 @@ button {
 						<td><strong>${totalQuantity}</strong></td>
 						<td><strong>${totalPrice}</strong></td>
 						<td>
-							<form id="orderForm" action="<c:url value='/branch/order/submit'/>"
-								method="post">
-								<button type="button" onclick="submitOrderForm()">발주 제출</button>
+							<form id="orderForm"
+								action="<c:url value='/branch/order/submit'/>" method="post">
+								<button type="submit" onclick="return confirmSubmit()">발주
+									제출</button>
 							</form>
 						</td>
 					</tr>
@@ -167,7 +168,7 @@ button {
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>
-						<td><input type="text" name="bookName"></td>
+						<td><input type="text" name="bookName" value="${bookName }"></td>
 						<td><input type="submit" value="검색"></td>
 					</tr>
 				</table>
@@ -212,7 +213,7 @@ button {
 			form.submit();
 		}
 
-		function filterBooks() {
+		/* function filterBooks() {
 			var input, filter, select, options, option, i, txtValue;
 			input = document.getElementById("bookSearch");
 			filter = input.value.toUpperCase();
@@ -228,11 +229,11 @@ button {
 					option.style.display = "none";
 				}
 			}
-		}
+		} */
 
-		function submitOrderForm() {
-			var form = document.getElementById("orderForm");
-			form.submit();
+		function confirmSubmit() {
+			var confirmed = confirm('정말로 제출하시겠습니까?');
+			return confirmed;
 		}
 
 		// 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정

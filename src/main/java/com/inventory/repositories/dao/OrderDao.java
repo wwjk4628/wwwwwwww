@@ -4,10 +4,11 @@ import java.util.List;
 
 
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.UserVo;
 
 public interface OrderDao {
 
-	public int insert(String branchId);
+	public int insert(UserVo vo);
 	
 	public String getMax();
 	
