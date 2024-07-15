@@ -23,22 +23,30 @@
 		SELECT bo.order_id AS orderId, bo.branch_id AS branchId,
 		bo.order_date AS orderDate, bo.checked, bo.user_name AS userName,
 		b.branch_name AS branchName FROM book_order bo
-		JOIN branch b ON bo.branch_id = b.branch_id where bo.branch_id = #{id} order
-		by order_date desc
+		JOIN branch b ON
+		bo.branch_id = b.branch_id where bo.branch_id = #{id} order
+		by
+		order_date desc
 	</select>
 
 	<!-- order detail 조회 -->
 	<select id="selectOrderDetail" parameterType="String"
 		resultType="OrderVo">
 		select bo.order_id as orderId, bo.branch_id as branchId,
-		bo.order_date as orderDate, bo.checked, od.book_code as bookCode,
+		b.branch_name as branchName,
+		bo.order_date as orderDate, bo.checked,
+		od.book_code as bookCode,
 		od.quantity as quantity,
-		bl.book_name as bookName
+		bl.book_name as
+		bookName
 		from book_order bo
 		join order_detail od on bo.order_id =
 		od.order_id
 		join book_list bl on
-		od.book_code = bl.book_code where bo.order_id = #{id}
+		od.book_code = bl.book_code
+		join branch
+		b on bo.branch_id = b.branch_id
+		where bo.order_id = #{id}
 	</select>
 
 	<!-- 오더 미확인 갯수 출력 -->
