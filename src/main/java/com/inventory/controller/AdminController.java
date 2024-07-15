@@ -12,7 +12,7 @@ import com.inventory.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/admins")
+@RequestMapping("/admin")
 @Controller
 public class AdminController {
 	@Autowired

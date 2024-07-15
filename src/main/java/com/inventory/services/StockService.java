@@ -14,4 +14,5 @@ public interface StockService {
 	public boolean confirnStockIn(StockVo vo);
 	
 	public int getInId(String branchId);
+	public int initialStockIn(String orderId, String branchId);
 }

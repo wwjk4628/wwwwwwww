@@ -40,4 +40,9 @@ public class StockServiceImpl implements StockService {
 	public int getInId(String branchId) {
 		return stockDao.getInId(branchId);
 	}
+
+	@Override
+	public int initialStockIn(String orderId, String branchId) {
+		return stockDao.initialStockIn(orderId, branchId);
+	}
 }

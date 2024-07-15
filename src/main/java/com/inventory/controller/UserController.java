@@ -19,7 +19,7 @@ import com.inventory.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
-@RequestMapping("/users")
+@RequestMapping("/user")
 @Controller
 public class UserController {
 	@Autowired
@@ -39,15 +39,15 @@ public class UserController {
 			boolean success = userService.join(userVo);
 			if (success) {	//	가입 성공
 				System.out.println("가입 성공");
-				return "redirect:/users/joinsuccess";
+				return "redirect:/user/joinsuccess";
 			} else {
 				System.err.println("실패!");
-				return "redirect:/users/join";
+				return "redirect:/user/join";
 			}
 			
 		} else {
 			System.err.println("중복 체크 안 함");
-			return "redirect:/users/join";
+			return "redirect:/user/join";
 		}
 		
 	}
@@ -82,7 +82,7 @@ public class UserController {
 		
 		if (name.length() == 0 || password.length() == 0) {
 			//	이름이나 비밀번호가 입력되지 않았을 경우 로그인 페이지로 리다이렉트.
-			return "redirect:/users/login";
+			return "redirect:/user/login";
 		}
 		
 		//	이메일과 패스워드 이용해서 사용자 정보 질의
@@ -92,11 +92,12 @@ public class UserController {
 			session.setAttribute("authUser", authUser);
 			if (authUser.getAuthCode().equals("1")) {
 				//	auth code가 1일 경우 지점 페이지
-				return "redirect:/branches/home";
+
+				return "redirect:/branch/inventory";
 				
 			} else if (authUser.getAuthCode().equals("2")) {
 				//	auth code가 2일 경우 관리자 페이지
-				return "redirect:/admins/home"; 
+				return "redirect:/admin/home"; 
 				
 			} else {
 				//	그외 (기본 0)의 경우 가입 승인 대기 페이지
@@ -105,7 +106,7 @@ public class UserController {
 			
 		} else {
 			//	계정 정보가 없을 경우 (로그인 실패)
-			return "redirect:/users/login";
+			return "redirect:/user/login";
 		}
 	}
 	

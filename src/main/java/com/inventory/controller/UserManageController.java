@@ -14,7 +14,7 @@ import com.inventory.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/usermanage")
+@RequestMapping("/admin/usermanage")
 @Controller
 public class UserManageController {
 	@Autowired
@@ -35,16 +35,16 @@ public class UserManageController {
         return "admins/user_list";
     }
 	
-	@RequestMapping("/{no}/delete")
+	@RequestMapping("/delete/{no}")
 	public String delete (@PathVariable ("no") Long no, HttpSession	session) {
 		userService.delete(no);
-		return "redirect:/usermanage/list";
+		return "redirect:/admin/usermanage/list";
 	}
 	
-	@RequestMapping("/{userId}/confirm/{branchId}")
+	@RequestMapping("/confirm/{branchId}/{userId}")
 	public String confirm (@PathVariable ("userId") int no, @PathVariable ("branchId") int id) {
 		userService.confirm(no, id);
-		return "redirect:/usermanage/list";
+		return "redirect:/admin/usermanage/list";
 	}
 	
 }

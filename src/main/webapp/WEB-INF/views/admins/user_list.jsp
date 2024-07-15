@@ -37,17 +37,17 @@
                     </td>
                     <td>
                         <c:choose>
-                            <c:when test="${vo.authCode eq 0}"><a href="<c:url value='/usermanage/${vo.no}/confirm/${vo.branchId}'/>">승인</a></c:when>
+                            <c:when test="${vo.authCode eq 0}"><a href="<c:url value='/admin/usermanage/confirm/${vo.branchId}/${vo.no}'/>">승인</a></c:when>
                         </c:choose>
                         <c:choose>
-                            <c:when test="${vo.authCode eq 0 || vo.authCode eq 1}"><a href="<c:url value='/usermanage/${vo.no}/delete'/>">삭제</a></c:when>
+                            <c:when test="${vo.authCode eq 0 || vo.authCode eq 1}"><a href="<c:url value='/admin/usermanage/delete/${vo.no}'/>">삭제</a></c:when>
                             <c:otherwise>비워뒀음</c:otherwise>
                         </c:choose>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-        <a href="<c:url value='/admins'/>">admin 홈으로 돌아가기</a>
+        <a href="<c:url value='/admin'/>">admin 홈으로 돌아가기</a>
     </div>
 
     <%@ include file="/WEB-INF/views/admin_includes/footer.jsp" %>

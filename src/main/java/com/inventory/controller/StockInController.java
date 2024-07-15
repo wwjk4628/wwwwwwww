@@ -14,14 +14,14 @@ import com.inventory.services.StockService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/stock")
+@RequestMapping("/branch/stockin")
 @Controller
 public class StockInController {
 	
 	@Autowired
 	StockService stockService;
 
-	@RequestMapping("/in/list")
+	@RequestMapping("/list")
 	public String stockInList(Model model, HttpSession session) {
 		UserVo vo = (UserVo) session.getAttribute("authUser");
 		List <StockVo> list = stockService.getStockInList(vo.getBranchId());
@@ -29,7 +29,7 @@ public class StockInController {
 		return "branches/branch_stock_in_list";
 	}
 	
-	@RequestMapping("/in/{id}/detail")
+	@RequestMapping("/detail/{id}")
 	public String stockIndetail(@PathVariable ("id") String inId, Model model) {
 		List<StockVo> list = stockService.getStockInDetail(inId);
 		
@@ -43,7 +43,7 @@ public class StockInController {
 		return "branches/branch_stock_in_detail";
 	}
 	
-	@RequestMapping("/in/{id}/confirm")
+	@RequestMapping("/confirm/{id}")
 	public String confirmStockIn(@PathVariable ("id") String inId) {
 		stockService.stockInCheck(inId);
 		List<StockVo>list = stockService.getStockInDetail(inId);
@@ -53,6 +53,6 @@ public class StockInController {
 			stockService.confirnStockIn(insertVo);
 		}
 		
-		return "redirect:/branches/home";
+		return "redirect:/branch/inventory";
 	}
 }
