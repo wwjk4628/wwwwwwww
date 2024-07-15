@@ -19,7 +19,7 @@
         <table>
             <tr>
                 <th>order_id</th>
-                <th>branch_id</th>
+                <th>branch_name</th>
                 <th>order_date</th>
                 <th>담당자</th>
                 <th>order_check</th>
@@ -28,7 +28,7 @@
             <c:forEach items="${list}" var="vo">
                 <tr>
                     <td>${vo.orderId}</td>
-                    <td><a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchId}</a></td>
+                    <td><a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchName}</a></td>
                     <td>${vo.orderDate}</td>
                     <td>${vo.userName }</td>
                     <td>
