@@ -12,7 +12,7 @@
     <%@ include file="/WEB-INF/views/admin_includes/navigation.jsp"%>
 
     <div class="content">
-        <form action="<c:url value='/admin/modify'/>" method="POST">
+        <form action="<c:url value='/admin/book/modify'/>" method="POST">
             <input type="hidden" name="bookCode" value="${vo.bookCode }" />
             <table>
                 <tr>

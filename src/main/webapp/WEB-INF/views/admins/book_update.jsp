@@ -13,7 +13,7 @@
 
     <div class="content">
         <h1>교재 리스트 관리</h1>
-        <form action="<c:url value='/admin/insert'/>" method="POST">
+        <form action="<c:url value='/admin/book/insert'/>" method="POST">
             <table>
                 <tr>
                     <th>교재 ID</th>
@@ -31,7 +31,7 @@
                 </tr>
             </table>
         </form>
-        <form action="<c:url value='/admin/searchbooks'/>" method="GET">
+        <form action="<c:url value='/admin/book/search'/>" method="GET">
             <table>
                 <tr>
                     <th>교재명</th>
@@ -55,9 +55,9 @@
                     <td>${vo.price}</td>
                     <td>${vo.kindCode}</td>
                     <td>
-                        <a href="<c:url value='/admin/updatebooks/${vo.bookCode}'/>">수정</a>
+                        <a href="<c:url value='/admin/book/update/${vo.bookCode}'/>">수정</a>
                         &nbsp;
-                        <a href="<c:url value='/admin/deletebook/${vo.bookCode}'/>" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+                        <a href="<c:url value='/admin/book/delete/${vo.bookCode}'/>" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
                     </td>
                 </tr>
             </c:forEach>

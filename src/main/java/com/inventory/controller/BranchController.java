@@ -15,14 +15,14 @@ import com.inventory.services.BookInventoryService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/branches")
+@RequestMapping("/branch")
 @Controller
 public class BranchController {
 	
 	@Autowired
 	private BookInventoryService bookInvenService;
 	
-	@RequestMapping({"/home", "", "/"})
+	@RequestMapping({"/inventory", "/home"})
 	public String branchHome(HttpSession session, RedirectAttributes redirectAttributes,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value="check", required = false) String check, Model model) {
