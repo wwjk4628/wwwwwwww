@@ -107,7 +107,7 @@ public class OrderController {
 			// 수정된 장바구니 세션에 저장
 			session.setAttribute("cart", cart);
 		}
-		return "redirect:/branch/order/list"; // 장바구니 목록 페이지로 리다이렉트
+		return "redirect:/branch/order/form"; // 장바구니 목록 페이지로 리다이렉트
 	}
 
 //	발주 페이지 주문 기록 페이지
