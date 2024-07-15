@@ -30,6 +30,7 @@ public class OrderVo {
         this.quantity = quantity;
     }
 
+
     // Constructor for order list verification
     public OrderVo(String orderId, String branchId, Date orderDate, String checked) {
         this.orderId = orderId;

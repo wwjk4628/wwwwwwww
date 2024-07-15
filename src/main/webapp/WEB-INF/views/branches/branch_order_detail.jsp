@@ -62,7 +62,7 @@ th {
 		<div class="order-history">
 			<h2>주문번호: ${orderId }</h2>
 			<h3>
-				<a href="<c:url value="/orderhistory" />">발주 기록</a>
+				<a href="<c:url value="/admin/order/list" />">발주 기록</a>
 			</h3>
 			<table>
 				<tr>
@@ -83,5 +83,6 @@ th {
 			</table>
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>
 </body>
 </html>

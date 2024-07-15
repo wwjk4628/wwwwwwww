@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,7 +36,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <p><a href="<c:url value='/order/list'/>">오더 리스트 보기</a></p>
+        <p><a href="<c:url value='/branch/order/list'/>">오더 리스트 보기</a></p>
     </div>
 </body>
 </html>

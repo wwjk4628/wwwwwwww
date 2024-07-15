@@ -99,13 +99,13 @@ button {
 
 	<h1>발주 페이지</h1>
 	<h3>
-		<a href="<c:url value="/orderhistory" />">발주 기록</a>
+		<a href="<c:url value="/branch/order/list" />">발주 기록</a>
 	</h3>
 	<div class="content">
 
 		<!-- 왼쪽 컨텐츠 -->
 		<div class="left-content">
-			<form id="addToCartForm" action="<c:url value='/add-to-cart'/>"
+			<form id="addToCartForm" action="<c:url value='/branch/order/add'/>"
 				method="post">
 				<input type="text" id="bookSearch" placeholder="교재 검색...">
 				<div class="order-form">
@@ -132,7 +132,7 @@ button {
 							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
 							<td>
-								<form action="remove-from-cart" method="post">
+								<form action="/branch/order/remove" method="post">
 									<input type="hidden" name="bookCode" value="${vo.bookCode}">
 									<button type="submit">삭제</button>
 								</form>
@@ -140,7 +140,7 @@ button {
 						</tr>
 					</c:forEach>
 				</table>
-				<form id="orderForm" action="<c:url value='/ordering'/>"
+				<form id="orderForm" action="<c:url value='/branch/order/submit'/>"
 					method="post">
 					<button type="button" onclick="submitOrderForm()">발주 제출</button>
 				</form>
@@ -149,7 +149,7 @@ button {
 
 		<!-- 오른쪽 컨텐츠 -->
 		<div class="right-content">
-			<form action="<c:url value="/searchbooks" />" method="GET">
+			<form action="<c:url value="/branch/order/search" />" method="GET">
 				<table border="1" width="100%">
 					<tr>
 						<th>교재명</th>
