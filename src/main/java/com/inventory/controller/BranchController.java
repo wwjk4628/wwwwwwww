@@ -22,7 +22,7 @@ public class BranchController {
 	@Autowired
 	private BookInventoryService bookInvenService;
 	
-	@RequestMapping({"/inventory"})
+	@RequestMapping({"/inventory", "/home"})
 	public String branchHome(HttpSession session, RedirectAttributes redirectAttributes,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value="check", required = false) String check, Model model) {

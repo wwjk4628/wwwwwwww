@@ -22,7 +22,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         // 인증된 사용자가 없으면 로그인 페이지로 리다이렉트
         if (authUser == null) {
             logger.warn("Unauthorized access detected. Redirecting to login page.");
-            response.sendRedirect(request.getContextPath() + "/users/login");
+            response.sendRedirect(request.getContextPath() + "/user/login");
             return false; // 요청 처리 중단
         }
 

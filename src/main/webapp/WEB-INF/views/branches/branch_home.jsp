@@ -4,17 +4,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>지점 관리 시스템</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/branches.css'/>">
-=======
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>지점 관리 시스템</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/styles.css'/>">
->>>>>>> develop
 </head>
 <body>
     <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
