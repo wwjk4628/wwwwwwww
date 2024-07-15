@@ -22,6 +22,7 @@ import com.inventory.services.OrderService;
 
 import jakarta.servlet.http.HttpSession;
 
+@RequestMapping("/branch/order")
 @Controller
 public class OrderController {
 	@Autowired
@@ -31,7 +32,7 @@ public class OrderController {
 	@Autowired
 	BookInventoryService bookInventoryService;
 
-	@RequestMapping("orderlist")
+	@RequestMapping("/form")
 	public String orderList(HttpSession session, Model model) {
 		UserVo vo = (UserVo)session.getAttribute("authUser");
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
@@ -45,10 +46,10 @@ public class OrderController {
 
 		model.addAttribute("cartList", cartList);
 		System.err.println(cartList);
-		return "branches/branch_order_list";
+		return "branches/branch_order_form";
 	}
 
-	@PostMapping("/add-to-cart")
+	@PostMapping("/add")
 	public String addToCart(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity,
 			HttpSession session) {
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
@@ -65,10 +66,10 @@ public class OrderController {
 
 		cart.add(vo);
 		session.setAttribute("cart", cart);
-		return "redirect:/orderlist";
+		return "redirect:/branch/order/form";
 	}
 
-	@PostMapping("/remove-from-cart")
+	@PostMapping("/remove")
 	public String removeFromCart(@RequestParam("bookCode") String bookCode, HttpSession session) {
 		// 세션에서 장바구니 가져오기
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
@@ -90,19 +91,19 @@ public class OrderController {
 			session.setAttribute("cart", cart);
 		}
 
-		return "redirect:/orderlist"; // 장바구니 목록 페이지로 리다이렉트
+		return "redirect:/branch/order/form"; // 장바구니 목록 페이지로 리다이렉트
 	}
 
-	@RequestMapping("orderhistory")
+	@RequestMapping("/list")
 	public String orderHistory(Model model, HttpSession session) {
 		UserVo vo = (UserVo)session.getAttribute("authUser");
 		System.out.println("orderhistory" + vo.getBranchId());
 		List<OrderVo> list = orderService.getOrderList(vo.getBranchId());
 		model.addAttribute("list", list);
-		return "branches/branch_order_detail";
+		return "branches/branch_order_list";
 	}
 
-	@RequestMapping("/ordering")
+	@RequestMapping("/submit")
 	public String ordering(HttpSession session) {
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
 		UserVo vo = (UserVo)session.getAttribute("authUser");
@@ -118,16 +119,16 @@ public class OrderController {
 			System.err.println("장바구니가 비어 있습니다.");
 			session.removeAttribute("cart");
 
-			return "redirect:/orderlist";
+			return "redirect:/branch/order/form";
 		}
 		// session에서 "cart" 속성을 삭제합니다.
 		session.removeAttribute("cart");
 
-		return "redirect:/orderhistory";
+		return "redirect:/branch/order/list";
 
 	}
 
-	@RequestMapping("/searchbooks")
+	@RequestMapping("/search")
 	public String searchBooks(@RequestParam("bookName") String bookName, HttpSession session, Model model) {
 		System.out.println("con" + bookName);
 		UserVo authUser = (UserVo)session.getAttribute("authUser");
@@ -140,10 +141,10 @@ public class OrderController {
 
 		model.addAttribute("cartList", cartList);
 
-		return "branches/branch_order_list"; // 정상적인 경우 이렇게 반환할 것입니다.
+		return "branches/branch_order_form"; // 정상적인 경우 이렇게 반환할 것입니다.
 	}
 	
-	@RequestMapping("/orderdetail")
+	@RequestMapping("/detail")
 	public String orderDetail(@RequestParam("orderId") String orderId, Model model) {
 
 		List<OrderVo> list = orderService.getDetailList(orderId);
@@ -157,7 +158,7 @@ public class OrderController {
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("orderId", orderId);
-		return "branches/branch_order_real_detail";
+		return "branches/branch_order_detail";
 	}
 	
 

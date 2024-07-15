@@ -17,14 +17,14 @@ import com.inventory.repositories.vo.BookVo;
 import com.inventory.services.BookService;
 
 
-@RequestMapping("/admin")
+@RequestMapping("/admin/book")
 @Controller
 public class BookController {
 	
 	@Autowired
 	BookService bookService;
 	
-	@RequestMapping("/booklist")
+	@RequestMapping("/list")
 	public String booklist(Model model) {
 		List<BookVo> list = bookService.getbookList();
 		model.addAttribute("list", list);
@@ -32,20 +32,20 @@ public class BookController {
 		return "admins/book_update";
 	}
 
-	@RequestMapping("/deletebook/{bookCode}")
+	@RequestMapping("/delete/{bookCode}")
 	public String delete(@PathVariable("bookCode") String bookCode) {
 		System.out.println("delete controller" + bookCode);
 		boolean success = bookService.deletebook(bookCode);
-		return "redirect:/admin/booklist";
+		return "redirect:/admin/book/list";
 	}
 	
 	@RequestMapping("/insert")
 	public String insertBook(@ModelAttribute BookVo vo) {
 		boolean success = bookService.writebook(vo);
-        return "redirect:/admin/booklist";
+        return "redirect:/admin/book/list";
     }
 	
-	@GetMapping("/searchbooks")
+	@GetMapping("/search")
     public String searchBooks(@RequestParam("bookName") String bookName, Model model) {
         System.out.println("con" + bookName);
         List<BookVo> list = bookService.search(bookName);
@@ -53,7 +53,7 @@ public class BookController {
         return "admins/book_update"; // 정상적인 경우 이렇게 반환할 것입니다.
     }
 	
-	@GetMapping("/updatebooks/{bookCode}")
+	@GetMapping("/update/{bookCode}")
 	public String updateBooks(@PathVariable("bookCode") String bookCode, Model model) {
 		BookVo vo = bookService.getData(bookCode);
 		model.addAttribute("vo", vo);
@@ -63,6 +63,6 @@ public class BookController {
 	@PostMapping("/modify")
 	public String modify(@ModelAttribute BookVo vo) {
 		boolean success = bookService.updatebook(vo);
-		return "redirect:/admin/booklist";
+		return "redirect:/admin/book/list";
 	}
 }
