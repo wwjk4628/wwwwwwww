@@ -63,9 +63,10 @@ nav a:hover {
 
 /* Table Styles */
 table {
-	width: 100%;
+	width: 1400px;
 	border-collapse: collapse;
 	margin-bottom: 20px;
+
 }
 
 th, td {
@@ -141,4 +142,29 @@ footer {
 
 .delete:hover {
 	background-color: #c62828; /* 다크 레드 */
+}
+
+.parent a  {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #c0c0c0;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #000000;
+	border-radius: 4px;
+}
+
+.parent a  {
+	background-color: #808080;
+	border-color: #000000;
+}
+
+.parent a  {
+	color: #fff;
+	text-decoration: none;
+}
+
+.parent {
+	text-align: center; /* 가운데 정렬 */
 }
