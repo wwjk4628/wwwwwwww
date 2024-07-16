@@ -67,7 +67,13 @@ public class OrderCheckServiceImpl implements OrderCheckService {
 	public String getBranchId(String orderId) {
 		return OrderCheckDao.getBranchId(orderId);
 	}
-	
-	
 
+	@Override
+	public List<OrderVo> getBranchList() {
+		List<OrderVo> list = OrderCheckDao.getBranchList();
+		return list;
+	}
+	
+	
+	
 }

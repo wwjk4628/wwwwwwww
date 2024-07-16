@@ -50,7 +50,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="<c:url value='/admin'/>">admin 홈으로 돌아가기</a>
+		<div class="parent" style="text-align: left;"><a href="<c:url value='/admin'/>">admin 홈으로 돌아가기</a></div>
 	</div>
 
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>

@@ -92,5 +92,7 @@
 		in_detail (in_id, book_code, quantity) values(#{id}, #{bookCode},
 		#{quantity})
 	</insert>
-
+	<select id="getBranchList" resultType="OrderVo">
+		SELECT branch_id as branchId, branch_name as branchName FROM branch
+	</select>
 </mapper>
