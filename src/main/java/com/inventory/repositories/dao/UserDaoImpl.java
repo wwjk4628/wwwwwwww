@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,7 +35,12 @@ public class UserDaoImpl implements UserDao{
 		UserVo userVo = sqlSession.selectOne("users.selectUserByName", name);
 		return userVo;
 	}
-
+	
+	@Override
+	public UserVo findByUsernameForLogin(@Param("username")String username) {
+	    return sqlSession.selectOne("users.selectUserByNameForLogin", username);
+	}
+	
 	@Override
 	public UserVo selectUser(String name, String password) {
 		//	mybatis parameterType =map 으로 전달하기
