@@ -26,4 +26,6 @@ public interface OrderCheckDao {
 	public int confirmAndInsertInDetail(StockVo vo);
 	
 	public String getBranchId(String orderId);
+	
+	public List<OrderVo> getBranchList();
 }

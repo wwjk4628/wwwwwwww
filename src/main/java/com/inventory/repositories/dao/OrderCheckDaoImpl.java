@@ -16,22 +16,22 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+
 	@Override
 	public List<OrderVo> getAllList() {
-		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckList");
+		List<OrderVo> list = sqlSession.selectList("orderCheck.orderCheckList");
 		return list;
 	}
 
 	@Override
 	public List<OrderVo> getBranchsList(String id) {
-		List <OrderVo> list = sqlSession.selectList("orderCheck.orderCheckBranch", id);
+		List<OrderVo> list = sqlSession.selectList("orderCheck.orderCheckBranch", id);
 		return list;
 	}
 
 	@Override
 	public List<OrderVo> getOrderDetail(String id) {
-		List <OrderVo> list = sqlSession.selectList("orderCheck.selectOrderDetail", id);
+		List<OrderVo> list = sqlSession.selectList("orderCheck.selectOrderDetail", id);
 		return list;
 	}
 
@@ -40,7 +40,7 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 		long count = sqlSession.selectOne("orderCheck.countNewOrder");
 		return count;
 	}
-	
+
 	@Override
 	public int refuseOrder(String no) {
 		return sqlSession.update("orderCheck.refuseOrder", no);
@@ -53,7 +53,7 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 
 	@Override
 	public int confirmAndInsertStockIn(String orderId, String branchId) {
-		Map <String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<>();
 		map.put("orderId", orderId);
 		map.put("branchId", branchId);
 		return sqlSession.insert("orderCheck.confirmAndInsertStockIn", map);
@@ -72,6 +72,12 @@ public class OrderCheckDaoImpl implements OrderCheckDao {
 	@Override
 	public String getBranchId(String orderId) {
 		return sqlSession.selectOne("orderCheck.getBranchId", orderId);
+	}
+
+	@Override
+	public List<OrderVo> getBranchList() {
+		List<OrderVo> list = sqlSession.selectList("orderCheck.getBranchList");
+		return list;
 	}
 
 }

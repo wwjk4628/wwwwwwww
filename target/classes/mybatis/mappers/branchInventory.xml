@@ -2,24 +2,30 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="bookInventory">
-	
+
 	<!-- book inventory list -->
-	<select id="selectInventory" parameterType="string" resultType="BookInventoryVo">
-		select bi.branch_id as branchId, bi.book_code as bookCode, bl.book_name as bookName, bi.inventory as inventory 
-		from branch_inventory bi join book_list bl on bi.book_code = bl.book_code 
+	<select id="selectInventory" parameterType="string"
+		resultType="BookInventoryVo">
+		select bi.branch_id as branchId, bi.book_code as bookCode,
+		bl.book_name as bookName, bi.inventory as inventory
+		from branch_inventory bi join book_list bl on bi.book_code = bl.book_code
 		where bi.branch_id = #{id} order by bookCode
 	</select>
-	
+
 	<!-- book inventory keyword search -->
-	<select id= "searchInventory" parameterType="map" resultType="BookInventoryVo">
-		select bi.branch_id as branchId, bi.book_code as bookCode, bl.book_name as bookName, bi.inventory as inventory 
-		from branch_inventory bi join book_list bl on bi.book_code = bl.book_code 
-		where bi.branch_id = #{id} and bl.book_name like '%' || #{keyword} || '%' order by bookCode
+	<select id="searchInventory" parameterType="map"
+		resultType="BookInventoryVo">
+		select bi.branch_id as branchId, bi.book_code as bookCode,
+		bl.book_name as bookName, bi.inventory as inventory
+		from branch_inventory bi join book_list bl on bi.book_code = bl.book_code
+		where bi.branch_id = #{id} and bl.book_name like '%' || #{keyword} ||
+		'%' order by bookCode
 	</select>
-	
-	<select id="selectInventoryCheck" parameterType="string" resultType="BookInventoryVo">
+
+	<select id="selectInventoryCheck" parameterType="string"
+		resultType="BookInventoryVo">
 		<![CDATA[
     		select bi.branch_id as branchId, bi.book_code as bookCode, bl.book_name as bookName, bi.inventory as inventory 
     		from branch_inventory bi 
@@ -28,8 +34,9 @@
     		order by bookCode
     		]]>
 	</select>
-	
-	<select id="searchInventoryCheck" parameterType="map" resultType="BookInventoryVo">
+
+	<select id="searchInventoryCheck" parameterType="map"
+		resultType="BookInventoryVo">
 		<![CDATA[
     		select bi.branch_id as branchId, bi.book_code as bookCode, bl.book_name as bookName, bi.inventory as inventory 
     		from branch_inventory bi 
@@ -38,9 +45,17 @@
     		order by bookCode
     		]]>
 	</select>
-	
+
 	<insert id="initialization" parameterType="map">
-		insert into branch_inventory (branch_id, book_code, inventory) values (#{id}, #{bookCode}, 0)
+		insert into
+		branch_inventory (branch_id, book_code, inventory) values (#{id},
+		#{bookCode}, 0)
 	</insert>
+
+	<select id="getInventory" parameterType="BookInventoryVo"
+		resultType="int">
+		SELECT inventory FROM branch_inventory WHERE branch_id = #{branchId} and
+		book_code = #{bookCode}
+	</select>
 
 </mapper>
