@@ -140,42 +140,32 @@ button {
 
 		<form id="search-form">
 			<label for="keyword">검색어: </label>
-			<input type="text" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
+			<input type="text" id ="keyword" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
 			<input type="submit" value="검색">
 			<button type="button" onclick="resetKeyword()">초기화</button>
 		</form>
 			
+		<div id="results-container"></div>
+		
 		<div class="out-list">
-			<table id="table">
-				<tr>
-					<th>교재명</th>
-					<th>수량</th>
-					<th>작업</th>
-					<th>코멘트</th>
-				</tr>
-				<c:forEach items="${list }" var="vo" varStatus="status">
-					<tr>
-						<td>${vo.bookName }</td>
-						<td>${vo.inventory }</td>
-						<td>
-							<input type="hidden" name="bookCode" value="${vo.bookCode}">
-							<input type="hidden" name="bookName" value="${vo.bookName }">
-							<input type="number" name="quantity" min="0" max="${vo.inventory}"
-								data-book-code="${vo.bookCode}"
-								data-book-name="${vo.bookName}"
-								oninput="validateAndHandleQuantity(this, ${vo.inventory})">
-						</td>
-						<td>
-                        	<textarea class="comment-box" data-book-code="${vo.bookCode}" placeholder="코멘트를 입력하세요"></textarea>
-                    	</td>
-					</tr>
-				</c:forEach>
-			</table>
-			
-			<form id="orderForm" action="<c:url value='/branch/stockout/confirm'/>" method="post">
-				<button type="button" onclick="showConfirmationModal()">확정</button>
-			</form>
-		</div>
+    <table id="table">
+        <thead>
+            <tr>
+                <th>교재명</th>
+                <th>수량</th>
+                <th>작업</th>
+                <th>코멘트</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- 검색 결과가 여기에 동적으로 추가됩니다. -->
+        </tbody>
+    </table>
+
+    <form id="orderForm" action="<c:url value='/branch/stockout/confirm'/>" method="post">
+        <button type="button" onclick="showConfirmationModal()">확정</button>
+    </form>
+</div>
 			
 		<div id="confirmationModal" class="modal">
         	<div class="modal-content">

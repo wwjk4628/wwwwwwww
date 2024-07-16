@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inventory.repositories.vo.BookInventoryVo;
 import com.inventory.repositories.vo.StockVo;
@@ -47,6 +49,19 @@ public class StockOutController {
 		model.addAttribute("list", list);
 		session.setAttribute("authUser", vo);
 		return "branches/branch_stock_out_form";
+    }
+    
+    @RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public List<BookInventoryVo> search(HttpSession session, @RequestParam("keyword") String keyword) {
+        UserVo vo = (UserVo) session.getAttribute("authUser");
+        List<BookInventoryVo> list;
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            list = bookInvenService.checkedSearch(vo.getBranchId(), keyword);
+        } else {
+            list = bookInvenService.checkedGetList(vo.getBranchId());
+        }
+        return list;
     }
     
     @RequestMapping("/confirm")

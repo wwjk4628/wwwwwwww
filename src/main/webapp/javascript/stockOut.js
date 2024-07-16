@@ -1,8 +1,63 @@
-function resetKeyword() {
-    // keyword 값을 빈 문자열로 설정한 후 폼을 제출합니다.
-    document.querySelector('input[name="keyword"]').value = '';
-    document.getElementById('search-form').submit();
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('search-form');
+
+    // 폼 제출 시 AJAX 요청을 보냅니다.
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다.
+        const keyword = document.querySelector('input[name="keyword"]').value;
+
+        fetch('http://localhost:8080/Inventory/branch/stockout/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                'keyword': keyword
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            updateSearchResults(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+    // 검색 결과를 페이지에 업데이트합니다.
+    function updateSearchResults(data) {
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = ''; // 기존 결과를 지웁니다.
+
+        // 데이터를 기반으로 결과를 생성합니다.
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.bookName}</td>
+                <td>${item.inventory}</td>
+                <td>
+                    <input type="hidden" name="bookCode" value="${item.bookCode}">
+                    <input type="hidden" name="bookName" value="${item.bookName}">
+                    <input type="number" name="quantity" min="0" max="${item.inventory}"
+                        data-book-code="${item.bookCode}"
+                        data-book-name="${item.bookName}"
+                        oninput="validateAndHandleQuantity(this, ${item.inventory})">
+                </td>
+                <td>
+                    <textarea class="comment-box" data-book-code="${item.bookCode}" placeholder="코멘트를 입력하세요"></textarea>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // 검색어 초기화
+    window.resetKeyword = function() {
+        document.querySelector('input[name="keyword"]').value = '';
+        form.dispatchEvent(new Event('submit')); // 폼 제출 이벤트를 강제로 발생시킵니다.
+    }
+});
+
 
 // 모달 닫기 함수
 function closeModal() {
