@@ -46,9 +46,16 @@ public class OrderController {
 		System.out.println(bookCodes);
 		System.out.println(quantities);
 
+		// 받아온 bookCodes와 quantities를 순회하면서 장바구니(cart)에 추가
 		for (int i = 0; i < bookCodes.size(); i++) {
 			String bookCode = bookCodes.get(i);
 			int quantity = quantities.get(i);
+
+			// quantity가 0보다 작거나 같으면 처리하지 않음
+			if (quantity <= 0) {
+				continue;
+			}
+
 			BookVo book = bookService.getData(bookCode);
 
 			String bookName = book.getBookName();
@@ -87,13 +94,26 @@ public class OrderController {
 //		데이터를 받아와 지점 교재 재고 현황을 모델에 저장
 
 		UserVo vo = (UserVo) session.getAttribute("authUser");
-
+		
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
+		
+		
 		model.addAttribute("list", list);
-
+		
 //		session에 저장된 장바구니 리스트를 받아오고 모델에 추가해 jsp에 전달
 		Object cartObject = session.getAttribute("cart");
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
+		if (cartList == null) {
+			cartList = new ArrayList<>();
+		}
+		for (OrderVo orderVo : cartList) {
+			BookInventoryVo book = new BookInventoryVo();
+			book.setBookCode(orderVo.getBookCode());
+			book.setBranchId(vo.getBranchId());
+			orderVo.setInventory(bookInventoryService.getInventory(book)) ;
+			
+			
+		}
 
 		model.addAttribute("cartList", cartList);
 		return "branches/branch_order_form";
@@ -102,51 +122,50 @@ public class OrderController {
 //	지점 주문 페이지 장바구니 추가 기능
 	@PostMapping("/add")
 	public String addToCart(@RequestParam("bookCode") String bookCode, @RequestParam("quantity") int quantity,
-	                        HttpSession session) {
-	    // 로그인 시 저장한 session authUser를 받아오는 기능
-	    UserVo authUser = (UserVo) session.getAttribute("authUser");
+			HttpSession session) {
+		// 로그인 시 저장한 session authUser를 받아오는 기능
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 
-	    // session에 저장된 장바구니 리스트를 받아오는 기능
-	    List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
+		// session에 저장된 장바구니 리스트를 받아오는 기능
+		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
 
-	    // jsp에서 넘어온 bookCode 기반으로 객체 저장
-	    BookVo book = bookService.getData(bookCode);
+		// jsp에서 넘어온 bookCode 기반으로 객체 저장
+		BookVo book = bookService.getData(bookCode);
 
-	    // 객체에서 bookName을 뽑아와 bookName에 저장 후 주문 객체에 추가, 수량과 교재 코드도 저장
-	    String bookName = book.getBookName();
-	    int price = book.getPrice();
+		// 객체에서 bookName을 뽑아와 bookName에 저장 후 주문 객체에 추가, 수량과 교재 코드도 저장
+		String bookName = book.getBookName();
+		int price = book.getPrice();
 
-	    // 장바구니에 이미 같은 상품이 있는지 확인하여 수량을 증가시키거나 새로운 상품을 추가
-	    boolean found = false;
-	    if (cart != null) {
-	        for (OrderVo vo : cart) {
-	            if (vo.getBookCode().equals(bookCode)) {
-	                // 동일한 상품이 이미 장바구니에 있는 경우 수량을 증가
-	                vo.setQuantity(vo.getQuantity() + quantity);
-	                found = true;
-	                break;
-	            }
-	        }
-	    }
+		// 장바구니에 이미 같은 상품이 있는지 확인하여 수량을 증가시키거나 새로운 상품을 추가
+		boolean found = false;
+		if (cart != null) {
+			for (OrderVo vo : cart) {
+				if (vo.getBookCode().equals(bookCode)) {
+					// 동일한 상품이 이미 장바구니에 있는 경우 수량을 증가
+					vo.setQuantity(vo.getQuantity() + quantity);
+					found = true;
+					break;
+				}
+			}
+		}
 
-	    // 장바구니에 동일한 상품이 없는 경우 새로운 주문 객체 생성하여 추가
-	    if (!found) {
-	        OrderVo vo = new OrderVo(bookCode, bookName, quantity);
-	        vo.setPrice(price);
-	        vo.setBranchId(authUser.getBranchId());
+		// 장바구니에 동일한 상품이 없는 경우 새로운 주문 객체 생성하여 추가
+		if (!found) {
+			OrderVo vo = new OrderVo(bookCode, bookName, quantity);
+			vo.setPrice(price);
+			vo.setBranchId(authUser.getBranchId());
 
-	        if (cart == null) {
-	            cart = new ArrayList<>();
-	        }
-	        cart.add(vo);
-	    }
+			if (cart == null) {
+				cart = new ArrayList<>();
+			}
+			cart.add(vo);
+		}
 
-	    // 변경된 장바구니를 세션에 저장
-	    session.setAttribute("cart", cart);
+		// 변경된 장바구니를 세션에 저장
+		session.setAttribute("cart", cart);
 
-	    return "redirect:/branch/order/form"; // 처리 후 발주 기록 페이지로 리다이렉트
+		return "redirect:/branch/order/form"; // 처리 후 발주 기록 페이지로 리다이렉트
 	}
-
 
 //	지점 주문 페이지 장바구니 삭제 기능
 	@PostMapping("/remove")

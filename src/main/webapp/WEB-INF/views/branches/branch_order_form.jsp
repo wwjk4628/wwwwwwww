@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,7 +20,6 @@
 		<h3>
 			<a href="<c:url value="/branch/order/list" />">발주 기록</a>
 		</h3>
-
 		<!-- 왼쪽 컨텐츠 -->
 		<div class="cart">
 			<div class="cart-content">
@@ -44,14 +44,18 @@
 					<tr>
 						<th>교재명</th>
 						<th>수량</th>
+						<th>예상 재고</th>
 						<th>금액</th>
 						<th>작업</th>
 					</tr>
+
 					<c:forEach items="${cartList }" var="vo" varStatus="status">
 						<tr>
 							<td>${vo.bookName }</td>
 							<td>${vo.quantity }</td>
-							<td>${vo.price * vo.quantity}</td>
+							<td>${vo.inventory + vo.quantity}</td>
+							<td><fmt:formatNumber value="${vo.price * vo.quantity}"
+									pattern="#,###" /></td>
 							<td>
 								<form onsubmit="return confirm('정말로 삭제하시겠습니까?');"
 									action="<c:url value='/branch/order/remove'/>" method="post">
@@ -64,11 +68,13 @@
 							value="${totalQuantity + (vo.quantity)}" />
 						<c:set var="totalPrice"
 							value="${totalPrice + (vo.price * vo.quantity)}" />
+
 					</c:forEach>
 					<tr>
 						<td><strong>총합</strong></td>
 						<td><strong>${totalQuantity}</strong></td>
-						<td><strong>${totalPrice}</strong></td>
+						<td></td>
+						<td><strong><fmt:formatNumber value="${totalPrice}" pattern="#,###" /></strong></td>
 						<td>
 							<form id="orderForm"
 								action="<c:url value='/branch/order/submit'/>" method="post">
@@ -104,7 +110,6 @@
 						<th>교재명</th>
 						<th>수량</th>
 						<th>발주 수량</th>
-						<th>예상 재고</th>
 					</tr>
 					<c:forEach items="${list}" var="vo" varStatus="status">
 						<tr>
@@ -112,10 +117,12 @@
 								value="${vo.bookCode}">${vo.bookName}</td>
 							<td>${vo.inventory}</td>
 							<td><input type="number" name="quantities"
-								class="quantity-input" min="0" value="0"></td>
-							<td>수량</td>
+								class="quantity-input" min="0" value="0"
+								oninput="updateExpectedStock(this, ${vo.inventory})"></td>
+
 						</tr>
 					</c:forEach>
+
 				</table>
 				<div class="cart2">
 					<div class="cart-content2">
@@ -129,41 +136,7 @@
 			<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>
 
 			<script>
-				function addToCart2() {
-					var form = document.getElementById("addToCartForm2");
-					var quantities = document
-							.querySelectorAll(".quantity-input");
-
-					var anyQuantitySelected = false;
-					for (var i = 0; i < quantities.length; i++) {
-						if (quantities[i].value > 0) {
-							anyQuantitySelected = true;
-							break;
-						}
-					}
-
-					if (!anyQuantitySelected) {
-						alert("최소 한 권 이상의 교재를 선택해야 합니다.");
-						return;
-					}
-					// 모든 입력 필드들을 순회하면서 수량이 0 이상인 경우만 폼 데이터에 추가
-					for (var i = 0; i < quantities.length; i++) {
-						var quantity = quantities[i].value;
-						if (quantity > 0) {
-							// 수량이 0보다 큰 경우에는 문제없이 넘어갑니다.
-							continue;
-						} else {
-							// 수량이 0 이하인 경우 해당 행을 삭제하거나 다른 처리를 수행할 수 있습니다.
-							// 여기서는 간단히 해당 행을 삭제하는 예시를 보여줍니다.
-							quantities[i].parentNode.parentNode.remove();
-						}
-					}
-
-					// 최소 한 권 이상의 교재를 선택하지 않은 경우 경고창을 띄우고 폼 제출을 막습니다.
-
-					// 수정된 폼을 서버로 제출
-					form.submit();
-				}
+				
 			</script>
 </body>
 </html>

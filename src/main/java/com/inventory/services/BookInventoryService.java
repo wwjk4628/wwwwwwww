@@ -9,6 +9,8 @@ public interface BookInventoryService {
 	public List <BookInventoryVo> getList (String id);
 	public List <BookInventoryVo> search (String id, String keyword);
 	
+	public int getInventory(BookInventoryVo vo);
+	
 	public List <BookInventoryVo> checkedGetList(String id);
 	public List <BookInventoryVo> checkedSearch (String id, String keyword);
 }
