@@ -73,7 +73,6 @@ button {
     <div class="content">
           
         <h2>${inId } 입고 기록</h2>
-        <h3><a href="/branches/branch_stock_in_list.html">입고</a></h3>
         <table border="1">
 				<tr>
 					<th>date</th>
@@ -104,7 +103,7 @@ button {
 			
 			<c:choose>
     			<c:when test="${check eq 0}">
-        			<a href="<c:url value='/stock/in/${inId}/confirm' />">도착했어요~~</a>
+        			<a href="<c:url value='/branch/stockin/confirm/${inId}' />">도착했어요~~</a>
     			</c:when>
     			<c:otherwise>
         		<!-- Do nothing or display alternative content -->

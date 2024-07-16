@@ -34,7 +34,7 @@
   <!-- Listener 설정 정보 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/applicationContext.xml</param-value>
+    <param-value>/WEB-INF/applicationContext.xml, /WEB-INF/security-config.xml</param-value>
   </context-param>
   
   <!-- Encoding Filter -->
@@ -59,6 +59,17 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <filter>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>springSecurityFilterChain</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+  
   
   <!-- 공통 에러 페이지: Spring 앱 바깥에서 일어난 예외 -->
   <error-page>

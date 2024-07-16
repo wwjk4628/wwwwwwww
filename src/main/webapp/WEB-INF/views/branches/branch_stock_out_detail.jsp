@@ -88,10 +88,6 @@ button {
 		<button>출고 확인</button>
 
 		<h2>출고 기록</h2>
-		<h3>
-			<a href="/branches/branch_stock_out_list.html">출고 기록</a>
-		</h3>
-
 		<table>
 			<tr>
 				<th>출고 번호</th>

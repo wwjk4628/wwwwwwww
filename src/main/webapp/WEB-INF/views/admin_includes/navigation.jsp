@@ -9,23 +9,26 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="<%=request.getContextPath()%>/admins">본사 관리 시스템</a>
+        <a class="navbar-brand" href="<%=request.getContextPath()%>/admin">본사 관리 시스템</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/admins">본사 홈</a>
+
+                    <a class="nav-link" href="<%=request.getContextPath()%>/admin">본사 홈</a>
+
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/order/check">발주 승인</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/ordercheck">발주 승인</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/booklist">교재 관리</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/book/list">교재 관리</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%=request.getContextPath()%>/usermanage/list">회원 승인</a>
+                    <a class="nav-link" href="<%=request.getContextPath()%>/admin/usermanage/list">회원 승인</a>
+
                 </li>
             </ul>
         </div>

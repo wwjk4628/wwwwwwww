@@ -74,7 +74,6 @@ button {
     <%@ include file="/WEB-INF/views/branch_includes/navigation.jsp" %>
     <div class="content">
         <h1>입고</h1>
-        <h3><a href="/branches/branch_stock_in_detail.html">입고 기록</a></h3>
         <table border="1">
 				<tr>
 					<th>in_id</th>
@@ -96,13 +95,14 @@ button {
 						<td>${vo.flucDate}</td>
 						<td>
 						<c:choose>
+							<c:when test="${vo.checkedIn eq -1}">처리 완료</c:when>
                 			<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
                 			<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
                 			<c:otherwise>알 수 없음</c:otherwise>
            				</c:choose>
            				</td>
 						
-						<td><a href = "<c:url value="/stock/in/${vo.id }/detail"/>">보러 가기</a></td>
+						<td><a href = "<c:url value="/branch/stockin/detail/${vo.id }"/>">보러 가기</a></td>
 					</tr>
 				</c:forEach>
 			</table>

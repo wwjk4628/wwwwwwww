@@ -15,24 +15,23 @@ import com.inventory.services.BookInventoryService;
 
 import jakarta.servlet.http.HttpSession;
 
-//
-@RequestMapping("/branches")
+@RequestMapping("/branch")
 @Controller
 public class BranchController {
 	
 	@Autowired
 	private BookInventoryService bookInvenService;
 	
-	@RequestMapping({"/home", "", "/"})
+	@RequestMapping({"/inventory", "/home"})
 	public String branchHome(HttpSession session, RedirectAttributes redirectAttributes,
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value="check", required = false) String check, Model model) {
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (!("1").equals(authUser.getAuthCode())) {
-			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
-			return "redirect:/";
-		}
+//		if (!("1").equals(authUser.getAuthCode())) {
+//			//	홈화면으로 보내
+//			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
+//			return "redirect:/";
+//		}
 		if (check != null && check.equals("check")) {
 			if (keyword != null && !keyword.isEmpty()) {
 				List<BookInventoryVo> list = bookInvenService.checkedSearch(authUser.getBranchId(), keyword);
@@ -52,7 +51,7 @@ public class BranchController {
 			}
 		}
 		
-		session.setAttribute("authUser", authUser);
+//		session.setAttribute("authUser", authUser);
 		
 		return "branches/branch_home";
 	}

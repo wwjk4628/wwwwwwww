@@ -12,7 +12,7 @@ import com.inventory.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/admins")
+@RequestMapping("/admin")
 @Controller
 public class AdminController {
 	@Autowired
@@ -24,11 +24,11 @@ public class AdminController {
     public String adminHome(HttpSession session,  RedirectAttributes redirectAttributes, Model model) {
     	UserVo authUser = (UserVo) session.getAttribute("authUser");
     	//	authUser = null 일때 오류 나니까 수정 필요
-    	if (!("2").equals(authUser.getAuthCode())) {
-			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치");
-			return "redirect:/";
-		}
+//    	if (!("2").equals(authUser.getAuthCode())) {
+//			//	홈화면으로 보내
+//			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치");
+//			return "redirect:/";
+//		}
     	
     	//	계정 승인 요청 
     	long taikiUser = userService.userCount();

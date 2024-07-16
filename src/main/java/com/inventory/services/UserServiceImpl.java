@@ -74,4 +74,9 @@ public class UserServiceImpl implements UserService {
 		return updateCount == 1;
 	}
 
+	@Override
+	public UserVo getUserByNameForLogin(String username) {
+		return userDao.findByUsernameForLogin(username);
+	}
+
 }

@@ -60,40 +60,32 @@ th {
 
 	<div class="content">
 		<div class="order-history">
-			<h2>발주 기록</h2>
+			<h2>주문번호: ${orderId }</h2>
 			<h3>
-				<a href="<c:url value="/orderlist" />">발주</a>
+				<a href="<c:url value="/branch/order/list" />">발주 기록</a>
 			</h3>
 			<table>
 				<tr>
-					<th>발주 번호</th>
-					<th>날짜</th>
-					<th>상태</th>
+					<th>책 이름</th>
+					<th>수량</th>
+					<th>가격</th>
 				</tr>
+
 				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td><a
-							href="<c:url value="/orderdetail" />?orderId=${vo.orderId}">
-								${vo.orderId }</a></td>
-						<td>${vo.orderDate }</td>
-						<c:choose>
-							<c:when test="${vo.checked eq 0}">
-								<td style="color: red;">미확인</td>
-							</c:when>
-							<c:when test="${vo.checked eq 1}">
-								<td style="color: blue;">처리중</td>
-							</c:when>
-							<c:when test="${vo.checked eq 2}">
-								<td style="color: green;">도착</td>
-							</c:when>
-							<c:otherwise>
-								<td>????</td>
-							</c:otherwise>
-						</c:choose>
-
+						<td>${vo.bookName }</td>
+						<td>${vo.quantity }</td>
+						<td>${vo.price }</td>
 					</tr>
+					<c:set var="totalQuantity" value="${totalQuantity + (vo.quantity)}" />
+					<c:set var="totalPrice"
+						value="${totalPrice + (vo.price * vo.quantity)}" />
 				</c:forEach>
-
+				<tr>
+					<td><strong>총합</strong></td>
+					<td><strong>${totalQuantity}</strong></td>
+					<td><strong>${totalPrice}</strong></td>
+				</tr>
 			</table>
 		</div>
 	</div>
