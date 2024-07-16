@@ -46,4 +46,12 @@ public class BookInventoryDaoImpl implements BookInventoryDao {
 		return list;
 	}
 
+	@Override
+	public int getInventory(BookInventoryVo vo) {
+		int inventory = sqlSession.selectOne("bookInventory.getInventory", vo);
+		return inventory;
+	}
+	
+	
+
 }

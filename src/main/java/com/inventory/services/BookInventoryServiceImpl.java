@@ -38,4 +38,11 @@ public class BookInventoryServiceImpl implements BookInventoryService {
 		return list;
 	}
 
+	@Override
+	public int getInventory(BookInventoryVo vo) {
+		int inventory = bookInventoryDao.getInventory(vo);
+		return inventory;
+	}
+
+	
 }

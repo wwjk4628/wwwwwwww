@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.OrderDao;
 import com.inventory.repositories.vo.OrderVo;
+import com.inventory.repositories.vo.UserVo;
 
 @Service("OrderService")
 public class OrderServiceImpl implements OrderService{
@@ -15,9 +16,8 @@ public class OrderServiceImpl implements OrderService{
 	OrderDao orderDao;
 	
 	@Override
-	public boolean insert(String branchId) {
-		System.out.println(branchId);
-		int insertedCount = orderDao.insert(branchId);
+	public boolean insert(UserVo vo) {
+		int insertedCount = orderDao.insert(vo);
 		return 1 == insertedCount;
 	}
 
