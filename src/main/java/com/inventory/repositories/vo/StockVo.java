@@ -3,13 +3,18 @@ package com.inventory.repositories.vo;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StockVo {
 	private int id;
 	private String branchId;
 	private Date flucDate;
 	private int orderId;
+	@JsonProperty("bookCode")
 	private String bookCode;
+	@JsonProperty("quantity")
 	private int quantity;
+	@JsonProperty("comments")
 	private String comments;
 	private String checkedIn;
 	private String bookName;
@@ -56,11 +61,27 @@ public class StockVo {
 		this.quantity = quantity;
 	}
 
+	//	out detail 입력용
+	public StockVo(int id, String bookCode, int quantity, String comments) {
+		super();
+		this.id = id;
+		this.bookCode = bookCode;
+		this.quantity = quantity;
+		this.comments = comments;
+	}
+
 	public StockVo(String branchId, String bookCode, int quantity, String bookName) {
 		this.branchId = branchId;
 		this.bookCode = bookCode;
 		this.quantity = quantity;
 		this.bookName = bookName;
+	}
+
+	public StockVo(String bookCode, int quantity, String comments) {
+		super();
+		this.bookCode = bookCode;
+		this.quantity = quantity;
+		this.comments = comments;
 	}
 
 	public int getId() {

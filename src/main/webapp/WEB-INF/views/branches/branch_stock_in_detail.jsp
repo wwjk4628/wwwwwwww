@@ -26,31 +26,35 @@
 				<th>check</th>
 				<th>comments</th>
 			</tr>
-
-			<c:forEach items="${list }" var="vo">
-				<tr>
-					<td>${vo.flucDate}</td>
-					<td>${vo.bookCode}</td>
-					<td>${vo.bookName}</td>
-					<td>${vo.quantity}</td>
-					<td><c:choose>
-							<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
-							<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
-							<c:otherwise>알 수 없음</c:otherwise>
-						</c:choose></td>
-					<td>${vo.comments}</td>
-				</tr>
-			</c:forEach>
-		</table>
-
-		<c:choose>
-			<c:when test="${check eq 0}">
-				<a href="<c:url value='/branch/stockin/confirm/${inId}' />">도착했어요~~</a>
-			</c:when>
-			<c:otherwise>
-				<!-- Do nothing or display alternative content -->
-			</c:otherwise>
-		</c:choose>
-	</div>
+		
+				<c:forEach items="${list }" var="vo">
+					<tr>
+						<td>${vo.flucDate}</td>
+						<td>${vo.bookCode}</td>
+						<td>${vo.bookName}</td>
+						<td>${vo.quantity}</td>
+						<td>
+						<c:choose>
+							<c:when test="${vo.checkedIn eq -1}">처리 완료</c:when>
+                			<c:when test="${vo.checkedIn eq 0}">미확인</c:when>
+                			<c:when test="${vo.checkedIn eq 1}">처리 완료</c:when>
+                			<c:otherwise>알 수 없음</c:otherwise>
+           				</c:choose>
+           				</td>
+           				<td>${vo.comments}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			
+			<c:choose>
+    			<c:when test="${check eq 0}">
+        			<a href="<c:url value='/branch/stockin/confirm/${inId}' />">도착했어요~~</a>
+    			</c:when>
+    			<c:otherwise>
+        		<!-- Do nothing or display alternative content -->
+    			</c:otherwise>
+			</c:choose>
+			<p><a href ="<c:url value="/branch/stockin/list"/>">목록으로 돌아가기</a></p>
+    </div>
 </body>
 </html>
