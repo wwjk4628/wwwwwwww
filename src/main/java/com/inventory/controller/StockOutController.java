@@ -38,13 +38,13 @@ public class StockOutController {
     @RequestMapping("/form")
     public String moveToStockOutFrom(HttpSession session, @RequestParam(value = "keyword", required = false) String keyword, Model model) {
     	UserVo vo = (UserVo)session.getAttribute("authUser");
-    	if (keyword != null && !keyword.isEmpty()) {
-			List<BookInventoryVo> list = bookInvenService.checkedSearch(vo.getBranchId(), keyword);
-			model.addAttribute("list", list);
+    	List<BookInventoryVo> list;
+    	if (keyword != null && !keyword.trim().isEmpty()) {
+    		list = bookInvenService.checkedSearch(vo.getBranchId(), keyword);
 		} else {
-			List<BookInventoryVo> list = bookInvenService.checkedGetList(vo.getBranchId());
-			model.addAttribute("list", list);
+			list = bookInvenService.checkedGetList(vo.getBranchId());
 		}
+		model.addAttribute("list", list);
 		session.setAttribute("authUser", vo);
 		return "branches/branch_stock_out_form";
     }

@@ -1,3 +1,23 @@
+function resetKeyword() {
+    // keyword 값을 빈 문자열로 설정한 후 폼을 제출합니다.
+    document.querySelector('input[name="keyword"]').value = '';
+    document.getElementById('search-form').submit();
+}
+
+// 모달 닫기 함수
+function closeModal() {
+    const modal = document.getElementById('confirmationModal');
+    modal.style.display = 'none';
+}
+
+// 모달 바깥을 클릭하면 닫히는 기능을 추가합니다.
+document.addEventListener('click', function(event) {
+    const modal = document.getElementById('confirmationModal');
+    if (modal.style.display === 'block' && event.target === modal) {
+        closeModal();
+    }
+});
+
 // 수량 입력 최대값은 보유 수량을 넘지 않는 함수
 function validateQuantity(input, max) {
     const value = parseInt(input.value, 10) || 0; // 값을 숫자로 변환하고 NaN을 0으로 처리
@@ -16,9 +36,13 @@ function handleQuantityChange(input) {
 
     if (!textarea) return; // textarea가 존재하지 않을 경우 처리
 
+    const quantity = parseInt(input.value, 10) || 0; // 값을 숫자로 변환하고 NaN을 0으로 처리
+
     // 입력 값이 0보다 크면 textarea를 활성화, 그렇지 않으면 비활성화
-    textarea.disabled = input.value <= 0;
-    if (input.value <= 0) {
+    if (quantity > 0) {
+        textarea.disabled = false;
+    } else {
+        textarea.disabled = true;
         textarea.value = ''; // 수량이 0일 때 댓글 내용을 지웁니다.
         const comments = JSON.parse(localStorage.getItem('comments') || '{}');
         delete comments[bookCode];
@@ -28,8 +52,8 @@ function handleQuantityChange(input) {
     // 수량과 책 이름을 LocalStorage에 저장합니다.
     const quantities = JSON.parse(localStorage.getItem('quantities') || '{}');
     const bookNames = JSON.parse(localStorage.getItem('bookNames') || '{}');
-    quantities[bookCode] = input.value;
-	bookNames[bookCode] = bookName; // 책 이름도 저장합니다.
+    quantities[bookCode] = quantity;
+    bookNames[bookCode] = bookName; // 책 이름도 저장합니다.
     localStorage.setItem('quantities', JSON.stringify(quantities));
     localStorage.setItem('bookNames', JSON.stringify(bookNames));
 }
@@ -74,12 +98,6 @@ function showConfirmationModal() {
     modal.style.display = 'block';
 }
 
-// 모달 닫기 함수
-function closeModal() {
-    const modal = document.getElementById('confirmationModal');
-    modal.style.display = 'none';
-}
-
 // DOMContentLoaded 이벤트 리스너
 document.addEventListener('DOMContentLoaded', function() {
     // 모든 textarea를 비활성화 상태로 설정
@@ -101,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 댓글 입력 필드 초기화
+    // comments 입력 필드 초기화
     const commentBoxes = document.querySelectorAll('textarea.comment-box');
     commentBoxes.forEach(textarea => {
         const bookCode = textarea.dataset.bookCode;
@@ -113,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('comments', JSON.stringify(comments));
         });
     });
+
 });
 
 // 검색 폼 제출 시 LocalStorage에 저장
@@ -167,7 +186,7 @@ function submitOrderForm() {
         body: jsonData
     }).then(response => {
         if (response.ok) {
-			localStorage.clear();
+            localStorage.clear();
             window.location.href = 'http://localhost:8080/Inventory/branch/stockout/list'; // 성공 후 리디렉션
         } else {
             alert('문제가 발생했습니다. 다시 시도해 주세요.');

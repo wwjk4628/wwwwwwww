@@ -142,6 +142,7 @@ button {
 			<label for="keyword">검색어: </label>
 			<input type="text" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
 			<input type="submit" value="검색">
+			<button type="button" onclick="resetKeyword()">초기화</button>
 		</form>
 			
 		<div class="out-list">
