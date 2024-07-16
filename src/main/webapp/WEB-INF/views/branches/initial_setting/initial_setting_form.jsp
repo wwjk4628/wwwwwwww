@@ -123,7 +123,7 @@ button {
 				</table>
 				<form id="orderForm" action="<c:url value='/branch/initial/confirm'/>"
 					method="post">
-					<button type="button" onclick="submitOrderForm()">발주 제출</button>
+					<button type="submit" onclick="submitOrderForm()">발주 제출</button>
 				</form>
 			</div>
 

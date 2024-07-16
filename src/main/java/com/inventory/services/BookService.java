@@ -18,4 +18,6 @@ public interface BookService {
 	public boolean updatebook(BookVo vo);
 	
 	public BookVo getData(String bookCode);
+	
+	
 }

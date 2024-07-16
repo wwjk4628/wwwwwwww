@@ -1,120 +1,227 @@
-
-
-/* Bootstrap CSS */
-@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
-
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    color: #333;
+	font-family: Arial, sans-serif;
+	background-color: #f9f9f9;
+	margin: 0;
+	padding: 0;
+	color: #333;
 }
 
-h1, h2, h3 {
-    color: #333333;
+h1 {
+	color: #333333; /* 검은색으로 변경 */
+	font-size: 2em;
+	margin-bottom: 10px;
+}
+
+h3 {
+	color: #333333; /* 검은색으로 변경 */
+	font-size: 1.5em;
+	margin-bottom: 10px;
 }
 
 p {
-    font-size: 1.2em;
-    margin: 5px 0 15px 0;
+	font-size: 1.2em;
+	margin: 5px 0 15px 0;
 }
 
 /* Navigation Bar Styles */
 nav {
-    background-color: #333333;
-    padding: 10px;
+	background-color: #333333; /* 검은색으로 변경 */
+	color: white;
+	padding: 15px;
+	text-align: center;
+	position: relative;
 }
 
 nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+	display: inline;
+	margin: 0 10px;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
+nav a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
+nav a:hover {
+	text-decoration: underline;
+}
+
+/* Menu button for small screens */
+nav .menu {
+	display: none;
+	background-color: #333333; /* 검은색으로 변경 */
+	color: white;
+	padding: 10px;
+	cursor: pointer;
+	text-align: center;
+}
+
+@media ( max-width : 600px) {
+	nav ul {
+		display: none;
+		flex-direction: column;
+		align-items: center;
+	}
+	nav ul li {
+		display: block;
+		margin: 10px 0;
+	}
+	nav .menu {
+		display: block;
+	}
+	nav:focus-within ul, nav ul:focus-within, nav ul:active {
+		display: flex;
+	}
 }
 
 /* Main Content Styles */
 .content {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	padding: 20px;
+	margin: 20px;
+	background-color: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.content h1, .content h2, .content h3 {
-    border-bottom: 2px solid #333333;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
+.content h1 {
+	border-bottom: 2px solid #333333; /* 검은색으로 변경 */
+	padding-bottom: 5px;
+	margin-bottom: 15px;
 }
 
 .content a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333333;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #333333; /* 검은색으로 변경 */
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
 }
 
 .content a:hover {
-    background-color: #000000;
+	background-color: #000000; /* 더 짙은 검은색으로 변경 */
 }
 
 /* Table Styles */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+	width: 1400px;
+	border-collapse: collapse;
+	margin-bottom: 20px;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
-/* Button Styles */
-button {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+/* Form Styles */
+form {
+	margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: #45a049;
+input[type="text"], input[type="submit"], input[type="checkbox"] {
+	padding: 5px;
+	margin-right: 10px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.add {
+	background-color: #32CD32;
+	color: white;
+}
+
+.add:hover {
+	background-color: #228B22; /* DarkGreen	#228B22 */
+}
+
+.delete {
+	background-color: #f44336; /* 빨간색 */
+	color: white;
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block; /* 버튼처럼 보이게 하기 위한 추가 */
+}
+
+.delete:hover {
+	background-color: #c62828; /* 다크 레드 */
+}
+
+.update {
+	background-color: #008CBA; /* 파란색 */
+	color: white;
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block; /* 버튼처럼 보이게 하기 위한 추가 */
+}
+
+.update:hover {
+	background-color: #005f6b; /* 다크 블루 */
 }
 
 /* Footer Styles */
 footer {
-    background-color: #333333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
+	background-color: #333333; /* 검은색으로 변경 */
+	color: white;
+	text-align: center;
+	padding: 10px;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+}
+
+.cart {
+  position: fixed; /* 화면에 고정 */
+  top: 200px; /* 상단 여백 */
+  right: 20px; /* 오른쪽 여백 */
+  width: 600px; /* 장바구니 너비 */
+  background-color: #ffffff; /* 배경색 */
+  border: 1px solid #cccccc; /* 테두리 */
+  padding: 10px; /* 내부 여백 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  z-index: 1000; /* 다른 요소 위에 나타나도록 설정 */
+}
+
+/* 장바구니 내용에 스크롤이 필요한 경우 */
+.cart-content {
+  max-height: 700px; /* 최대 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤 표시 */
+}
+.cart table {
+	width: 100%;
+}
+
+.cart2 {
+  position: fixed; /* 화면에 고정 */
+  top: 88%; /* 상단 여백 */
+  right: 20px; /* 오른쪽 여백 */
+  width: 600px; /* 장바구니 너비 */
+  background-color: #ffffff; /* 배경색 */
+  border: 1px solid #cccccc; /* 테두리 */
+  padding: 10px; /* 내부 여백 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  z-index: 1000; /* 다른 요소 위에 나타나도록 설정 */
+}
+
+/* 장바구니 내용에 스크롤이 필요한 경우 */
+.cart-content2 {
+  max-height: 700px; /* 최대 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤 표시 */
+}
+.cart table2 {
+	width: 100%;
 }

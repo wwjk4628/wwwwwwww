@@ -7,7 +7,7 @@ public class BookInventoryVo {
 	private String branchId;
 	private String bookCode;
 	private String bookName;
-	private Integer inventory;
+	private int inventory;
 	private Date inDate;
 	private Date outDate;
 	
@@ -15,7 +15,7 @@ public class BookInventoryVo {
 		
 	}
 
-	public BookInventoryVo(String branchId, String bookCode, String bookName, Integer inventory, Date inDate,
+	public BookInventoryVo(String branchId, String bookCode, String bookName, int inventory, Date inDate,
 			Date outDate) {
 		super();
 		this.branchId = branchId;
@@ -48,11 +48,11 @@ public class BookInventoryVo {
 		this.bookName = bookName;
 	}
 
-	public Integer getInventory() {
+	public int getInventory() {
 		return inventory;
 	}
 
-	public void setInventory(Integer inventory) {
+	public void setInventory(int inventory) {
 		this.inventory = inventory;
 	}
 

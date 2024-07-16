@@ -26,4 +26,8 @@ public interface OrderCheckService {
 	public int confirmAndInsertInDetail(StockVo vo);
 	
 	public String getBranchId(String orderId);
+	
+	public List<OrderVo> getBranchList();
 }
+
+
