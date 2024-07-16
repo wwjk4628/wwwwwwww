@@ -99,12 +99,11 @@ public class UserController {
 //				//	auth code가 2일 경우 관리자 페이지
 //				return "redirect:/admin/home"; 
 //				
-//			} else {
-//				//	그외 (기본 0)의 경우 가입 승인 대기 페이지
+//			 				//	그외 (기본 0)의 경우 가입 승인 대기 페이지
 //				return "users/authcode";
 //			}
 //			
-//		} else {
+//		 else {
 //			//	계정 정보가 없을 경우 (로그인 실패)
 //			return "redirect:/user/login";
 //		}

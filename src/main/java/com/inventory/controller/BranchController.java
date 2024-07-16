@@ -51,7 +51,7 @@ public class BranchController {
 			}
 		}
 		
-		session.setAttribute("authUser", authUser);
+//		session.setAttribute("authUser", authUser);
 		
 		return "branches/branch_home";
 	}
