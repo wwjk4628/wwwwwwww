@@ -50,4 +50,29 @@ public class StockServiceImpl implements StockService {
 	public List<StockVo> getStockOutList(String branchId) {
 		return stockDao.getStockOutList(branchId);
 	}
+	
+	@Override
+	public List<StockVo> getStockOutDetail(String outId) {
+		return stockDao.getStockOutDetail(outId);
+	}
+
+	@Override
+	public int insertStockOut(String branchId) {
+		return stockDao.insertStockOut(branchId);
+	}
+
+	@Override
+	public int getStockOutId(String branchId) {
+		return stockDao.getStockOutId(branchId);
+	}
+
+	@Override
+	public int insertOutDetail(StockVo vo) {
+		return stockDao.insertOutDetail(vo);
+	}
+
+	@Override
+	public int confirmStockOut(StockVo vo) {
+		return stockDao.confirmStockOut(vo);
+	}
 }

@@ -109,6 +109,7 @@ button {
         		<!-- Do nothing or display alternative content -->
     			</c:otherwise>
 			</c:choose>
+			<p><a href ="<c:url value="/branch/stockin/list"/>">목록으로 돌아가기</a></p>
     </div>
 </body>
 </html>

@@ -72,13 +72,64 @@ button {
 	cursor: pointer;
 }
 
-/* 발주 기록 스타일 */
-.order-history {
-	margin-top: 0;
-	margin-bottom: 20px;
+/* 여기부터 중요함 살려야 함 */
+.comments-section {
+            margin-top: 10px;
 }
+.comment-box {
+	width: 100%;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.comment-box:disabled {
+	background-color: #f0f0f0; /* 비활성화된 상태의 배경 색상 */
+}
+
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* 모달 창의 최대 너비 (변경 가능) */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    border-radius: 8px; /* 둥근 모서리 */
+    position: relative; /* 자식 요소의 절대 위치에 영향을 주기 위해 */
+    max-height: 50vh;
+    overflow-y: auto; /* 세로 스크롤 */
+}
+.modal-body {
+    max-height: calc(80vh - 100px); /* 최대 높이 (모달 창 높이에서 버튼 높이 차감) */
+    overflow-y: auto; /* 세로 스크롤 */
+    margin-bottom: 20px; /* 버튼과의 거리 */
+}
+.close {
+	color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+	color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 </style>
-<script src="<c:url value= "/javascript/setting.js"/>"></script>
+<script src="<c:url value= "/javascript/stockOut.js"/>"></script>
 
 </head>
 
@@ -87,51 +138,54 @@ button {
 
 	<h1>출고 소비 페이지</h1>
 
-			<form id="addToCartForm" action="<c:url value='/branch/initial/add'/>" method="post">
-				<input type="text" id="bookSearch" placeholder="교재 검색...">
-				<div class="order-form">
-					<select id="bookSelect" name="bookCode">
-						<option value="">교재 선택</option>
-						<c:forEach items="${list }" var="vo" varStatus="status">
-							<option value="${vo.bookCode }">${vo.bookName }${vo.inventory }</option>
-						</c:forEach>
-					</select> <input type="number" name="quantity" id="quantity" min="1" value="1">
-					<button type="button" onclick="addToCart()">장바구니에 추가</button>
-				</div>
-			</form>
-
 		<form id="search-form">
-			<label for="keyword">검색어: </label><input type="text" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
-			<input type="checkbox" 	name="check" id="check" value="check" ${param.check == 'check' ? 'checked' : ''} />
-			<label for="check">재고 있는 책만 보기</label>
+			<label for="keyword">검색어: </label>
+			<input type="text" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
 			<input type="submit" value="검색">
 		</form>
-			<div class="out-list">
-				<table id="table">
+			
+		<div class="out-list">
+			<table id="table">
+				<tr>
+					<th>교재명</th>
+					<th>수량</th>
+					<th>작업</th>
+					<th>코멘트</th>
+				</tr>
+				<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<th>교재명</th>
-						<th>수량</th>
-						<th>작업</th>
+						<td>${vo.bookName }</td>
+						<td>${vo.inventory }</td>
+						<td>
+							<input type="hidden" name="bookCode" value="${vo.bookCode}">
+							<input type="hidden" name="bookName" value="${vo.bookName }">
+							<input type="number" name="quantity" min="0" max="${vo.inventory}"
+								data-book-code="${vo.bookCode}"
+								data-book-name="${vo.bookName}"
+								oninput="validateAndHandleQuantity(this, ${vo.inventory})">
+						</td>
+						<td>
+                        	<textarea class="comment-box" data-book-code="${vo.bookCode}" placeholder="코멘트를 입력하세요"></textarea>
+                    	</td>
 					</tr>
-					<c:forEach items="${list }" var="vo" varStatus="status">
-						<tr>
-							<td>${vo.bookName }</td>
-							<td>${vo.inventory }</td>
-							<td>
-								<form action="<c:url value="/branch/initial/delete"/>" method="post">
-									<input type="hidden" name="bookCode" value="${vo.bookCode}">
-									<button type="submit">삭제</button>
-								</form>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
-				<form id="orderForm" action="<c:url value='/branch/initial/confirm'/>"
-					method="post">
-					<button type="button" onclick="submitOrderForm()">발주 제출</button>
-				</form>
-			</div>
-
+				</c:forEach>
+			</table>
+			
+			<form id="orderForm" action="<c:url value='/branch/stockout/confirm'/>" method="post">
+				<button type="button" onclick="showConfirmationModal()">확정</button>
+			</form>
+		</div>
+			
+		<div id="confirmationModal" class="modal">
+        	<div class="modal-content">
+            	<span class="close" onclick="closeModal()">&times;</span>
+            	<h2>소비 처리 확인</h2>
+            	<div id="modal-body">
+                <!-- JavaScript로 동적으로 내용이 추가됩니다. -->
+            	</div>
+            	<button type="button" onclick="submitOrderForm()">확인</button>
+            	<button type="button" onclick="closeModal()">취소</button>
+        	</div>
+    	</div>
 </body>
-
 </html>
