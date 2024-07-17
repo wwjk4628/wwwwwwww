@@ -32,6 +32,11 @@
                         승인</a></li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="navbar-text text-white">
+                        <c:out value="${sessionScope.username}"/> 님
+                    </span>
+                </li>
                 <li class="nav-item"><a class="nav-link"
                     href="<c:url value='/logout' />">로그아웃</a></li>
             </ul>

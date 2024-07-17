@@ -34,6 +34,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         // 로그인 정보 session에 기록
         HttpSession session = request.getSession();
         session.setAttribute("authUser", authUser);
+        session.setAttribute("username", username);
 
         // 권한에 따른 리다이렉트 URL 결정
         String targetUrl = determineTargetUrl(authentication);
