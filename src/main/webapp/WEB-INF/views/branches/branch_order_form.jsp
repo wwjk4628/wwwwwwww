@@ -34,6 +34,7 @@
 							max="100000" value="1">
 						<button type="button" onclick="addToCart()" class="add">장바구니에
 							추가</button>
+
 					</div>
 				</form>
 
@@ -67,19 +68,22 @@
 					</c:forEach>
 					<tr>
 						<td><strong>총합</strong></td>
-						<td><strong>${totalQuantity}</strong></td>
-						<td></td>
-						<td><strong><fmt:formatNumber value="${totalPrice}"
-									pattern="#,###" /></strong></td>
-						<td>
-							<form id="orderForm"
-								action="<c:url value='/branch/order/submit'/>" method="post">
-								<button type="submit" onclick="return confirmSubmit()"
-									class="update">발주 제출</button>
-							</form>
-						</td>
+						<td colspan="2"><strong>${totalQuantity}</strong></td>
+						<td colspan="2"><strong><fmt:formatNumber
+									value="${totalPrice}" pattern="#,###" /></strong></td>
 					</tr>
 				</table>
+				<div style="display: flex; justify-content: flex-end; gap: 10px;">
+					<form action="<c:url value='/branch/order/removeall'/>"
+						method="post">
+						<button type="submit" class="delete">전체 삭제</button>
+					</form>
+					<form id="orderForm" action="<c:url value='/branch/order/submit'/>"
+						method="post">
+						<button type="submit" onclick="return confirmSubmit()"
+							class="update">발주 제출</button>
+					</form>
+				</div>
 			</div>
 		</div>
 		<div>

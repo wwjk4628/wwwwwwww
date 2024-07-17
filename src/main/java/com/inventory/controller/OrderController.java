@@ -94,12 +94,11 @@ public class OrderController {
 //		데이터를 받아와 지점 교재 재고 현황을 모델에 저장
 
 		UserVo vo = (UserVo) session.getAttribute("authUser");
-		
+
 		List<BookInventoryVo> list = bookInventoryService.getList(vo.getBranchId());
-		
-		
+
 		model.addAttribute("list", list);
-		
+
 //		session에 저장된 장바구니 리스트를 받아오고 모델에 추가해 jsp에 전달
 		Object cartObject = session.getAttribute("cart");
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
@@ -110,9 +109,8 @@ public class OrderController {
 			BookInventoryVo book = new BookInventoryVo();
 			book.setBookCode(orderVo.getBookCode());
 			book.setBranchId(vo.getBranchId());
-			orderVo.setInventory(bookInventoryService.getInventory(book)) ;
-			
-			
+			orderVo.setInventory(bookInventoryService.getInventory(book));
+
 		}
 
 		model.addAttribute("cartList", cartList);
@@ -173,7 +171,9 @@ public class OrderController {
 
 //	 	세션에서 장바구니 가져오기
 		List<OrderVo> cart = (List<OrderVo>) session.getAttribute("cart");
-
+		if (cart == null) {
+			cart = new ArrayList<>();
+		}
 //		장바구니가 비어있지 않으면 장바구니를 순회하여 원하는 장바구니 제품을 삭제
 		if (cart != null) {
 
@@ -192,6 +192,12 @@ public class OrderController {
 			session.setAttribute("cart", cart);
 		}
 		return "redirect:/branch/order/form"; // 장바구니 목록 페이지로 리다이렉트
+	}
+
+	@RequestMapping("/removeall")
+	public String removeAll(HttpSession session) {
+		session.removeAttribute("cart");
+		return "redirect:/branch/order/form";
 	}
 
 //	발주 페이지 주문 기록 페이지

@@ -45,12 +45,12 @@ public class GlobalExceptionHandler {
 		modelAndView.addObject("exception", ex); // 예외 객체를 추가하여 JSP에서 접근할 수 있도록 합니다.
 		return modelAndView;
 	}
-	@ExceptionHandler(Exception.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public ModelAndView handleAllExceptions(Exception ex) {
-		ModelAndView modelAndView = new ModelAndView("errorPage");
-		modelAndView.addObject("errorMessage", "서버에서 오류가 발생했습니다.");
-		modelAndView.addObject("exception", ex); // 예외 객체를 추가하여 JSP에서 접근할 수 있도록 합니다.
-		return modelAndView;
-	}
+//	@ExceptionHandler(Exception.class)
+//	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//	public ModelAndView handleAllExceptions(Exception ex) {
+//		ModelAndView modelAndView = new ModelAndView("errorPage");
+//		modelAndView.addObject("errorMessage", "서버에서 오류가 발생했습니다.");
+//		modelAndView.addObject("exception", ex); // 예외 객체를 추가하여 JSP에서 접근할 수 있도록 합니다.
+//		return modelAndView;
+//	}
 }
