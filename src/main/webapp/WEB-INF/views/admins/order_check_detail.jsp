@@ -14,10 +14,11 @@
 <body>
 	<%@ include file="/WEB-INF/views/admin_includes/navigation.jsp"%>
 
-	<div class="content">
-		<h1>${id }번order detail</h1>
 
-		<h3 class="parent" style="text-align: left;">
+	<div class="content">
+		<h1>${id }번orderdetail</h1>
+
+		<h3 class="parent">
 			<a href="<c:url value='/admin/ordercheck'/>">발주 리스트 돌아가기</a>
 		</h3>
 
@@ -56,6 +57,7 @@
 				class="update">승인</a>
 		</p>
 	</div>
+
 
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>
 </body>

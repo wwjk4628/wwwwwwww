@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,9 +17,10 @@
 		<h1>branch id: ${authUser.branchId }의 교재 재고 현황</h1>
 		<h3>목록 (검색어: ${param.keyword })</h3>
 		<form id="search-form">
-			<input type="text" name="keyword"><label for="keyword">검색어</label>
-			<input type="submit" value="검색"> <input type="checkbox"
-				name="check" id="check" value="check" /><label for="check">재고</label>
+			<label for="keyword">검색어: </label><input type="text" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
+			<input type="checkbox" 	name="check" id="check" value="check" ${param.check == 'check' ? 'checked' : ''} />
+			<label for="check">재고 있는 책만 보기</label>
+			<input type="submit" value="검색">
 		</form>
 		<br />
 		<table>
@@ -32,9 +34,9 @@
 			<c:forEach items="${list }" var="vo">
 				<tr>
 					<td>${vo.bookName}</td>
-					<td>가격</td>
-					<td>${vo.inventory}</td>
-					<td>재고*가격</td>
+					<td><fmt:formatNumber value="${vo.price}" pattern="#,###"/></td>
+            		<td>${vo.inventory}</td>
+            		<td><fmt:formatNumber value="${vo.inventory * vo.price}" pattern="#,###"/></td>
 				</tr>
 				
 			</c:forEach>

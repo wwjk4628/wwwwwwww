@@ -32,8 +32,8 @@ public class MainController {
     @ResponseBody
     public String raiseExcept() {
     	// RuntimeException -> 좀 더 구체적인 예외로 전환한 이후 throw 해준다
-//    	throw new RuntimeException("force Exception");
-    	throw new MainControllerException("메인 컨트롤러에서 예외가 발생했습니다.");
+    	throw new RuntimeException("force Exception");
+//    	throw new MainControllerException("메인 컨트롤러에서 예외가 발생했습니다.");
     }
     
 //    @ExceptionHandler(RuntimeException.class)

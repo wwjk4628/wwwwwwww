@@ -1,23 +1,31 @@
 
 function addToCart() {
-	var bookSelect = document.getElementById("bookSelect");
+	var bookCode = document.getElementById("bookSelect").value;
 	var quantity = document.getElementById("quantity").value;
 
 	// 교재 선택 여부 확인
-	if (bookSelect.value === "") {
+	if (bookCode === "") {
 		alert("교재를 선택해주세요.");
-		return; // 교재를 선택하지 않으면 함수 종료
+		return;
+	}
+
+	// 수량 확인
+	if (quantity < 1 || isNaN(quantity) || quantity.trim() === "") {
+		alert("올바른 수량을 입력해주세요.");
+		return;
+	}
+
+	// 수량 제한 확인
+	var maxQuantity = 100000;
+	if (quantity > maxQuantity) {
+		alert("최대 발주 수량은 100,000개입니다. 다시 입력해주세요.");
+		return;
 	}
 
 	// 장바구니 추가 알림
 	alert("장바구니에 상품이 추가되었습니다.");
 
-	// 폼을 제출하지 않도록 preventDefault() 호출
-	event.preventDefault(); // 폼 제출 방지
-
-	// 추가 로직 (필요하면 추가)
-
-	// 폼을 제출하는 방식으로 변경
+	// 폼 제출
 	var form = document.getElementById("addToCartForm");
 	form.submit();
 }
@@ -40,7 +48,18 @@ function addToCart() {
 	}
 } */
 
+
 function confirmSubmit() {
+	// 장바구니 테이블의 행 수를 가져옵니다
+	var cartRows = document.querySelectorAll("#cartTable tr").length;
+
+	// 만약 테이블에 행이 하나도 없다면
+	if (cartRows <= 2) { // 테이블에는 헤더 행만 있으므로 길이는 1입니다
+		alert("장바구니에 교재를 추가해야 발주를 제출할 수 있습니다.");
+		return false; // 발주 제출을 막습니다
+	}
+
+	// 발주 제출 전에 사용자에게 확인 메시지를 표시합니다
 	var confirmed = confirm('정말로 제출하시겠습니까?');
 	return confirmed;
 }

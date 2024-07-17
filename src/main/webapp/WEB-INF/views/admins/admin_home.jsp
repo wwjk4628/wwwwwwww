@@ -12,25 +12,27 @@
 	href="<c:url value='/css/admins.css'/>">
 </head>
 <body>
+
 	<%@ include file="/WEB-INF/views/admin_includes/navigation.jsp"%>
 
 	<!-- Main content: 교재 주문목록과 계정 승인요청 브리핑 -->
 	<div class="content">
 		<h1>교재 주문목록</h1>
 		<p>${orderCount}</p>
-		<p class="parent" style="text-align: left;">
+		<p class="parent">
 			<a href="<c:url value='/admin/ordercheck'/>">보러가기</a>
 		</p>
 
 
 		<h1>계정 승인 요청</h1>
 		<p>${userCount}</p>
-		<p class="parent" style="text-align: left;">
+		<p class="parent">
 			<a href="<c:url value='/admin/usermanage'/>">보러 가기</a>
 		</p>
 	</div>
 
 	<!-- Include footer -->
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>
+
 </body>
 </html>
