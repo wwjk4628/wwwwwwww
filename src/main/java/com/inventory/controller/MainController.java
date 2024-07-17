@@ -35,7 +35,12 @@ public class MainController {
 //    	throw new RuntimeException("force Exception");
     	throw new MainControllerException("메인 컨트롤러에서 예외가 발생했습니다.");
     }
-    
+
+	@GetMapping("/logout")
+	public String logout() {
+		System.out.println("로그아웃 성공!");
+		return "redirect:/main";
+	}
 //    @ExceptionHandler(RuntimeException.class)
 //    @ResponseBody
 //    public String handlerControllerException(RuntimeException e) {

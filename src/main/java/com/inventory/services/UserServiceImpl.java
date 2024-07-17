@@ -4,6 +4,7 @@ package com.inventory.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.inventory.repositories.dao.UserDao;
@@ -18,8 +19,16 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public boolean join(UserVo vo) {
+		
+		// 비밀번호를 인코딩하여 저장
+		String encodedPassword = passwordEncoder.encode(vo.getPassword());
+		vo.setPassword(encodedPassword);
+		
 		int insertedCount = 0;
 		insertedCount = userDao.insert(vo);
 		return insertedCount == 1;

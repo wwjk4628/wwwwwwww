@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.inventory.repositories.vo.UserVo;
 import com.inventory.services.UserService;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @RequestMapping("/user")
@@ -24,6 +24,9 @@ import jakarta.validation.Valid;
 public class UserController {
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/join")
 	public String join() {
@@ -56,6 +59,7 @@ public class UserController {
 	public String joinsuccess() {
 		return "users/joinsuccess";
 	}
+	
 	
 	//	중복 이메일 체크(API) - 응답을 Json으로 
 	@ResponseBody	//	메시지 컨버터 

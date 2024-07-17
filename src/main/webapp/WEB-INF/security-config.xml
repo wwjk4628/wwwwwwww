@@ -18,10 +18,14 @@
         <intercept-url pattern="/js/**" access="permitAll"/> <!-- JavaScript 파일에 대한 접근 허용 -->
         <intercept-url pattern="/javascript/**" access="permitAll"/> <!-- JavaScript 파일에 대한 접근 허용 -->
         <intercept-url pattern="/images/**" access="permitAll"/> <!-- 이미지 파일에 대한 접근 허용 -->
+        <intercept-url pattern="/logout" access="permitAll"/> <!-- 로그아웃 URL에 대한 접근 허용 -->
+        <intercept-url pattern="/**" access="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')"/>
+        
         <form-login login-page="/user/login" 
         			login-processing-url="/user/login"
         			authentication-success-handler-ref="customAuthenticationSuccessHandler"/>
-        <logout logout-success-url="/login?logout"/>
+        <logout logout-url="/logout" logout-success-url="/main"/>
+        <csrf disabled="true"/>
     </http>
 
 	<!-- mvcHandlerMappingIntrospector 빈 정의 -->
@@ -30,15 +34,17 @@
 	<!-- 커스텀 AuthenticationSuccessHandler 빈 정의 -->
 	<beans:bean id="customAuthenticationSuccessHandler" class="com.inventory.security.CustomAuthenticationSuccessHandler"/>
 
+	<!--  커스텀 CumtomUserDetailsService 빈 정의 -->
+	<beans:bean id="customUserDetailsService" class="com.inventory.security.CustomUserDetailsService"/>
 
 
     <!-- 인증 관리자 설정 -->
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-            	<user name="김관리" password="{noop}1234" authorities="ROLE_ADMIN"/>
-                <user name="김A" password="{noop}1234" authorities="ROLE_USER"/>
-            </user-service>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder ref="passwordEncoder"/>
         </authentication-provider>
     </authentication-manager>
+    
+    <beans:bean id = "passwordEncoder" class = "org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    
 </beans:beans>
