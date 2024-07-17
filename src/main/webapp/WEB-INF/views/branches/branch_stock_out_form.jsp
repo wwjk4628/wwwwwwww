@@ -81,7 +81,7 @@
 		<label for="keyword">검색어: </label>
 		<input type="text" id ="keyword" name="keyword" value="${param.keyword == null ? '' : param.keyword.trim()}">
 		<input type="submit" value="검색">
-		<button type="button" onclick="resetKeyword()">초기화</button>
+		<button type="button" onclick="resetKeyword()" class="add">초기화</button>
 	</form>
 
     <table id="table">
@@ -99,7 +99,7 @@
     </table>
 
     <form id="orderForm" action="<c:url value='/branch/stockout/confirm'/>" method="post">
-        <button type="button" onclick="showConfirmationModal()">확정</button>
+        <button type="button" onclick="showConfirmationModal()" class="update">확정</button>
     </form>
 
 			
@@ -110,8 +110,8 @@
             <div id="modal-body">
             <!-- JavaScript로 동적으로 내용이 추가됩니다. -->
             </div>
-            <button type="button" onclick="submitOrderForm()">확인</button>
-            <button type="button" onclick="closeModal()">취소</button>
+            <button type="button" onclick="submitOrderForm()" class="add">확인</button>
+            <button type="button" onclick="closeModal()" class="delete">취소</button>
         </div>
     </div>
 </body>
