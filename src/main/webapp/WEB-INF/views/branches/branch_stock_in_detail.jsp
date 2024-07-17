@@ -26,9 +26,6 @@
 				<th>check</th>
 				<th>comments</th>
 			</tr>
-
-			
-					
 				<c:forEach items="${list }" var="vo">
 					<tr>
 						<td>${vo.flucDate}</td>
@@ -58,6 +55,5 @@
 			</c:choose>
 			<p class="parent"><a href ="<c:url value="/branch/stockin/list"/>">목록으로 돌아가기</a></p>
     </div>
-
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.inventory.repositories.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookInventoryVo {
@@ -77,16 +78,24 @@ public class BookInventoryVo {
 		this.price = price;
 	}
 
-	public Date getInDate() {
-		return inDate;
+	public String getInDate() {
+		if (inDate == null) {
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
+		return dateFormat.format(inDate);
 	}
 
 	public void setInDate(Date inDate) {
 		this.inDate = inDate;
 	}
 
-	public Date getOutDate() {
-		return outDate;
+	public String getOutDate() {
+		if (outDate == null) {
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
+		return dateFormat.format(outDate);
 	}
 
 	public void setOutDate(Date outDate) {

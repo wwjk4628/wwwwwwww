@@ -12,7 +12,6 @@
 	href="<c:url value='/css/admins.css'/>">
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/views/admin_includes/navigation.jsp"%>
 
 	<!-- Main content: 교재 주문목록과 계정 승인요청 브리핑 -->
@@ -33,6 +32,5 @@
 
 	<!-- Include footer -->
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>
-
 </body>
 </html>
