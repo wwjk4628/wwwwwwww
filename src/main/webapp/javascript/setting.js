@@ -1,4 +1,3 @@
-
 function addToCart() {
 	var bookCode = document.getElementById("bookSelect").value;
 	var quantity = document.getElementById("quantity").value;
@@ -10,14 +9,20 @@ function addToCart() {
 	}
 
 	// 수량 확인
-	if (quantity < 1 || isNaN(quantity) || quantity.trim() === "") {
+	if (quantity.trim() === "" || isNaN(quantity) || parseFloat(quantity) < 1) {
 		alert("올바른 수량을 입력해주세요.");
+		return;
+	}
+
+	// 수량이 숫자인지 검사 (추가된 부분)
+	if (!isNumber(quantity)) {
+		alert("수량은 숫자만 입력해주세요.");
 		return;
 	}
 
 	// 수량 제한 확인
 	var maxQuantity = 100000;
-	if (quantity > maxQuantity) {
+	if (parseInt(quantity) > maxQuantity) {
 		alert("최대 발주 수량은 100,000개입니다. 다시 입력해주세요.");
 		return;
 	}
@@ -29,6 +34,12 @@ function addToCart() {
 	var form = document.getElementById("addToCartForm");
 	form.submit();
 }
+
+// 숫자인지 확인하는 함수
+function isNumber(value) {
+	return /^\d+$/.test(value);
+}
+
 
 /* function filterBooks() {
 	var input, filter, select, options, option, i, txtValue;
@@ -83,24 +94,35 @@ function addToCart2() {
 	var quantities = document.querySelectorAll(".quantity-input");
 
 	var anyQuantitySelected = false;
+	var maxQuantityExceeded = false;
+
 	for (var i = 0; i < quantities.length; i++) {
-		if (parseInt(quantities[i].value) > 0) { // 발주 수량이 0 초과인지 확인
+		var value = quantities[i].value.trim();
+
+		// 입력값이 숫자인지 확인
+		if (!isValidNumber(value)) {
+			alert('올바른 수량을 입력해주세요.');
+			quantities[i].value = ""; // 입력 필드 초기화
+			return;
+		}
+
+		// 숫자로 변환하여 설정
+		quantities[i].value = parseFloat(value);
+
+		// 발주 수량이 0 초과인지 확인
+		if (parseInt(quantities[i].value) > 0) {
 			anyQuantitySelected = true;
-			break;
+		}
+
+		// 발주 수량이 100,000을 초과하는지 확인
+		if (parseInt(quantities[i].value) > 100000) {
+			maxQuantityExceeded = true;
 		}
 	}
 
 	if (!anyQuantitySelected) {
 		alert("최소 한 권 이상의 교재를 선택해야 합니다.");
 		return;
-	}
-
-	var maxQuantityExceeded = false;
-	for (var i = 0; i < quantities.length; i++) {
-		if (parseInt(quantities[i].value) > 100000) { // 발주 수량이 100000을 초과하는지 확인
-			maxQuantityExceeded = true;
-			break;
-		}
 	}
 
 	if (maxQuantityExceeded) {
@@ -112,6 +134,12 @@ function addToCart2() {
 	alert("장바구니에 상품이 추가되었습니다.");
 
 	form.submit();
+}
+
+// 숫자 유효성 검사 함수
+function isValidNumber(value) {
+	// 숫자 패턴 확인
+	return /^-?\d*\.?\d*$/.test(value);
 }
 
 

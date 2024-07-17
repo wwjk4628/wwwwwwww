@@ -58,6 +58,12 @@ pre {
 	text-decoration: underline;
 }
 </style>
+<script>
+	// 이전 페이지로 이동하는 함수
+	function goBack() {
+		window.history.back();
+	}
+</script>
 </head>
 <body>
 	<div class="container">
@@ -65,20 +71,24 @@ pre {
 		<p class="error-message">다음과 같은 오류가 발생했습니다:</p>
 		<p class="error-message">${errorMessage}</p>
 
+
 		<%-- 예외 객체의 스택 트레이스 출력 --%>
-		<%
-		Exception ex = (Exception) request.getAttribute("javax.servlet.error.exception");
-		if (ex != null) {
-			out.println("<div class='stack-trace'>");
-			out.println("<pre>");
-			ex.printStackTrace(new java.io.PrintWriter(out));
-			out.println("</pre>");
-			out.println("</div>");
-		}
-		%>
+		<c:if test="${not empty exception}">
+			<div class='stack-trace'>
+				<pre>
+            <c:forEach var="stackTraceElement"
+						items="${exception.stackTrace}">
+                <c:out
+							value="${stackTraceElement.className}.${stackTraceElement.methodName}(${stackTraceElement.fileName}:${stackTraceElement.lineNumber})" />
+                <br />
+            </c:forEach>
+        </pre>
+			</div>
+		</c:if>
+
 
 		<div class="back-link">
-			<a href="<c:url value="/"/>">메인 페이지로 돌아가기</a>
+			<a href="javascript:void(0);" onclick="goBack();">이전 페이지로 돌아가기</a>
 		</div>
 	</div>
 </body>
