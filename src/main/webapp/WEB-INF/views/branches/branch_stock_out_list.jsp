@@ -27,7 +27,7 @@
 					<tr>
 						<td>${vo.id}</td>
 						<td>${vo.flucDate}</td>
-						<td><a href = "<c:url value="/branch/stockout/detail/${vo.id }"/>">보러 가기</a></td>
+						<td class="parent"><a href = "<c:url value="/branch/stockout/detail/${vo.id }"/>">보러 가기</a></td>
 					</tr>
 				</c:forEach>
 			</table>
