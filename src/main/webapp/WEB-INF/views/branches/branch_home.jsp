@@ -27,6 +27,7 @@
 		<br />
 		<table>
 			<tr>
+				<th>번호</th>
 				<th onclick="updateOrderBy('kindcode')">분류</th>
 				<th>book_name</th>
 				<th>price</th>
@@ -35,8 +36,9 @@
 				<th>최근 입고일</th>
 				<th>최근 출고일</th>
 			</tr>
-			<c:forEach items="${list }" var="vo">
+			<c:forEach items="${list }" var="vo" varStatus="status">
 				<tr>
+					<td>${status.index + 1}</td>
 					<td><c:choose>
 						<c:when test="${vo.kindCode eq 1}">초등</c:when>
 						<c:when test="${vo.kindCode eq 2}">중등</c:when>
