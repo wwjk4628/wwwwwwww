@@ -26,7 +26,6 @@
 				<th>check</th>
 				<th>comments</th>
 			</tr>
-		
 				<c:forEach items="${list }" var="vo">
 					<tr>
 						<td>${vo.flucDate}</td>
@@ -48,13 +47,13 @@
 			
 			<c:choose>
     			<c:when test="${check eq 0}">
-        			<a href="<c:url value='/branch/stockin/confirm/${inId}' />">도착했어요~~</a>
+        			<a href="<c:url value='/branch/stockin/confirm/${inId}' />" id="take">도착했어요~~</a>
     			</c:when>
     			<c:otherwise>
         		<!-- Do nothing or display alternative content -->
     			</c:otherwise>
 			</c:choose>
-			<p><a href ="<c:url value="/branch/stockin/list"/>">목록으로 돌아가기</a></p>
+			<p class="parent"><a href ="<c:url value="/branch/stockin/list"/>">목록으로 돌아가기</a></p>
     </div>
 </body>
 </html>

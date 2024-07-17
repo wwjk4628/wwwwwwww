@@ -63,7 +63,7 @@ nav a:hover {
 
 /* Table Styles */
 table {
-	width: 1400px;
+	width: 80%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 
@@ -166,5 +166,5 @@ footer {
 }
 
 .parent {
-	text-align: center; /* 가운데 정렬 */
+	text-align: left; /* 가운데 정렬 */
 }

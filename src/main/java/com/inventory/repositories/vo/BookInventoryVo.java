@@ -21,6 +21,7 @@ public class BookInventoryVo {
 
 	public BookInventoryVo(String branchId, String bookCode, String bookName, Integer inventory, Date inDate,
 			Date outDate, int price, String kindCode) {
+
 		this.branchId = branchId;
 		this.bookCode = bookCode;
 		this.bookName = bookName;

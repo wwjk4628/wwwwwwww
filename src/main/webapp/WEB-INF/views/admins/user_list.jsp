@@ -38,7 +38,8 @@
 					<td><c:choose>
 							<c:when test="${vo.authCode eq 0}">
 								<a
-									href="<c:url value='/admin/usermanage/confirm/${vo.branchId}/${vo.no}'/>" class="update">승인</a>
+									href="<c:url value='/admin/usermanage/confirm/${vo.branchId}/${vo.no}'/>"
+									class="update">승인</a>
 							</c:when>
 						</c:choose> <c:choose>
 							<c:when test="${vo.authCode eq 0 || vo.authCode eq 1}">
@@ -50,7 +51,9 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<div class="parent" style="text-align: left;"><a href="<c:url value='/admin'/>">admin 홈으로 돌아가기</a></div>
+		<div class="parent">
+			<a href="<c:url value='/admin'/>">admin 홈으로 돌아가기</a>
+		</div>
 	</div>
 
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>

@@ -1,6 +1,7 @@
 package com.inventory.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.inventory.repositories.vo.BookVo;
 import com.inventory.services.BookService;
-
 
 @RequestMapping("/admin/book")
 @Controller
@@ -40,12 +40,33 @@ public class BookController {
 	}
 
 //	본사 교재 리스트에서 교재 추가 기능
-	@RequestMapping("/insert")
-	public String insertBook(@ModelAttribute BookVo vo) {
-//		book_list 테이블에서 부분 데이터 추가 기능
+	@PostMapping("/insert")
+	public String insertBook(@ModelAttribute BookVo vo, Model model) {
+		List<BookVo> list = bookService.getbookList();
+		model.addAttribute("list", list);
+
+		// 중복 검사
+		boolean isDuplicate = checkForDuplicates(list, vo.getBookCode());
+
+		if (isDuplicate) {
+			model.addAttribute("error", "교재ID 중복");
+			return "admins/book_update";
+		}
+
+		// 중복되지 않으면 책 정보 추가
 		bookService.writebook(vo);
 		return "redirect:/admin/book/list";
 	}
+
+	private boolean checkForDuplicates(List<BookVo> list, String bookCode) {
+		// list에서 bookCode와 동일한 것이 있는지 검사
+		List<BookVo> duplicates = list.stream().filter(book -> book.getBookCode().equals(bookCode))
+				.collect(Collectors.toList());
+
+		return !duplicates.isEmpty();
+	}
+
+
 
 //	본사 교재 리스트에서 교재 검색 기능
 	@GetMapping("/search")
@@ -55,7 +76,7 @@ public class BookController {
 		model.addAttribute("list", list);
 		return "admins/book_update";
 	}
-	
+
 	@GetMapping("/update/{bookCode}")
 	public String updateBooks(@PathVariable("bookCode") String bookCode, Model model) {
 //		bookCode 기반으로 book_list 테이블의 데이터를 받아와 모델에 저장
