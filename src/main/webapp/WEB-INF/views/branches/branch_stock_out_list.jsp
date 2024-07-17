@@ -15,7 +15,7 @@
 	<div class="content">
 		<h1>출고</h1>
 		<h2>출고 목록</h2>
-		<p><a href = "<c:url value="/branch/stockout/form"/>">출고 폼</a></p>
+		<p class="parent"><a href = "<c:url value="/branch/stockout/form"/>">출고 폼</a></p>
 		<table border="1">
 				<tr>
 					<th>out_id</th>

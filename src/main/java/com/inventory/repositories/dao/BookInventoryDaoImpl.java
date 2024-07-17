@@ -51,6 +51,12 @@ public class BookInventoryDaoImpl implements BookInventoryDao {
 		int inventory = sqlSession.selectOne("bookInventory.getInventory", vo);
 		return inventory;
 	}
+
+	@Override
+	public List<BookInventoryVo> invenList(Map<String, Object> params) {
+		List <BookInventoryVo> list = sqlSession.selectList("bookInventory.dynamicInvenList", params);
+		return list;
+	}
 	
 	
 
