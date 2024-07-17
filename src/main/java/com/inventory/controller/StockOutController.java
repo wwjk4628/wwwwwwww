@@ -3,6 +3,8 @@ package com.inventory.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,15 +42,15 @@ public class StockOutController {
     @RequestMapping("/form")
     public String moveToStockOutFrom(HttpSession session, @RequestParam(value = "keyword", required = false) String keyword, Model model) {
     	UserVo vo = (UserVo)session.getAttribute("authUser");
-    	List<BookInventoryVo> list;
-    	if (keyword != null && !keyword.trim().isEmpty()) {
-    		list = bookInvenService.checkedSearch(vo.getBranchId(), keyword);
-		} else {
-			list = bookInvenService.checkedGetList(vo.getBranchId());
-		}
-		model.addAttribute("list", list);
 		session.setAttribute("authUser", vo);
 		return "branches/branch_stock_out_form";
+    }
+    
+    @RequestMapping(value = "/getListForform", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<BookInventoryVo> getListForform(HttpSession session) {
+        UserVo vo = (UserVo) session.getAttribute("authUser");
+        return bookInvenService.checkedGetList(vo.getBranchId());
     }
     
     @RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json")
@@ -65,20 +67,26 @@ public class StockOutController {
     }
     
     @RequestMapping("/confirm")
-    public String confirmStockOut(HttpSession session, @RequestBody List<StockVo> vo) {
-    	UserVo userVo = (UserVo)session.getAttribute("authUser");
-    	String branchId = userVo.getBranchId();
-    	
-    	stockService.insertStockOut(branchId);
-    	int outId = stockService.getStockOutId(branchId);
-    	
-    	vo.forEach(item -> {
-    		item.setId(outId);
-    		item.setBranchId(branchId);
-    		stockService.insertOutDetail(item);
-    		stockService.confirmStockOut(item);
-    	});
-    	return "redirect:/branch/stockout/list";
+    public ResponseEntity<String> confirmStockOut(HttpSession session, @RequestBody List<StockVo> vo) {
+        if (vo == null || vo.isEmpty()) {
+            // 빈 데이터가 넘어왔을 때 오류 응답 반환
+            return new ResponseEntity<>("전송된 데이터가 없습니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        UserVo userVo = (UserVo)session.getAttribute("authUser");
+        String branchId = userVo.getBranchId();
+        
+        stockService.insertStockOut(branchId);
+        int outId = stockService.getStockOutId(branchId);
+        
+        vo.forEach(item -> {
+            item.setId(outId);
+            item.setBranchId(branchId);
+            stockService.insertOutDetail(item);
+            stockService.confirmStockOut(item);
+        });
+        
+        return new ResponseEntity<>("성공적으로 처리되었습니다.", HttpStatus.OK);
     }
     
     @RequestMapping ("/detail/{outId}")
