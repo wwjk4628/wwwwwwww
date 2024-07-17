@@ -80,12 +80,11 @@ function updateExpectedStock(input, inventory) {
 
 function addToCart2() {
 	var form = document.getElementById("addToCartForm2");
-	var quantities = document
-		.querySelectorAll(".quantity-input");
+	var quantities = document.querySelectorAll(".quantity-input");
 
 	var anyQuantitySelected = false;
 	for (var i = 0; i < quantities.length; i++) {
-		if (quantities[i].value > 0) {
+		if (parseInt(quantities[i].value) > 0) { // 발주 수량이 0 초과인지 확인
 			anyQuantitySelected = true;
 			break;
 		}
@@ -95,11 +94,26 @@ function addToCart2() {
 		alert("최소 한 권 이상의 교재를 선택해야 합니다.");
 		return;
 	}
+
+	var maxQuantityExceeded = false;
+	for (var i = 0; i < quantities.length; i++) {
+		if (parseInt(quantities[i].value) > 100000) { // 발주 수량이 100000을 초과하는지 확인
+			maxQuantityExceeded = true;
+			break;
+		}
+	}
+
+	if (maxQuantityExceeded) {
+		alert("100,000개 이하의 교재를 선택해야 합니다.");
+		return;
+	}
+
 	// 장바구니 추가 알림
 	alert("장바구니에 상품이 추가되었습니다.");
 
 	form.submit();
 }
+
 
 // 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정
 document.getElementById("bookSearch").addEventListener("input",

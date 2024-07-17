@@ -116,6 +116,20 @@ nav .menu {
 	background-color: #000000; /* 더 짙은 검은색으로 변경 */
 }
 
+.content a#take{
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #32CD32; /* 검은색으로 변경 */
+	color: white;
+	text-decoration: none;
+	border: 1px solid #000000;
+	border-radius: 5px;
+}
+
+.content a#take:hover {
+	background-color: #228B22; /* 더 짙은 검은색으로 변경 */
+}
+
 /* Table Styles */
 table {
 	width: 60%;
