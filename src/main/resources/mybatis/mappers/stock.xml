@@ -21,7 +21,7 @@
 	
 	<!-- 입고 확인 1. checked_in 을 1번으로 수정 -->
 	<update id="confirmStockInCheckedIn" parameterType="String">
-		update stock_in set checked_in = '1' where in_id = #{inId}
+		update stock_in set checked_in = '1', in_date = sysdate where in_id = #{inId}
 	</update>
 	
 	<!-- 입고 확인 2. branch_id에 맞는 inventory에 book_code랑 quantity 반영 -->
