@@ -60,10 +60,12 @@ public class BookController {
 		if (isDuplicate) {
 			model.addAttribute("error", "교재ID 중복");
 			return "admins/book_update";
-		}
-		session.setAttribute("addList", true);
+		} 
 		// 중복되지 않으면 책 정보 추가
-		bookService.writebook(vo);
+		boolean success = (boolean)bookService.writebook(vo);
+		if (success) {
+			session.setAttribute("addList", true);
+		}
 		return "redirect:/admin/book/list";
 	}
 

@@ -1,19 +1,31 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 초기 orderBy 값을 숨겨진 필드에서 읽어옵니다.
-    let orderByField = document.getElementById('orderBy');
-
+    let orderByInput = document.getElementById('orderBy');
+    let orderBy = orderByInput.value || '';
+    
     window.updateOrderBy = function(field) {
-        let currentOrderBy = orderByField.value;
+        let orderByArray = orderBy.split(',').map(s => s.trim()).filter(s => s);
+        let fieldIndex = orderByArray.findIndex(s => s.startsWith(field + ' '));
 
-        if (currentOrderBy === field + ' asc') {
-            currentOrderBy = field + ' desc';
-        } else if (currentOrderBy === field + ' desc') {
-            currentOrderBy = '';
+		console.log(fieldIndex);
+        if (fieldIndex > -1) {
+            let currentOrder = orderByArray[fieldIndex].split(' ')[1];
+            if (currentOrder === 'asc') {
+                orderByArray[fieldIndex] = field + ' desc';
+            } else {
+                orderByArray.splice(fieldIndex, 1);
+            }
         } else {
-            currentOrderBy = field + ' asc';
+            orderByArray.push(field + ' asc');
         }
 
-        orderByField.value = currentOrderBy;
+        orderBy = orderByArray.join(', ');
+        document.getElementById('orderBy').value = orderBy;
+        console.log(orderBy);
         document.getElementById('search-form').submit();
     }
+    
+    document.getElementById('resetOrderBy').addEventListener('click', function() {
+        orderByInput.value = '';
+        document.getElementById('search-form').submit();
+    });
 });

@@ -74,6 +74,6 @@
   <!-- 공통 에러 페이지: Spring 앱 바깥에서 일어난 예외 -->
   <error-page>
     <error-code>404</error-code>
-    <location>/views/errors/error.404.jsp</location>
+    <location>/error.jsp</location>
   </error-page>
 </web-app>

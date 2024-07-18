@@ -54,8 +54,8 @@
 				<tr>
 					<td><input type="text" name="bookCode"></td>
 					<td><input type="text" name="bookName"></td>
-					<td><input type="number" name="price" id="priceInput"></td>
-					<td><input type="number" name="kindCode" id="kindInput"></td>
+					<td><input type="number" name="price" id="priceInput" oninput="handleQuantityInput(this)"></td>
+					<td><input type="number" name="kindCode" id="kindInput" oninput="handleQuantityInput(this)"></td>
 					<td><button type="button" onclick="addToBookList()"
 							class="add">추가</button></td>
 				</tr>
@@ -146,6 +146,22 @@
 		// 숫자인지 확인하는 함수
 		function isNumber(value) {
 			return /^\d+$/.test(value);
+		}
+		
+		
+		function handleQuantityInput(input) {
+			// 입력된 값을 정수로 변환합니다.
+			let value = parseInt(input.value, 10);
+
+			// 최소값(min)과 최대값(max) 사이의 값으로 제한합니다.
+			if (isNaN(value)) {
+				value = 0; // 숫자가 아니거나 값이 없으면 기본값으로 1을 설정합니다.
+			} else {
+				value = Math.min(Math.max(value, 0), 9999999);
+			}
+
+			// 제한된 값을 입력 필드에 반영합니다.
+			input.value = value;
 		}
 	</script>
 
