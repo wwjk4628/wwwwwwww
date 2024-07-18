@@ -1,4 +1,9 @@
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
+	const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
     // 페이지 로드 시 초기 데이터로 테이블을 업데이트합니다.
     fetch('http://localhost:8080/Inventory/branch/stockout/getListForform')
         .then(response => response.json())
@@ -17,7 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         fetch('http://localhost:8080/Inventory/branch/stockout/search', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded',  
+            [csrfHeader]: csrfToken  },
             body: new URLSearchParams({ 'keyword': keyword })
         })
         .then(response => response.json())
@@ -191,6 +197,9 @@ function showConfirmationModal() {
 // 주문 폼 제출 함수
 function submitOrderForm() {
     // LocalStorage에서 수량과 코멘트를 불러옵니다.
+    const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+    const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+    
     const quantities = JSON.parse(localStorage.getItem('quantities') || '{}');
     const comments = JSON.parse(localStorage.getItem('comments') || '{}');
     const bookNames = JSON.parse(localStorage.getItem('bookNames') || '{}');
@@ -206,7 +215,7 @@ function submitOrderForm() {
         
     fetch('http://localhost:8080/Inventory/branch/stockout/confirm', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', [csrfHeader]: csrfToken  },
         body: JSON.stringify(orderData)
     }).then(response => {
         if (!response.ok) {
