@@ -23,6 +23,7 @@
 			<label for="check">재고 있는 책만 보기</label>
 			<input type="hidden" id="orderBy" name="orderBy" value="${param.orderBy}">
 			<input type="submit" value="검색">
+			<button type="button" id="resetOrderBy">정렬 초기화</button>
 		</form>
 		<br />
 		<table>
@@ -30,11 +31,11 @@
 				<th>번호</th>
 				<th onclick="updateOrderBy('kindcode')">분류</th>
 				<th>book_name</th>
-				<th>price</th>
-				<th>inventory</th>
+				<th onclick="updateOrderBy('price')">price</th>
+				<th onclick="updateOrderBy('inventory')">inventory</th>
 				<th>재고*가격</th>
-				<th>최근 입고일</th>
-				<th>최근 출고일</th>
+				<th onclick="updateOrderBy('inDate')">최근 입고일</th>
+        		<th onclick="updateOrderBy('outDate')">최근 출고일</th>
 			</tr>
 			<c:forEach items="${list }" var="vo" varStatus="status">
 				<tr>
