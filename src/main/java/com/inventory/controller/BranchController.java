@@ -55,6 +55,14 @@ public class BranchController {
 			}
 		}
 		
+		Map <String, Object> params = new HashMap<>();
+		params.put("branchId", authUser.getBranchId());
+	    params.put("keyword", keyword != null ? keyword : "");
+	    params.put("check", check);
+	    params.put("orderBy", orderBy != null ? orderBy.trim() : null);
+
+		model.addAttribute("list", bookInvenService.invenList(params));
+		
 //		session.setAttribute("authUser", authUser);
 		
 		return "branches/branch_home";
