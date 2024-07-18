@@ -36,24 +36,24 @@ public class BranchController {
 //			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
 //			return "redirect:/";
 //		}
-		if (check != null && check.equals("check")) {
-			if (keyword != null && !keyword.isEmpty()) {
-				List<BookInventoryVo> list = bookInvenService.checkedSearch(authUser.getBranchId(), keyword);
-				model.addAttribute("list", list);
-			} else {
-				List<BookInventoryVo> list = bookInvenService.checkedGetList(authUser.getBranchId());
-				model.addAttribute("list", list);
-			}
-			
-		} else {
-			if (keyword != null && !keyword.isEmpty()) {
-				List<BookInventoryVo> list = bookInvenService.search(authUser.getBranchId(), keyword);
-				model.addAttribute("list", list);
-			} else {
-				List<BookInventoryVo> list = bookInvenService.getList(authUser.getBranchId());
-				model.addAttribute("list", list);
-			}
-		}
+//		if (check != null && check.equals("check")) {
+//			if (keyword != null && !keyword.isEmpty()) {
+//				List<BookInventoryVo> list = bookInvenService.checkedSearch(authUser.getBranchId(), keyword);
+//				model.addAttribute("list", list);
+//			} else {
+//				List<BookInventoryVo> list = bookInvenService.checkedGetList(authUser.getBranchId());
+//				model.addAttribute("list", list);
+//			}
+//			
+//		} else {
+//			if (keyword != null && !keyword.isEmpty()) {
+//				List<BookInventoryVo> list = bookInvenService.search(authUser.getBranchId(), keyword);
+//				model.addAttribute("list", list);
+//			} else {
+//				List<BookInventoryVo> list = bookInvenService.getList(authUser.getBranchId());
+//				model.addAttribute("list", list);
+//			}
+//		}
 		
 		Map <String, Object> params = new HashMap<>();
 		params.put("branchId", authUser.getBranchId());
