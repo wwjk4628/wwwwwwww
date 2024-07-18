@@ -188,7 +188,7 @@ function showConfirmationModal() {
     modal.style.display = 'block';
 }
 
-// 주문 폼 제출 함수
+// 폼 제출 함수
 function submitOrderForm() {
     // LocalStorage에서 수량과 코멘트를 불러옵니다.
     const quantities = JSON.parse(localStorage.getItem('quantities') || '{}');

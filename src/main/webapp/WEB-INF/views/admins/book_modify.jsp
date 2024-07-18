@@ -13,6 +13,8 @@
 
     <div class="content">
         <form action="<c:url value='/admin/book/modify'/>" method="POST">
+        
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input type="hidden" name="bookCode" value="${vo.bookCode }" />
             <table>
                 <tr>

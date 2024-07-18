@@ -31,20 +31,39 @@ public class BranchController {
 			@RequestParam(value = "orderBy", defaultValue = "inventory DESC") String orderBy, Model model) {
 		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
-		if (!("1").equals(authUser.getAuthCode())) {
-			//	홈화면으로 보내
-			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
-			return "redirect:/";
-		}
+//		if (!("1").equals(authUser.getAuthCode())) {
+//			//	홈화면으로 보내
+//			redirectAttributes.addFlashAttribute("errorMsg", "auth code 불일치 ");
+//			return "redirect:/";
+//		}
+//		if (check != null && check.equals("check")) {
+//			if (keyword != null && !keyword.isEmpty()) {
+//				List<BookInventoryVo> list = bookInvenService.checkedSearch(authUser.getBranchId(), keyword);
+//				model.addAttribute("list", list);
+//			} else {
+//				List<BookInventoryVo> list = bookInvenService.checkedGetList(authUser.getBranchId());
+//				model.addAttribute("list", list);
+//			}
+//			
+//		} else {
+//			if (keyword != null && !keyword.isEmpty()) {
+//				List<BookInventoryVo> list = bookInvenService.search(authUser.getBranchId(), keyword);
+//				model.addAttribute("list", list);
+//			} else {
+//				List<BookInventoryVo> list = bookInvenService.getList(authUser.getBranchId());
+//				model.addAttribute("list", list);
+//			}
+//		}
 		
 		Map <String, Object> params = new HashMap<>();
 		params.put("branchId", authUser.getBranchId());
 	    params.put("keyword", keyword != null ? keyword : "");
 	    params.put("check", check);
 	    params.put("orderBy", orderBy != null ? orderBy.trim() : null);
-	    
+
 		model.addAttribute("list", bookInvenService.invenList(params));
-		session.setAttribute("authUser", authUser);
+		
+//		session.setAttribute("authUser", authUser);
 		
 		return "branches/branch_home";
 	}
