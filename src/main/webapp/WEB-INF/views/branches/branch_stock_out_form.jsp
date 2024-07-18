@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
 <title>소비 페이지</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/branches.css'/>">
@@ -41,6 +43,9 @@
     </table>
 
     <form id="orderForm" action="<c:url value='/branch/stockout/confirm'/>" method="post">
+    
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        
         <button type="button" onclick="showConfirmationModal()" class="update">확정</button>
     </form>
 

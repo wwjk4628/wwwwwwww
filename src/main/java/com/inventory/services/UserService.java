@@ -11,6 +11,9 @@ public interface UserService {
 	public boolean join(UserVo vo);
 	//	아이디로 유저 정보 검색
 	public UserVo getUser(String name);
+	
+	public UserVo getUserByNameForLogin(String username);
+	
 	//	로그인
 	public UserVo getUser(String name, String password);
 	//	유저 리스트

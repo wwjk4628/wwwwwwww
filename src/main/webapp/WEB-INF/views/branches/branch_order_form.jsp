@@ -10,6 +10,17 @@
 <title>발주 페이지</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/branches.css'/>">
+
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+		// 여기에 코드를 넣으세요
+		var addCart = "${addCart}";
+		if (addCart === 'true') {
+			alert("장바구니에 추가되었습니다.");
+		}
+
+	});
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/branch_includes/navigation.jsp"%>
@@ -24,6 +35,9 @@
 			<div class="cart-content">
 				<form id="addToCartForm" action="<c:url value='/branch/order/add'/>"
 					method="post">
+
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 					<div class="order-form">
 						<select id="bookSelect" name="bookCode">
 							<option value="">교재 선택</option>
@@ -31,7 +45,8 @@
 								<option value="${vo.bookCode}">${vo.bookName}</option>
 							</c:forEach>
 						</select> <input type="number" name="quantity" id="quantity" min="1"
-							max="100000" value="1">
+							max="100000" value="1" oninput="handleQuantityInput(this)">
+
 						<button type="button" onclick="addToCart()" class="add">장바구니에
 							추가</button>
 
@@ -56,7 +71,9 @@
 							<td>
 								<form onsubmit="return confirm('정말로 삭제하시겠습니까?');"
 									action="<c:url value='/branch/order/remove'/>" method="post">
-									<input type="hidden" name="bookCode" value="${vo.bookCode}">
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" /> <input type="hidden"
+										name="bookCode" value="${vo.bookCode}">
 									<button type="submit" class="delete">삭제</button>
 								</form>
 							</td>
@@ -76,10 +93,16 @@
 				<div style="display: flex; justify-content: flex-end; gap: 10px;">
 					<form action="<c:url value='/branch/order/removeall'/>"
 						method="post">
+
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
 						<button type="submit" class="delete">전체 삭제</button>
 					</form>
 					<form id="orderForm" action="<c:url value='/branch/order/submit'/>"
 						method="post">
+
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
 						<button type="submit" onclick="return confirmSubmit()"
 							class="update">발주 제출</button>
 					</form>
@@ -100,6 +123,9 @@
 			<br>
 			<form id="addToCartForm2"
 				action="<c:url value='/branch/order/addMultiple'/>" method="post">
+
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
 				<table id="bookInventory">
 					<tr>
 						<th>교재명</th>
@@ -113,7 +139,7 @@
 							<td>${vo.inventory}</td>
 							<td><input type="number" name="quantities"
 								class="quantity-input" min="0" max="100000" value="0"
-								oninput="updateExpectedStock(this, ${vo.inventory})"></td>
+								oninput="handleQuantityInput(this)"></td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -129,7 +155,21 @@
 			<%@ include file="/WEB-INF/views/branch_includes/footer.jsp"%>
 
 			<script>
-				
+				// 수량 입력 필드의 값이 변경될 때 호출되는 함수
+				function handleQuantityInput(input) {
+					// 입력된 값을 정수로 변환합니다.
+					let value = parseInt(input.value, 10);
+
+					// 최소값(min)과 최대값(max) 사이의 값으로 제한합니다.
+					if (isNaN(value)) {
+						value = 0; // 숫자가 아니거나 값이 없으면 기본값으로 1을 설정합니다.
+					} else {
+						value = Math.min(Math.max(value, 0), 100000);
+					}
+
+					// 제한된 값을 입력 필드에 반영합니다.
+					input.value = value;
+				}
 			</script>
 
 

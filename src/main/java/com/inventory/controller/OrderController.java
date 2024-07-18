@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inventory.repositories.vo.BookInventoryVo;
 import com.inventory.repositories.vo.BookVo;
@@ -19,6 +21,7 @@ import com.inventory.services.BookInventoryService;
 import com.inventory.services.BookService;
 import com.inventory.services.OrderService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/branch/order")
@@ -83,7 +86,7 @@ public class OrderController {
 
 		// 변경된 cart를 다시 세션에 저장
 		session.setAttribute("cart", cart);
-
+		session.setAttribute("addCart", true);
 		return "redirect:/branch/order/form"; // 처리 후 발주 기록 페이지로 리다이렉트
 	}
 
@@ -99,6 +102,11 @@ public class OrderController {
 
 		model.addAttribute("list", list);
 
+		Boolean addCart = (Boolean) session.getAttribute("addCart");
+		if (addCart != null && addCart) {
+			model.addAttribute("addCart", true);
+			session.removeAttribute("addCart");
+		}
 //		session에 저장된 장바구니 리스트를 받아오고 모델에 추가해 jsp에 전달
 		Object cartObject = session.getAttribute("cart");
 		List<OrderVo> cartList = (List<OrderVo>) cartObject;
@@ -161,7 +169,7 @@ public class OrderController {
 
 		// 변경된 장바구니를 세션에 저장
 		session.setAttribute("cart", cart);
-
+		session.setAttribute("addCart", true);
 		return "redirect:/branch/order/form"; // 처리 후 발주 기록 페이지로 리다이렉트
 	}
 

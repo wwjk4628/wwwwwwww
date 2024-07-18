@@ -19,6 +19,14 @@
 		}
 	}
 
+	document.addEventListener("DOMContentLoaded", function() {
+		// 여기에 코드를 넣으세요
+		var addList = "${addList}";
+		if (addList === "true") {
+			alert("교재 리스트에 추가되었습니다.");
+		}
+	});
+
 	// 페이지 로드 시 alert 창 표시
 	window.onload = function() {
 		displayAlert();
@@ -33,6 +41,8 @@
 		<h1>교재 리스트 관리</h1>
 		<form id="addToBookList" action="<c:url value='/admin/book/insert'/>"
 			method="POST" onsubmit="return validatePriceInput();">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
 			<table>
 				<tr>
 					<th>교재 ID</th>
@@ -128,9 +138,6 @@
 				return;
 			}
 
-			// 장바구니 추가 알림
-			alert("교재가 추가되었습니다.");
-
 			// 폼 제출
 			var form = document.getElementById("addToBookList");
 			form.submit();
@@ -141,5 +148,6 @@
 			return /^\d+$/.test(value);
 		}
 	</script>
+
 </body>
 </html>
