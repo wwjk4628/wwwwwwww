@@ -1,6 +1,3 @@
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
 	const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
     const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
@@ -152,7 +149,7 @@ function closeModal() {
     modal.style.display = 'none';
 }
 
-// 모달 바깥을 클릭하면 닫히는 기능을 추가합니다.
+// 모달 바깥을 클릭하면 닫히는 기능을 추가
 document.addEventListener('click', function(event) {
     const modal = document.getElementById('confirmationModal');
     if (modal.style.display === 'block' && event.target === modal) {
