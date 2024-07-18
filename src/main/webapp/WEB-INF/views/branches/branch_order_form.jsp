@@ -24,6 +24,8 @@
 			<div class="cart-content">
 				<form id="addToCartForm" action="<c:url value='/branch/order/add'/>"
 					method="post">
+					
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<div class="order-form">
 						<select id="bookSelect" name="bookCode">
 							<option value="">교재 선택</option>
@@ -56,6 +58,7 @@
 							<td>
 								<form onsubmit="return confirm('정말로 삭제하시겠습니까?');"
 									action="<c:url value='/branch/order/remove'/>" method="post">
+                        			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>	
 									<input type="hidden" name="bookCode" value="${vo.bookCode}">
 									<button type="submit" class="delete">삭제</button>
 								</form>
@@ -76,10 +79,14 @@
 				<div style="display: flex; justify-content: flex-end; gap: 10px;">
 					<form action="<c:url value='/branch/order/removeall'/>"
 						method="post">
+						
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<button type="submit" class="delete">전체 삭제</button>
 					</form>
 					<form id="orderForm" action="<c:url value='/branch/order/submit'/>"
 						method="post">
+						
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<button type="submit" onclick="return confirmSubmit()"
 							class="update">발주 제출</button>
 					</form>
@@ -100,6 +107,8 @@
 			<br>
 			<form id="addToCartForm2"
 				action="<c:url value='/branch/order/addMultiple'/>" method="post">
+				
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<table id="bookInventory">
 					<tr>
 						<th>교재명</th>

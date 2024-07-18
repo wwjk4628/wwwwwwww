@@ -41,6 +41,8 @@
     </table>
 
     <form id="orderForm" action="<c:url value='/branch/stockout/confirm'/>" method="post">
+    
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button type="button" onclick="showConfirmationModal()" class="update">확정</button>
     </form>
 

@@ -33,6 +33,7 @@
 		<h1>교재 리스트 관리</h1>
 		<form id="addToBookList" action="<c:url value='/admin/book/insert'/>"
 			method="POST" onsubmit="return validatePriceInput();">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<table>
 				<tr>
 					<th>교재 ID</th>
@@ -141,5 +142,6 @@
 			return /^\d+$/.test(value);
 		}
 	</script>
+	
 </body>
 </html>

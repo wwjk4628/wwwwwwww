@@ -20,6 +20,7 @@
 
 	<form id="addToCartForm" action="<c:url value='/branch/initial/add'/>"
 		method="post">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="text" id="bookSearch" placeholder="교재 검색...">
 		<div class="order-form">
 			<select id="bookSelect" name="bookCode">
@@ -46,6 +47,8 @@
 					<td>
 						<form action="<c:url value="/branch/initial/delete"/>"
 							method="post">
+							
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<input type="hidden" name="bookCode" value="${vo.bookCode}">
 							<button type="submit"  class="delete">삭제</button>
 						</form>
@@ -55,6 +58,8 @@
 		</table>
 		<form id="orderForm" action="<c:url value='/branch/initial/confirm'/>"
 			method="post">
+			
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button type="submit" onclick="submitOrderForm()"  class="update">발주 제출</button>
 		</form>
 	</div>
