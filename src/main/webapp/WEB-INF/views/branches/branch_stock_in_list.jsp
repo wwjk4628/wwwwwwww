@@ -18,7 +18,9 @@
 	<%@ include file="/WEB-INF/views/branch_includes/navigation.jsp"%>
 	<div class="content">
 		<h1>입고</h1>
-		<a href="<c:url value="/branch/initial/setting"/>">발주 외 입고</a>
+		<h3 class="parent">
+			<a href="<c:url value="/branch/initial/setting"/>">발주 외 입고</a>
+		</h3>
 		<table border="1">
 			<tr>
 				<th>in_id</th>
@@ -43,7 +45,7 @@
 							<c:otherwise>알 수 없음</c:otherwise>
 						</c:choose></td>
 
-					<td><a
+					<td class="parent"><a
 						href="<c:url value="/branch/stockin/detail/${vo.id }"/>">보러 가기</a></td>
 				</tr>
 			</c:forEach>

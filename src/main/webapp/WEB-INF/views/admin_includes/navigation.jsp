@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link
@@ -37,8 +40,12 @@
                         <c:out value="${sessionScope.username}"/> 님
                     </span>
                 </li>
-                <li class="nav-item"><a class="nav-link"
-                    href="<c:url value='/logout' />">로그아웃</a></li>
+                <li class="nav-item">
+                    <form action="<c:url value='/logout' />" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <button type="submit" class="nav-link btn btn-link" style="display: inline; padding: 0;">로그아웃</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>

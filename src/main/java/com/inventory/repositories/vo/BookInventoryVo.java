@@ -1,5 +1,6 @@
 package com.inventory.repositories.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookInventoryVo {
@@ -10,18 +11,25 @@ public class BookInventoryVo {
 	private int inventory;
 	private Date inDate;
 	private Date outDate;
+	private int price;
+	private String kindCode;
 	
 	public BookInventoryVo() {
 		
 	}
 
-	public BookInventoryVo(String branchId, String bookCode, String bookName, int inventory, Date inDate,
-			Date outDate) {
-		super();
+
+	public BookInventoryVo(String branchId, String bookCode, String bookName, Integer inventory, Date inDate,
+			Date outDate, int price, String kindCode) {
+
 		this.branchId = branchId;
 		this.bookCode = bookCode;
 		this.bookName = bookName;
 		this.inventory = inventory;
+		this.price = price;
+		this.kindCode = kindCode;
+		this.inDate = inDate;
+		this.outDate = outDate;
 	}
 
 	public String getBranchId() {
@@ -60,6 +68,46 @@ public class BookInventoryVo {
 	public String toString() {
 		return "BookInventoryVo [branchId=" + branchId + ", bookCode=" + bookCode + ", bookName=" + bookName
 				+ ", inventory=" + inventory + ", inDate=" + inDate + ", outDate=" + outDate + "]";
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getInDate() {
+		if (inDate == null) {
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
+		return dateFormat.format(inDate);
+	}
+
+	public void setInDate(Date inDate) {
+		this.inDate = inDate;
+	}
+
+	public String getOutDate() {
+		if (outDate == null) {
+			return "";
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yy/MM/dd HH:mm");
+		return dateFormat.format(outDate);
+	}
+
+	public void setOutDate(Date outDate) {
+		this.outDate = outDate;
+	}
+
+	public String getKindCode() {
+		return kindCode;
+	}
+
+	public void setKindCode(String kindCode) {
+		this.kindCode = kindCode;
 	}
 	
 	

@@ -1,3 +1,10 @@
+
+
+/* styles.css */
+
+/* Bootstrap CSS */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
 /* Global Styles */
 body {
 	font-family: Arial, sans-serif;
@@ -109,9 +116,23 @@ nav .menu {
 	background-color: #000000; /* 더 짙은 검은색으로 변경 */
 }
 
+.content a#take{
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #32CD32; /* 검은색으로 변경 */
+	color: white;
+	text-decoration: none;
+	border: 1px solid #000000;
+	border-radius: 5px;
+}
+
+.content a#take:hover {
+	background-color: #228B22; /* 더 짙은 검은색으로 변경 */
+}
+
 /* Table Styles */
 table {
-	width: 1400px;
+	width: 60%;
 	border-collapse: collapse;
 	margin-bottom: 20px;
 }
@@ -188,7 +209,7 @@ footer {
   position: fixed; /* 화면에 고정 */
   top: 200px; /* 상단 여백 */
   right: 20px; /* 오른쪽 여백 */
-  width: 600px; /* 장바구니 너비 */
+  width: 38%; /* 장바구니 너비 */
   background-color: #ffffff; /* 배경색 */
   border: 1px solid #cccccc; /* 테두리 */
   padding: 10px; /* 내부 여백 */
@@ -198,7 +219,7 @@ footer {
 
 /* 장바구니 내용에 스크롤이 필요한 경우 */
 .cart-content {
-  max-height: 700px; /* 최대 높이 설정 */
+  max-height: 550px; /* 최대 높이 설정 */
   overflow-y: auto; /* 세로 스크롤 표시 */
 }
 .cart table {
@@ -207,9 +228,9 @@ footer {
 
 .cart2 {
   position: fixed; /* 화면에 고정 */
-  top: 88%; /* 상단 여백 */
+  top: 86%; /* 상단 여백 */
   right: 20px; /* 오른쪽 여백 */
-  width: 600px; /* 장바구니 너비 */
+  width: 35%; /* 장바구니 너비 */
   background-color: #ffffff; /* 배경색 */
   border: 1px solid #cccccc; /* 테두리 */
   padding: 10px; /* 내부 여백 */
@@ -219,9 +240,147 @@ footer {
 
 /* 장바구니 내용에 스크롤이 필요한 경우 */
 .cart-content2 {
-  max-height: 700px; /* 최대 높이 설정 */
+  max-height: 400px; /* 최대 높이 설정 */
   overflow-y: auto; /* 세로 스크롤 표시 */
 }
 .cart table2 {
 	width: 100%;
+}
+
+.parent a  {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #c0c0c0;
+	color: #fff;
+	text-decoration: none;
+	text-align: center;
+	border: 1px solid #000000;
+	border-radius: 4px;
+}
+
+.parent a  {
+	background-color: #808080;
+	border-color: #000000;
+}
+
+.parent a  {
+	color: #fff;
+	text-decoration: none;
+}
+
+.parent {
+	text-align: left; /* 가운데 정렬 */
+}
+
+/* 여기부터 중요함 살려야 함 */
+.comments-section {
+            margin-top: 10px;
+}
+.comment-box {
+	width: 100%;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.comment-box:disabled {
+	background-color: #f0f0f0; /* 비활성화된 상태의 배경 색상 */
+}
+
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* 모달 창의 최대 너비 (변경 가능) */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    border-radius: 8px; /* 둥근 모서리 */
+    position: relative; /* 자식 요소의 절대 위치에 영향을 주기 위해 */
+    max-height: 50vh;
+    overflow-y: auto; /* 세로 스크롤 */
+}
+.modal-body {
+    max-height: calc(80vh - 100px); /* 최대 높이 (모달 창 높이에서 버튼 높이 차감) */
+    overflow-y: auto; /* 세로 스크롤 */
+    margin-bottom: 20px; /* 버튼과의 거리 */
+}
+.close {
+	color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+	color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* 여기부터 중요함 살려야 함  stock out form*/
+.comments-section {
+            margin-top: 10px;
+}
+.comment-box {
+	width: 100%;
+	height: 60px;
+	margin-bottom: 10px;
+}
+.comment-box:disabled {
+	background-color: #f0f0f0; /* 비활성화된 상태의 배경 색상 */
+}
+
+.modal {
+	display: none; /* 기본적으로 숨김 */
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* 모달 창의 최대 너비 (변경 가능) */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    border-radius: 8px; /* 둥근 모서리 */
+    position: relative; /* 자식 요소의 절대 위치에 영향을 주기 위해 */
+    max-height: 50vh;
+    overflow-y: auto; /* 세로 스크롤 */
+}
+.modal-body {
+    max-height: calc(80vh - 100px); /* 최대 높이 (모달 창 높이에서 버튼 높이 차감) */
+    overflow-y: auto; /* 세로 스크롤 */
+    margin-bottom: 20px; /* 버튼과의 거리 */
+}
+.close {
+	color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+	color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

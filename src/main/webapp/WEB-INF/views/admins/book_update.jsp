@@ -9,13 +9,31 @@
 <title>본사 관리 시스템</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/css/admins.css'/>">
+
+<script>
+	// 서버에서 전달받은 error 메시지를 alert 창에 출력하는 함수
+	function displayAlert() {
+		var error = "${error}"; // JSP에서 전달받은 error 메시지
+		if (error && error.trim() !== "") {
+			alert(error + "다시 처리해주세요"); // alert 창에 error 메시지 출력
+		}
+	}
+
+	// 페이지 로드 시 alert 창 표시
+	window.onload = function() {
+		displayAlert();
+	};
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/admin_includes/navigation.jsp"%>
 
+
 	<div class="content">
 		<h1>교재 리스트 관리</h1>
-		<form action="<c:url value='/admin/book/insert'/>" method="POST">
+		<form id="addToBookList" action="<c:url value='/admin/book/insert'/>"
+			method="POST" onsubmit="return validatePriceInput();">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<table>
 				<tr>
 					<th>교재 ID</th>
@@ -27,9 +45,10 @@
 				<tr>
 					<td><input type="text" name="bookCode"></td>
 					<td><input type="text" name="bookName"></td>
-					<td><input type="text" name="price"></td>
-					<td><input type="text" name="kindCode"></td>
-					<td><input type="submit" value="추가" class="add"></td>
+					<td><input type="number" name="price" id="priceInput"></td>
+					<td><input type="number" name="kindCode" id="kindInput"></td>
+					<td><button type="button" onclick="addToBookList()"
+							class="add">추가</button></td>
 				</tr>
 			</table>
 		</form>
@@ -67,5 +86,62 @@
 	</div>
 
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>
+	<script>
+		function addToBookList() {
+			var bookCode = document.getElementsByName("bookCode")[0].value;
+			var bookName = document.getElementsByName("bookName")[0].value;
+			var price = document.getElementById("priceInput").value;
+			var kindCode = document.getElementById("kindInput").value;
+
+			// 교재 코드 확인
+			if (bookCode.trim() === "") {
+				alert("교재 코드를 입력해 주세요.");
+				return;
+			}
+
+			// 교재명 확인
+			if (bookName.trim() === "") {
+				alert("교재명을 입력해 주세요.");
+				return;
+			}
+
+			// 가격 확인
+			if (price.trim() === "" || isNaN(price) || parseFloat(price) <= 0) {
+				alert("올바른 가격을 입력해주세요.");
+				return;
+			}
+
+			// 과목 코드 확인
+			if (kindCode.trim() === "" || isNaN(kindCode)
+					|| parseFloat(kindCode) <= 0) {
+				alert("과목 코드를 입력해 주세요.");
+				return;
+			}
+
+			if (!isNumber(kindCode)) {
+				alert("과목 코드는 숫자만 입력해주세요.");
+				return;
+			}
+
+			// 가격이 숫자인지 검사
+			if (!isNumber(price)) {
+				alert("가격은 숫자만 입력해주세요.");
+				return;
+			}
+
+			// 장바구니 추가 알림
+			alert("교재가 추가되었습니다.");
+
+			// 폼 제출
+			var form = document.getElementById("addToBookList");
+			form.submit();
+		}
+
+		// 숫자인지 확인하는 함수
+		function isNumber(value) {
+			return /^\d+$/.test(value);
+		}
+	</script>
+	
 </body>
 </html>

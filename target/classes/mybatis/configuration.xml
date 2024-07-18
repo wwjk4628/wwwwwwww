@@ -10,6 +10,8 @@
         <setting name="useColumnLabel" value="true" />
         <setting name="useGeneratedKeys" value="true" />
         <setting name="autoMappingBehavior" value="PARTIAL" />
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        
     </settings>
 
 

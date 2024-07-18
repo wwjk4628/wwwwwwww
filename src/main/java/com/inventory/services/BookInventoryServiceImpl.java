@@ -1,6 +1,7 @@
 package com.inventory.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,32 +17,33 @@ public class BookInventoryServiceImpl implements BookInventoryService {
 
 	@Override
 	public List<BookInventoryVo> getList(String id) {
-		List<BookInventoryVo> list = bookInventoryDao.list(id);
-		return list;
+		return bookInventoryDao.list(id);
 	}
 
 	@Override
 	public List<BookInventoryVo> search(String id, String keyword) {
-		List <BookInventoryVo> list = bookInventoryDao.search(id, keyword);
-		return list;
+		return bookInventoryDao.search(id, keyword);
 	}
 
 	@Override
 	public List<BookInventoryVo> checkedGetList(String id) {
-		List<BookInventoryVo> list = bookInventoryDao.checkedList(id);
-		return list;
+		return bookInventoryDao.checkedList(id);
 	}
 
 	@Override
 	public List<BookInventoryVo> checkedSearch(String id, String keyword) {
-		List <BookInventoryVo> list = bookInventoryDao.checkedSearch(id, keyword);
-		return list;
+		return bookInventoryDao.checkedSearch(id, keyword);
 	}
 
 	@Override
 	public int getInventory(BookInventoryVo vo) {
 		int inventory = bookInventoryDao.getInventory(vo);
 		return inventory;
+	}
+
+	@Override
+	public List<BookInventoryVo> invenList(Map<String, Object> params) {
+		return bookInventoryDao.invenList(params);
 	}
 
 	

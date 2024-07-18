@@ -52,4 +52,34 @@ public class StockDaoImpl implements StockDao {
 		return sqlSession.insert("stock.initialStockIn", map);
 	}
 
+	@Override
+	public List<StockVo> getStockOutList(String branchId) {
+		return sqlSession.selectList("stock.stockOutList", branchId);
+	}
+	
+	@Override
+	public List <StockVo> getStockOutDetail(String outId){
+		return sqlSession.selectList("stock.stockOutDetail", outId);
+	}
+
+	@Override
+	public int insertStockOut(String branchId) {
+		return sqlSession.insert("stock.confirmAndInsertStockOut", branchId);
+	}
+
+	@Override
+	public int getStockOutId(String branchId) {
+		return sqlSession.selectOne("stock.getStockOutIdByBranchId", branchId);
+	}
+
+	@Override
+	public int insertOutDetail(StockVo vo) {
+		return sqlSession.insert("stock.insertOutDetail", vo);
+	}
+
+	@Override
+	public int confirmStockOut(StockVo vo) {
+		return sqlSession.update("stock.confirmAndInventoryOut", vo);
+	}
+
 }

@@ -12,19 +12,18 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/admin_includes/navigation.jsp"%>
-
 	<div class="content">
 		<h1>발주 승인</h1>
 
 		<table>
 			<td class="parent"
 				style="display: inline-block; /* 인라인 요소로 설정 */ margin-right: 10px; /* 링크 사이의 간격 조절 */ padding: 5px; /* 링크 내부 여백 설정 */ background-color: #f0f0f0;">
-				<a href="<c:url value='/admin/ordercheck'/>">초기화</a>
+				<a href="<c:url value='/admin/ordercheck/list'/>">초기화</a>
 			</td>
 			<c:forEach items="${branchList}" var="vo">
-				<td class="parent"
-					style="display: inline-block; /* 인라인 요소로 설정 */ margin-right: 10px; /* 링크 사이의 간격 조절 */ padding: 5px; /* 링크 내부 여백 설정 */ background-color: #f0f0f0;"><a
-					href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchName }</a></td>
+				<td class="parent" style="display: inline-block; /* 인라인 요소로 설정 */ margin-right: 10px; /* 링크 사이의 간격 조절 */ padding: 5px; /* 링크 내부 여백 설정 */ background-color: #f0f0f0;">
+					<a href="<c:url value='/admin/ordercheck/list/${vo.branchId}'/>">${vo.branchName }</a>
+				</td>
 			</c:forEach>
 		</table>
 		<table>
@@ -55,14 +54,11 @@
 							</c:when>
 							<c:otherwise>알 수 없음</c:otherwise>
 						</c:choose></td>
-					<td class="parent"><a
-						href="<c:url value='/admin/ordercheck/detail/${vo.orderId}'/>">보러
-							가기</a></td>
+					<td class="parent"><a href="<c:url value='/admin/ordercheck/detail/${vo.orderId}'/>">보러가기</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>
 </body>
 </html>

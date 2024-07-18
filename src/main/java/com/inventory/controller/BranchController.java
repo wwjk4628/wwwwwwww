@@ -1,6 +1,8 @@
 package com.inventory.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,9 @@ public class BranchController {
 	@RequestMapping({"/inventory", "/home"})
 	public String branchHome(HttpSession session, RedirectAttributes redirectAttributes,
 			@RequestParam(value = "keyword", required = false) String keyword,
-			@RequestParam(value="check", required = false) String check, Model model) {
+			@RequestParam(value="check", required = false) String check,
+			@RequestParam(value = "orderBy", defaultValue = "inventory DESC") String orderBy, Model model) {
+		
 		UserVo authUser = (UserVo) session.getAttribute("authUser");
 //		if (!("1").equals(authUser.getAuthCode())) {
 //			//	홈화면으로 보내

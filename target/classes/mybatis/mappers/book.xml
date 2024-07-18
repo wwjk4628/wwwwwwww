@@ -31,13 +31,13 @@
 
 	<select id="getData" parameterType="String" resultType="BookVo">
 
-		SELECT book_code as bookCode, book_name as bookName, price, kindcode FROM book_list WHERE book_code = #{book_code}
+		SELECT book_code as bookCode, book_name as bookName, price, kindcode FROM book_list WHERE book_code = #{bookCode}
 	</select>
 
 	<update id="updateData" parameterType="BookVo">
 		UPDATE book_list
 
-		SET book_name = #{bookName}, price = #{price}, kindcode = #{kindcode}
+		SET book_name = #{bookName}, price = #{price}, kindcode = #{kindCode}
 		WHERE book_code = #{bookCode}
 	</update>
 </mapper>
