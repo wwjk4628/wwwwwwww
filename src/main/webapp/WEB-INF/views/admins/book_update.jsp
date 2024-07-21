@@ -52,8 +52,8 @@
 					<th>추가</th>
 				</tr>
 				<tr>
-					<td><input type="text" name="bookCode"></td>
-					<td><input type="text" name="bookName"></td>
+					<td><input type="text" name="bookCode" id="bookCodeInput" maxlength="30" oninput="validateBookCode(this)"></td>
+					<td><input type="text" name="bookName" id="bookNameInput" maxlength="50" oninput="validateBookName(this)"></td>
 					<td><input type="number" name="price" id="priceInput" oninput="handleQuantityInput(this)"></td>
 					<td><input type="number" name="kindCode" id="kindInput" oninput="handleQuantityInput(this)"></td>
 					<td><button type="button" onclick="addToBookList()"
@@ -163,6 +163,25 @@
 			// 제한된 값을 입력 필드에 반영합니다.
 			input.value = value;
 		}
+		
+		function validateBookCode(input) {
+		    var bookCode = input.value.trim();
+		    if (bookCode.length > 30) {
+		    	alert("교재 코드는 최대 30자까지 입력 가능합니다.");
+		    }
+		}
+
+		function validateBookName(input) {
+		    var bookName = input.value.trim();
+			if (bookName.length > 50) {
+				alert("교재명은 최대 50자까지 입력 가능합니다.");
+		    }
+
+		}
+
+		
+		
+
 	</script>
 
 </body>

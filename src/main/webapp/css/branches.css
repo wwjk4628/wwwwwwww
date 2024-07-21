@@ -162,6 +162,10 @@ input[type="text"], input[type="submit"], input[type="checkbox"] {
 .add {
 	background-color: #32CD32;
 	color: white;
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	display: inline-block; /* 버튼처럼 보이게 하기 위한 추가 */
 }
 
 .add:hover {
@@ -207,7 +211,7 @@ footer {
 
 .cart {
   position: fixed; /* 화면에 고정 */
-  top: 200px; /* 상단 여백 */
+  top: 15%; /* 상단 여백 */
   right: 20px; /* 오른쪽 여백 */
   width: 38%; /* 장바구니 너비 */
   background-color: #ffffff; /* 배경색 */
@@ -228,9 +232,9 @@ footer {
 
 .cart2 {
   position: fixed; /* 화면에 고정 */
-  top: 86%; /* 상단 여백 */
+  top: 90%; /* 상단 여백 */
   right: 20px; /* 오른쪽 여백 */
-  width: 35%; /* 장바구니 너비 */
+  width: 38%; /* 장바구니 너비 */
   background-color: #ffffff; /* 배경색 */
   border: 1px solid #cccccc; /* 테두리 */
   padding: 10px; /* 내부 여백 */

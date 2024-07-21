@@ -138,5 +138,5 @@ function isValidNumber(value) {
 
 
 // 검색 필드에 입력이 들어올 때마다 호출되도록 이벤트 핸들러 설정
-document.getElementById("bookSearch").addEventListener("input",
-	filterBooks);
+/*document.getElementById("bookSearch").addEventListener("input",
+	filterBooks);*/

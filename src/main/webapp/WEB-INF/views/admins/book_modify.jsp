@@ -27,13 +27,16 @@
 					<th>작업</th>
 				</tr>
 				<tr>
-					<th><input type="text" name="bookName" value="${vo.bookName }"></th>
-					<th><input type="number" name="price" value="${vo.price }"
-						oninput="handleQuantityInput(this)"></th>
-					<th><input type="number" name="kindCode"
-						value="${vo.kindCode }" oninput="handleQuantityInput(this)"></th>
-					<th><input type="submit" value="수정"></th>
+					<td><input type="text" name="bookName" value="${vo.bookName }"
+						id="bookNameInput" maxlength="50" oninput="validateBookName(this)"></td>
+					<td><input type="number" name="price" id="priceInput" value="${vo.price }"
+						oninput="handleQuantityInput(this)"></td>
+					<td><input type="number" name="kindCode" id="kindInput"
+						value="${vo.kindCode }" oninput="handleQuantityInput(this)"></td>
+					<td><button type="button" onclick="addToBookList()"
+							class="add">수정</button></td>
 				</tr>
+
 			</table>
 		</form>
 	</div>
@@ -41,6 +44,53 @@
 	<%@ include file="/WEB-INF/views/admin_includes/footer.jsp"%>
 
 	<script type="text/javascript">
+		function addToBookList() {
+			var bookName = document.getElementsByName("bookName")[0].value;
+			var price = document.getElementById("priceInput").value;
+			var kindCode = document.getElementById("kindInput").value;
+
+			// 교재 코드 확인
+
+			// 교재명 확인
+			if (bookName.trim() === "") {
+				alert("교재명을 입력해 주세요.");
+				return;
+			}
+
+			// 가격 확인
+			if (price.trim() === "" || isNaN(price) || parseFloat(price) <= 0) {
+				alert("올바른 가격을 입력해주세요.");
+				return;
+			}
+
+			// 과목 코드 확인
+			if (kindCode.trim() === "" || isNaN(kindCode)
+					|| parseFloat(kindCode) <= 0) {
+				alert("과목 코드를 입력해 주세요.");
+				return;
+			}
+
+			if (!isNumber(kindCode)) {
+				alert("과목 코드는 숫자만 입력해주세요.");
+				return;
+			}
+
+			// 가격이 숫자인지 검사
+			if (!isNumber(price)) {
+				alert("가격은 숫자만 입력해주세요.");
+				return;
+			}
+
+			// 폼 제출
+			var form = document.getElementById("addToBookList");
+			form.submit();
+		}
+
+		// 숫자인지 확인하는 함수
+		function isNumber(value) {
+			return /^\d+$/.test(value);
+		}
+
 		function handleQuantityInput(input) {
 			// 입력된 값을 정수로 변환합니다.
 			let value = parseInt(input.value, 10);
@@ -54,6 +104,15 @@
 
 			// 제한된 값을 입력 필드에 반영합니다.
 			input.value = value;
+		}
+
+		function validateBookName(input) {
+			var bookName = input.value.trim();
+
+			// 입력 값이 50자를 초과하는 경우
+			if (bookName.length > 50) {
+				alert("교재명은 최대 50자까지 입력 가능합니다.");
+			}
 		}
 	</script>
 </body>

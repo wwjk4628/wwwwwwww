@@ -8,6 +8,16 @@ public class BookInventoryVo {
 	private String branchId;
 	private String bookCode;
 	private String bookName;
+	private Integer quantity;
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	private int inventory;
 	private Date inDate;
 	private Date outDate;
