@@ -80,7 +80,7 @@
 			</tr>
 			<c:forEach items="${list}" var="vo" varStatus="status">
 				<tr>
-					<td>[${vo.bookCode}]</td>
+					<td>${vo.bookCode}</td>
 					<td>${vo.bookName}</td>
 					<td>${vo.price}</td>
 					<td>${vo.kindCode}</td>
